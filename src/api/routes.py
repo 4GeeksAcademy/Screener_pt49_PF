@@ -21,6 +21,8 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
+#[GET] traer los user
+
 @api.route('/user', methods=[ 'GET'])
 def get_user():
 
@@ -29,4 +31,25 @@ def get_user():
  
   
     return jsonify( results), 200
+
+    
+#[POST] añade un nuevo user
+
+@api.route('/user', methods=['POST'])
+def add_new_user():
+
+    request_body_user = request.get_json()
+
+    new_user = User(
+        id=request_body_user["id"],
+        email=request_body_user["email"],
+        password=request_body_user["password"],
+        username=request_body_user["username"]
+       ,
+           )
+    db.session.add( new_user)
+    db.session.commit()
+
+    return jsonify( request_body_user), 200
+
     
