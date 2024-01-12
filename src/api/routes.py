@@ -21,7 +21,7 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-#[GET] traer los user
+#[GET] Listar los user
 
 @api.route('/user', methods=[ 'GET'])
 def get_user():
@@ -33,7 +33,7 @@ def get_user():
     return jsonify( results), 200
 
     
-#[POST] añade un nuevo user
+#[POST] Añadir un nuevo user
 
 @api.route('/user', methods=['POST'])
 def add_new_user():
@@ -51,5 +51,41 @@ def add_new_user():
     db.session.commit()
 
     return jsonify( request_body_user), 200
+
+#[PUT] Editar un user
+
+@api.route('/user/<int:user_id>', methods=['PUT'])
+def edit_user(user_id):
+    user = User.query.get(user_id)
+
+    data = request.get_json()
+    user.email = data.get('email',user.email)
+    user.password = data.get('password',user.password)
+    user.username = data.get('username',user.username)
+    
+
+    db.session.commit()
+
+    response_body = {'message': f" user {user.username} edited successfully."}
+    return jsonify(response_body)
+
+    #[DELETE] Eliminar un user
+
+@api.route('/user/<int:user_id>', methods=['DELETE'])
+def delete_user(user_id):
+    user = User.query.get(user_id)
+
+    if not user:
+        return jsonify({'message': 'User not found'}), 404
+
+    db.session.delete(user)
+    db.session.commit()
+
+    return jsonify({'message': f'User with ID {user_id} deleted successfully'}), 200
+
+
+
+
+
 
     
