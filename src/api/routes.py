@@ -59,6 +59,7 @@ def edit_user(user_id):
     user = User.query.get(user_id)
 
     data = request.get_json()
+
     user.email = data.get('email',user.email)
     user.password = data.get('password',user.password)
     user.username = data.get('username',user.username)
@@ -66,7 +67,7 @@ def edit_user(user_id):
 
     db.session.commit()
 
-    response_body = {'message': f" user {user.username} edited successfully."}
+    response_body = {'message': f"user {user.username} edited successfully."}
     return jsonify(response_body)
 
     #[DELETE] Eliminar un user
