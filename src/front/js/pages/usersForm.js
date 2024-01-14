@@ -14,14 +14,8 @@ export const UserForm = () => {
      const{ store, actions}=useContext(Context)
 
      
-
-
  		function sendData(e){
 		e.preventDefault()
-
-        //function inputEmail(eMail){
-            //setEmail(eMail.target.value)
-        //}
 
 		console.log("send data")
 		console.log(email, password)
@@ -80,8 +74,6 @@ export const UserForm = () => {
                 <button onClick={()=>actions.postUser()}
                  type="submit" className="btn btn-primary">Save</button>
 
-			    <button type="submit" className="btn btn-primary">Edit</button>
-				<button type="submit" className="btn btn-primary">Delete</button>
 				
         </form>
         </div>

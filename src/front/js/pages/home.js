@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
-import { UserForm } from "./userForm";
+import { UserForm } from "./usersForm";
 import { Link } from "react-router-dom";
 
 export const Home = () => {
@@ -15,7 +15,7 @@ export const Home = () => {
 			
 			
 			<Link to = "/users">
-			<button> link me to users</button>
+			<button  className="btn btn-outline-primary"> Link me to My users List</button>
 			</Link>
 
 			

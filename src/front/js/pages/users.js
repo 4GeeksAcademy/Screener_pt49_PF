@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 
 
-export const Users = () => {
+export const User = () => {
     
     useEffect(() => {
 		actions.getUser();
@@ -14,21 +14,23 @@ export const Users = () => {
 	return (
 		<div className="text-center mt-5">
 			
-			<h1> I am user </h1>
+			      <h1> MY USERS LIST </h1>
 
-            <button onClick={ () =>actions.getUser() }>
-                Users
-            </button>
+                <button  className="btn btn-outline-primary"
+                onClick={ () =>actions.getUser() }>
+                  GET My users List
+                </button>
 
-                { store.users.map (( myUser, index) => 
+            { store.users.map (( myUser, index) => 
 
             <div className="container border">
-            <p key= {index}>{myUser.email}</p>
-            
-            <p key= {index}> 
-            {myUser.username}  
-            </p>
-            <button onClick={()=>actions.deleteUser( myUser.id)}>Eliminar user</button>
+                <p key= {index}>{myUser.email}</p>
+                
+                <p key= {index}> 
+                {myUser.username}  
+                </p>
+                <button  className="btn btn-primary"
+                onClick={()=>actions.deleteUser( myUser.id)}>DELETE user</button>
             </div>
             )}
 

@@ -21,7 +21,7 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-#[GET] Listar los user
+#[GET] Listar los users
 
 @api.route('/user', methods=[ 'GET'])
 def get_user():
