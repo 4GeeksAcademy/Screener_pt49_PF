@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Context } from "../store/appContext";
 
-import rigoImageUrl from "../../img/rigo-baby.jpg";
+import rigoImageUrl from "../../img/rigo-baby.jpg";{}
 import "../../styles/home.css";
 
 export const UserForm = () => {
@@ -8,10 +9,20 @@ export const UserForm = () => {
 	 // dar memoria  a las variables 
 	 const [email, setEmail] = useState("");
 	 const [password, setPassword] = useState("");
-	 const [username, setUsername]= useState("")
+	 const [username, setUsername]= useState("");
+
+     const{ store, actions}=useContext(Context)
+
+     
+
 
  		function sendData(e){
 		e.preventDefault()
+
+        //function inputEmail(eMail){
+            //setEmail(eMail.target.value)
+        //}
+
 		console.log("send data")
 		console.log(email, password)
 
@@ -33,7 +44,7 @@ export const UserForm = () => {
 				
 			fetch("https://stunning-trout-4j77wgq5j46w2qg9g-3001.app.github.dev/api/user", requestOptions)
 			.then(response => response.json())
-			.then(result => console.log(result))
+			.then(data => console.log(data))
 			
 
 	}
@@ -42,11 +53,12 @@ export const UserForm = () => {
 		<div>
  
           
-          <form className="w-50 mx-auto " onSubmit={sendData}> 
+          <form className="w-50 mx-auto " onSubmit={sendData} > 
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email</label>
-                    <input value={email}
-                    onChange={(e)=>setEmail(e.target.value)}
+                    <input 
+                    value={email}
+                    onChange={(e)=> setEmail(e.target.value)}
                     type="email"
                     className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
             
@@ -65,7 +77,8 @@ export const UserForm = () => {
                     onChange={(e)=> setUsername(e.target.value)}
                     type="username" class="form-control" id="exampleInputPassword1"/>
                 </div>
-                <button type="submit" className="btn btn-primary">Save</button>
+                <button onClick={()=>actions.postUser()}
+                 type="submit" className="btn btn-primary">Save</button>
 
 			    <button type="submit" className="btn btn-primary">Edit</button>
 				<button type="submit" className="btn btn-primary">Delete</button>

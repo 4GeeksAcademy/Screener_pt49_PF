@@ -32,6 +32,7 @@ def get_user():
   
     return jsonify( results), 200
 
+
     
 #[POST] Añadir un nuevo user
 
@@ -41,7 +42,7 @@ def add_new_user():
     request_body_user = request.get_json()
 
     new_user = User(
-        id=request_body_user["id"],
+    
         email=request_body_user["email"],
         password=request_body_user["password"],
         username=request_body_user["username"]
