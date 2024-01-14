@@ -1,9 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
-
-
 import "../../styles/home.css";
-import { UserForm } from "./userForm";
+
 
 export const Users = () => {
     
@@ -28,9 +26,9 @@ export const Users = () => {
             <p key= {index}>{myUser.email}</p>
             
             <p key= {index}> 
-            {myUser. username}  
+            {myUser.username}  
             </p>
-            <button onClick={()=>actions.deleteUser(store.users.id)}>Eliminar user</button>
+            <button onClick={()=>actions.deleteUser( myUser.id)}>Eliminar user</button>
             </div>
             )}
 

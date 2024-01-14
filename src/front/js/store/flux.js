@@ -75,6 +75,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					
 			)},
 
+				
 			deleteUser: (id) => {
 				console.log( " i am working")
 
@@ -89,13 +90,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then((data) => 
 						{   
 							
-						
-							
 							console.log(data),
-							setStore({ users: data })
-							
-
-
+							console.log("hello")
+						
 						})
 						
 					
