@@ -1,11 +1,9 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-
-
-import rigoImageUrl from "../../img/rigo-baby.jpg";{}
 import "../../styles/home.css";
 
-export const UserForm = () => {
+
+export const EditUser = () => {
 
 	 // dar memoria  a las variables 
 	 const [email, setEmail] = useState("");
@@ -13,42 +11,44 @@ export const UserForm = () => {
 	 const [username, setUsername]= useState("");
 
      const{ store, actions}=useContext(Context)
-
      
- 		function sendData(e){
+     function sendData(e){
 		e.preventDefault()
 
 		console.log("send data")
 		console.log(email, password)
 
-		const requestOptions = {
-    			method: 'POST',
-      			headers:{"content-type": "application/json"},
-      			body: JSON.stringify(
-             {
+        const requestOptions = {
+            method: 'PUT',
+            headers: {"content-type": "application/json"},
+            body: JSON.stringify(
+                {
 
-           			 "email": email,
-        			 "password": password,
-					 "username": username
-
-             }
-       )
-
-      };
-
-				
-			fetch("https://stunning-trout-4j77wgq5j46w2qg9g-3001.app.github.dev/api/user", requestOptions)
-			.then(response => response.json())
-			.then(data => console.log(data))
+                        "email": email,
+                        "password": password,
+                        "username": username
+                }
+            )
+            
+        };
+        
+        fetch(`https://stunning-trout-4j77wgq5j46w2qg9g-3001.app.github.dev/api/user/${id}`, requestOptions)
+        .then(response => response.json())
+        .then((data) => 
+                {   
+                console.log(data),
+                console.log("hello")
+                })
 			
 
 	}
 
+    
 	return (
 		<div>
  
           
-          <form className="w-50 mx-auto " onSubmit={sendData} > 
+          <form className="w-50 mx-auto " onSubmit={sendData}  > 
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email</label>
                     <input 
@@ -72,8 +72,11 @@ export const UserForm = () => {
                     onChange={(e)=> setUsername(e.target.value)}
                     type="username" class="form-control" id="exampleInputPassword1"/>
                 </div>
-                <button onClick={()=>actions.postUser()}
-                 type="submit" className="btn btn-primary">Save</button>
+
+                <button onClick={()=>actions.editUser()}
+                 type="submit" className="btn btn-primary">Edit</button>
+                
+                
 
 				
         </form>

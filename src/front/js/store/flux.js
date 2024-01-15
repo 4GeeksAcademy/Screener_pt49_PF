@@ -21,7 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		actions: {
 
 		
-			//[POST] crear nuevo user
+			//[POST] CREAR nuevo user
 
 				postUser: () => {
 				console.log("Hola desde flux")
@@ -47,7 +47,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						
 					},
 
-			//[GET] traer users 
+			//[GET] TRAER users 
 			
 			getUser: () => {
 				console.log( " i am working")
@@ -67,7 +67,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							}
 				)},
 
-			//[DELETE] borrar users 
+			//[DELETE] BORRAR user 
 
 			deleteUser: (id) => {
 				console.log( " i am working")
@@ -94,14 +94,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				},
 
 			
-            //[PUT] editar users 
+            //[PUT] EDITAR user 
 
-		deleteUser: (id) => {
+			editUser: (id) => {
 				console.log( " i am working")
 
 					const requestOptions = {
-						method: 'DELETE',
+						method: 'PUT',
 						headers: {"content-type": "application/json"},
+						body: JSON.stringify(
+							{
+	
+									"email": email,
+									"password": password,
+									"username": username
+							}
+						)
 						
 					};
 					
@@ -112,7 +120,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							console.log(data),
 							console.log("hello")
 							})
-					//incluimos el fetch de [GET[]  traer la Lista para que se nos vuelva a cargar la list actualizada después de eliminar user.
+					//incluimos el fetch de [GET[]  traer la Lista para que se nos vuelva a cargar la list actualizada después de editar user.
 					fetch("https://stunning-trout-4j77wgq5j46w2qg9g-3001.app.github.dev/api/user")
 					.then( (response)=>response.json())
 					.then( (data)=>setStore({ users:data }))

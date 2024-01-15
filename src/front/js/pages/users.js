@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
+import { Link } from "react-router-dom";
 
 
 export const User = () => {
@@ -31,6 +32,12 @@ export const User = () => {
                 </p>
                 <button  className="btn btn-primary"
                 onClick={()=>actions.deleteUser( myUser.id)}>DELETE user</button>
+
+                <Link to="/editForm">
+                <button  className="btn btn-secondary"
+                onClick={()=>actions.editUser( myUser.id)}>EDIT user</button>
+                </Link>
+                
             </div>
             )}
 

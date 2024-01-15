@@ -32,6 +32,14 @@ def get_user():
   
     return jsonify( results), 200
 
+#[GET] Listar un solo user
+
+@api.route('/user/<int:user_id>', methods=[ 'GET'])
+
+def get_a_user(user_id):
+
+    one_user = User.query.filter_by(id=user_id).first()
+    return jsonify( one_user.serialize()), 200
 
     
 #[POST] Añadir un nuevo user
