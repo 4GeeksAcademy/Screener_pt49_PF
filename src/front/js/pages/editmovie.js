@@ -15,10 +15,10 @@ export const MovieEditForm = () => {
   });
 
   useEffect(() => {
-    // Carga los datos de la película a editar cuando el componente se monta
+    console.log("theid:", theid);
+    console.log("store.movies:", store.movies);
     const movieToEdit = store.movies.find((movie) => movie.id === parseInt(theid));
     if (movieToEdit) {
-      // Si encontramos la película, actualiza el estado local
       setMovieData({
         title: movieToEdit.title,
         release_date: movieToEdit.release_date,
@@ -37,7 +37,7 @@ export const MovieEditForm = () => {
   };
 
   const handleSaveChanges = () => {
-    actions.editMovieInAPI(parseInt(theid), movieData);
+    actions.editMovie(parseInt(theid), movieData);
   };
 
   return (

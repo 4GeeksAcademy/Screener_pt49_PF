@@ -72,7 +72,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 			
 				try {
-					const response = await fetch('https://api.themoviedb.org/3/movie/popular?language=es-ES&page=1', options);
+					const response = await fetch('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1', options);
 					const data = await response.json();
 			
 					if (data.results) {
@@ -178,7 +178,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
-			}
+			},
+
+			editMovie: (editmovie, movieId) => {
+				const editOptions = {
+					method: "PUT",
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						"title": editmovie.title,
+						"release_date": editmovie.release_date,
+						"poster_path": editmovie.poster_path,
+					})
+				};
+			
+				fetch(`https://sturdy-halibut-jx96pjv7pvp2pr7-3001.app.github.dev/api/movies/${movieId}`, editOptions)
+					.then(response => response.json())
+					.then(data => console.log(data))
+					.catch(error => console.error('Error al editar la película:', error));
+			},
 		}
 	};
 };

@@ -29,6 +29,7 @@ export const MoviesApi = () => {
           <div className="container border" key={movie.id}>
             <h2>{movie.title}</h2>
             <p>Id: {movie.id}</p>
+            <p>{movie.overview}</p>
             <div>
               <img style={{ width: "120px" }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
               <button className="ms-4" onClick={() => handleDeleteMovie(movie.id)}>
