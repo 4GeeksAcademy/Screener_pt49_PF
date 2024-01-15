@@ -28,6 +28,15 @@ def get_movies():
     serialized_movies = [movie.serialize() for movie in movies]
     return jsonify(serialized_movies)
 
+@api.route('/movies/<int:movie_id>', methods=['GET'])
+def get_all_movies(movie_id):
+
+    one_movie = Movie.query.filter_by(id=movie_id).first()
+    return jsonify(one_movie.serialize()), 200
+
+
+
+
 @api.route('/movies', methods=['POST'])
 def add_movie_from_api():
     data = request.get_json()
