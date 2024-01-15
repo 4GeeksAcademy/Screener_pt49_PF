@@ -11,6 +11,8 @@ import { MovieForm } from "./pages/movieForm";
 import { MovieEditForm } from "./pages/editmovie";
 import { Single } from "./pages/single"; 
 
+import Comment from "./component/comment"; 
+
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -37,6 +39,7 @@ const Layout = () => {
                         <Route element={<MovieForm />} path="/movieForm" />
                         <Route element={<MovieEditForm />} path="/editmovie/:theid" />
                         <Route element={<Single />} path="/single/:theid" />
+                        <Route element={<Comment />} path="/movies/comment" />
                         <Route element={<h1>Not found!</h1>} />
                         
                     </Routes>

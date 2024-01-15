@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			message: null,
+			comment: null,
 			demo: [
 				{
 					title: "FIRST",
@@ -151,7 +151,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error('Detalles del error:', error);
 				}
 			},
-		
 
 			getMessage: async () => {
 				try{
@@ -165,6 +164,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error loading message from backend", error)
 				}
 			},
+
+			postComment: (comment,commentID,movieID) => {
+				try {
+				  const response = fetch('https://curly-umbrella-jx66v5vqx49fp4xv-3001.app.github.dev/api/movies/comment', {
+					method: 'POST',
+					headers: {
+					  'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({"actual_comment": comment,"comment_id": commentID, "movie_id": movieID}),
+				  });
+				  if (response.ok){
+					alert("El comentario se agrego correctamente a la Api")
+
+				  } if (!response.ok) {
+					alert("ERROR: El comentario no se pudo agregar a la api")
+					throw new Error('Error al guardar el comentario en la API');
+				  }
+				  const data = response.json();
+				} catch (error) {
+				}
+			  },
+
+
+
+
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();

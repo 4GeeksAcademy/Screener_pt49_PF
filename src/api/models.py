@@ -108,3 +108,20 @@ class Movie(db.Model):
             "video": self.video,
             "vote_count": self.vote_count,
         }
+    
+class Comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    comment_id = db.Column(db.Integer, unique=True, nullable=False)
+    movie_id = db.Column(db.Integer, unique=False, nullable=False)
+    comment_body = db.Column(db.String(250), unique=False, nullable=False)
+
+    def __repr__(self):
+        return f'<Comments {"comment_id: " + self.id}>'
+
+    def serialize(self):
+        return {
+            "comment_body": self.comment_body,
+            "comment_id": self.comment_id,
+            "movie_id": self.movie_id
+            # do not serialize the password, its a security breach
+        }
