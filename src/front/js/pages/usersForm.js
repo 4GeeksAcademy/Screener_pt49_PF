@@ -18,28 +18,8 @@ export const UserForm = () => {
  		function sendData(e){
 		e.preventDefault()
 
-		console.log("send data")
-		console.log(email, password)
+		 actions.postUser(email, password, username)
 
-		const requestOptions = {
-    			method: 'POST',
-      			headers:{"content-type": "application/json"},
-      			body: JSON.stringify(
-             {
-
-           			 "email": email,
-        			 "password": password,
-					 "username": username
-
-             }
-       )
-
-      };
-
-				
-			fetch("https://stunning-trout-4j77wgq5j46w2qg9g-3001.app.github.dev/api/user", requestOptions)
-			.then(response => response.json())
-			.then(data => console.log(data))
 			
 
 	}
@@ -72,7 +52,7 @@ export const UserForm = () => {
                     onChange={(e)=> setUsername(e.target.value)}
                     type="username" class="form-control" id="exampleInputPassword1"/>
                 </div>
-                <button onClick={()=>actions.postUser()}
+                <button 
                  type="submit" className="btn btn-primary">Save</button>
 
 				

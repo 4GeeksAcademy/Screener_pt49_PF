@@ -23,7 +23,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		
 			//[POST] CREAR nuevo user
 
-				postUser: () => {
+				postUser: (email, password, username) => {
 				console.log("Hola desde flux")
 
 				console.log(email, password)
@@ -96,8 +96,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			
             //[PUT] EDITAR user 
 
-			editUser: (id) => {
-				console.log( " i am working")
+			editUser: (id,userdata) => {
+				
 
 					const requestOptions = {
 						method: 'PUT',
@@ -105,9 +105,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						body: JSON.stringify(
 							{
 	
-									"email": email,
-									"password": password,
-									"username": username
+									"email": userdata.email,
+									"password":userdata.password,
+									"username": userdata.username
 							}
 						)
 						
@@ -116,10 +116,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					fetch(`https://stunning-trout-4j77wgq5j46w2qg9g-3001.app.github.dev/api/user/${id}`, requestOptions)
 					.then(response => response.json())
 					.then((data) => 
-							{   
-							console.log(data),
-							console.log("hello")
-							})
+							  console.log(data),
+							  console.log("hello"),
+							
+							)
 					//incluimos el fetch de [GET[]  traer la Lista para que se nos vuelva a cargar la list actualizada después de editar user.
 					fetch("https://stunning-trout-4j77wgq5j46w2qg9g-3001.app.github.dev/api/user")
 					.then( (response)=>response.json())

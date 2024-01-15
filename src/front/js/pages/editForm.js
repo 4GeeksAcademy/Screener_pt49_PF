@@ -1,54 +1,37 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
+import { useParams } from "react-router-dom";
 
 
 export const EditUser = () => {
+
+
 
 	 // dar memoria  a las variables 
 	 const [email, setEmail] = useState("");
 	 const [password, setPassword] = useState("");
 	 const [username, setUsername]= useState("");
 
+     const { theid } = useParams();
+
      const{ store, actions}=useContext(Context)
      
-     function sendData(e){
-		e.preventDefault()
+    const handleEditUser=() =>{
+            const userdata={email, password, username};
 
-		console.log("send data")
-		console.log(email, password)
+            actions.editUser(theid ,userdata)
+        }
 
-        const requestOptions = {
-            method: 'PUT',
-            headers: {"content-type": "application/json"},
-            body: JSON.stringify(
-                {
-
-                        "email": email,
-                        "password": password,
-                        "username": username
-                }
-            )
+            const getId =()=> {
+                    console.log( theid )
+            }
             
-        };
-        
-        fetch(`https://stunning-trout-4j77wgq5j46w2qg9g-3001.app.github.dev/api/user/${id}`, requestOptions)
-        .then(response => response.json())
-        .then((data) => 
-                {   
-                console.log(data),
-                console.log("hello")
-                })
-			
-
-	}
-
-    
 	return (
 		<div>
  
           
-          <form className="w-50 mx-auto " onSubmit={sendData}  > 
+          <form className="w-50 mx-auto " > 
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email</label>
                     <input 
@@ -73,13 +56,15 @@ export const EditUser = () => {
                     type="username" class="form-control" id="exampleInputPassword1"/>
                 </div>
 
-                <button onClick={()=>actions.editUser()}
+                <button onClick={()=>handleEditUser()}
                  type="submit" className="btn btn-primary">Edit</button>
-                
-                
-
-				
+                 
+                		
         </form>
+
+        <button onClick={()=>getId() }> 
+              Traeme el id 
+        </button>
         </div>
 	);
 };

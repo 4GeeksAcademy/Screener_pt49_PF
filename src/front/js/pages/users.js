@@ -22,20 +22,21 @@ export const User = () => {
                   GET My users List
                 </button>
 
-            { store.users.map (( myUser, index) => 
+            { store.users.map (( myUser) => 
 
             <div className="container border">
-                <p key= {index}>{myUser.email}</p>
+                <p key= {myUser.id}>{myUser.email}</p>
                 
-                <p key= {index}> 
+                <p key= {myUser.id}> 
                 {myUser.username}  
                 </p>
+                <p>{ myUser.id} </p>
                 <button  className="btn btn-primary"
                 onClick={()=>actions.deleteUser( myUser.id)}>DELETE user</button>
 
-                <Link to="/editForm">
+                <Link to={`/editForm/${myUser.id}`}>
                 <button  className="btn btn-secondary"
-                onClick={()=>actions.editUser( myUser.id)}>EDIT user</button>
+                >EDIT user</button>
                 </Link>
                 
             </div>
