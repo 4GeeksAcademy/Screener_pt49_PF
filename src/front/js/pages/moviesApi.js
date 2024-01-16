@@ -10,14 +10,12 @@ export const MoviesApi = () => {
   useEffect(() => {
     actions.getMoviesFromApi();
     if (deletionCompleted) {
-      // Si la eliminación está completa, resetea el estado
       setDeletionCompleted(false);
     }
   }, [deletionCompleted]);
 
   const handleDeleteMovie = async (movieId) => {
     await actions.deleteMovieFromAPI(movieId);
-    // Indica que la eliminación está completa
     setDeletionCompleted(true);
   };
 
@@ -28,8 +26,7 @@ export const MoviesApi = () => {
         store.movies.map((movie) => (
           <div className="container border" key={movie.id}>
             <h2>{movie.title}</h2>
-            <p>Id: {movie.id}</p>
-            <p>{movie.overview}</p>
+            <p>ID: {movie.id}</p>
             <div>
               <img style={{ width: "120px" }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
               <button className="ms-4" onClick={() => handleDeleteMovie(movie.id)}>
@@ -40,7 +37,6 @@ export const MoviesApi = () => {
                 Editar pelicula
               </Link>
             </div>
-            <p>ID: {movie.id}</p>
           </div>
         ))}
     </>

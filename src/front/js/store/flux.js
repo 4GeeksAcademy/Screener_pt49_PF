@@ -72,7 +72,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 			
 				try {
-					const response = await fetch('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1', options);
+					const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=es-ES&page=1', options);
 					const data = await response.json();
 			
 					if (data.results) {
@@ -180,7 +180,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ demo: demo });
 			},
 
-			editMovie: (editmovie, movieId) => {
+			editMovie: (editmovie, id) => {
+
 				const editOptions = {
 					method: "PUT",
 					headers: { 'Content-Type': 'application/json' },
@@ -188,14 +189,61 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"title": editmovie.title,
 						"release_date": editmovie.release_date,
 						"poster_path": editmovie.poster_path,
-					})
+						"adult": editmovie.adult,
+						"backdrop_path": editmovie.backdrop_path,
+						"genre_ids": editmovie.genre_ids,
+						"original_language": editmovie.original_language,
+						"original_title": editmovie.original_title,
+						"video": editmovie.video,
+						"vote_average": editmovie.vote_average,
+						"vote_count": editmovie.vote_count,
+						"overview": editmovie.overview,
+						"christmas": editmovie.christmas,
+						"comedy": editmovie.comedy,
+						"animation": editmovie.animation,
+						"couple": editmovie.couple,
+						"crime": editmovie.crime,
+						"disney": editmovie.disney,
+						"drama": editmovie.drama,
+						"action": editmovie.action,
+						"family": editmovie.family,
+						"halloween": editmovie.halloween,
+						"happy": editmovie.happy,
+						"hard_to_watch": editmovie.hard_to_watch,
+						"historical": editmovie.historical,
+						"kids": editmovie.kids,
+						"light_film": editmovie.light_film,
+						"marathon": editmovie.marathon,
+						"motivating": editmovie.motivating,
+						"party": editmovie.party,
+						"plot_twits": editmovie.plot_twits,
+						"popularity": editmovie.popularity,
+						"science_fiction": editmovie.science_fiction,
+						"solitary": editmovie.solitary,
+						"sunday_movie": editmovie.sunday_movie,
+						"suspence": editmovie.suspence,
+						"terror": editmovie.terror,
+						"war": editmovie.war,
+						"violence": editmovie.violence,
+						"white_noise": editmovie.white_noise,
+						})
 				};
+						
 			
-				fetch(`https://sturdy-halibut-jx96pjv7pvp2pr7-3001.app.github.dev/api/movies/${movieId}`, editOptions)
-					.then(response => response.json())
-					.then(data => console.log(data))
-					.catch(error => console.error('Error al editar la película:', error));
-			},
+
+				fetch(`https://sturdy-halibut-jx96pjv7pvp2pr7-3001.app.github.dev/api/movies/${id}`, editOptions)
+				.then(response => response.json())
+				.then(data => {
+					console.log(`Película editada exitosamente: ${data}`);
+					alert("La película se editó correctamente");
+				})
+				.catch(error => {
+					console.error('Error al editar la película:', error);
+					alert("Error al editar la película");
+				});
+		},  
+
+
 		}
 	};
 };

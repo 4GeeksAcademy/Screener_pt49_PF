@@ -103,6 +103,8 @@ def delete_movie(movie_id):
     response_body = {"msg": f"La película{movie.title} se eliminó correctamente."}
     return jsonify(response_body)
 
+    
+
 @api.route('/movies/<int:movie_id>', methods=['PUT'])
 def edit_movie(movie_id):
     movie = Movie.query.get(movie_id)
