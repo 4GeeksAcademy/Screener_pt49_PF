@@ -1,7 +1,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-from flask import Flask, request, jsonify, url_for, Blueprint
+from flask import Flask, request, jsonify, url_for, Blueprint, make_response
 from api.models import db, User, Movie, Comment
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
@@ -155,11 +155,15 @@ def addComment():
     actual_comment = request.get_json()['comment_body']
     comment_id = request.get_json()['comment_id']
     movie_id = request.get_json()['movie_id']
+    #service
     new_comment = Comment(comment_body=actual_comment, comment_id=comment_id, movie_id=movie_id)
+    #service
+    #repository layer
     db.session.add(new_comment)
     db.session.commit()
-    response_body = {"msg": "Your comment has been posted"}
-    return jsonify(response_body)
+
+    response_body = {'msg": "Your comment has been posted'}
+    return (response_body)
 
 @api.route('/movies/allComments', methods=['GET'])
 def getComments():

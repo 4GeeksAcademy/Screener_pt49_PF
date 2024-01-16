@@ -1,7 +1,6 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			comment: null,
 			demo: [
 				{
 					title: "FIRST",
@@ -18,6 +17,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			popularMovies: [],
 			movies: [],
 			moviePreApi: {},
+			allComments: []
 		},
 		actions: {
 
@@ -36,9 +36,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				  } if (!response.ok) {
 					alert("ERROR: La pelicula no se pudo agregar a la api")
-					throw new Error('Error al guardar la película en la API');
-					
-
+					throw new Error('Error al guardar la película en la API');					
 				  }
 			  
 				  const data = await response.json();
@@ -164,26 +162,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error loading message from backend", error)
 				}
 			},
+//  ---------------------------------------------------------------------------------------------- COMMENT SECTION BELOW
 
 			postComment: (comment,commentID,movieID) => {
-				try {
+				{
 				  const response = fetch('https://curly-umbrella-jx66v5vqx49fp4xv-3001.app.github.dev/api/movies/comment', {
 					method: 'POST',
 					headers: {
 					  'Content-Type': 'application/json',
 					},
-					body: JSON.stringify({"actual_comment": comment,"comment_id": commentID, "movie_id": movieID}),
+					body: JSON.stringify({"comment_body": comment,"comment_id": commentID, "movie_id": movieID}),
 				  });
-				  if (response.ok){
-					alert("El comentario se agrego correctamente a la Api")
+				return alert("Your comment has been added")
+				} 
+			  },
 
-				  } if (!response.ok) {
-					alert("ERROR: El comentario no se pudo agregar a la api")
-					throw new Error('Error al guardar el comentario en la API');
-				  }
-				  const data = response.json();
-				} catch (error) {
-				}
+			getComments: () => {				
+				fetch('https://curly-umbrella-jx66v5vqx49fp4xv-3001.app.github.dev/api/movies/allComments',) 
+				.then( (response)=> response.json())
+				.then( (data)=> setStore({ allComments: data }))
 			  },
 
 
