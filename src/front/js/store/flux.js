@@ -23,7 +23,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			saveMovieToAPI: async (movieData) => {
 				try {
-				  const response = await fetch('https://sturdy-halibut-jx96pjv7pvp2pr7-3001.app.github.dev/api/movies', {
+				  const response = await fetch(process.env.BACKEND_URL + "/api/movies", {
 					method: 'POST',
 					headers: {
 					  'Content-Type': 'application/json',
@@ -116,7 +116,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getMoviesFromApi: async () => {
-				fetch("https://sturdy-halibut-jx96pjv7pvp2pr7-3001.app.github.dev/api/movies")
+				fetch(process.env.BACKEND_URL + "/api/movies")
 				.then(res => res.json())
 				.then((data) => {
 					console.log(data)
@@ -133,7 +133,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return;
 					}
 			
-					const response = await fetch(`https://sturdy-halibut-jx96pjv7pvp2pr7-3001.app.github.dev/api/movies/${movieId}`, {
+					const response = await fetch(process.env.BACKEND_URL + `/api/movies/${movieId}`, {
 						method: 'DELETE',
 						headers: {
 							'Content-Type': 'application/json',
@@ -231,7 +231,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						
 			
 
-				fetch(`https://sturdy-halibut-jx96pjv7pvp2pr7-3001.app.github.dev/api/movies/${id}`, editOptions)
+				fetch(process.env.BACKEND_URL + `/api/movies/${id}`, editOptions)
 				.then(response => response.json())
 				.then(data => {
 					console.log(`Película editada exitosamente: ${data}`);
