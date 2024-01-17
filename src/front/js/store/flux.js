@@ -122,7 +122,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 				.catch(err => console.error(err))
 			},
-
 			deleteMovieFromAPI: async (movieId) => {
 				try {
 
@@ -149,7 +148,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error('Detalles del error:', error);
 				}
 			},
-
 			getMessage: async () => {
 				try{
 					// fetching data from the backend
@@ -177,15 +175,40 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} 
 			  },
 
-			getComments: () => {				
-				fetch('https://curly-umbrella-jx66v5vqx49fp4xv-3001.app.github.dev/api/movies/allComments',) 
-				.then( (response)=> response.json())
-				.then( (data)=> setStore({ allComments: data }))
-			  },
-
-
-
-
+			getComments: async() => {
+				try{
+					var requestOptions = {
+						method: 'GET',
+						headers: { 'Content-Type': 'application/json', }
+					};	
+						fetch('https://curly-umbrella-jx66v5vqx49fp4xv-3001.app.github.dev/api/movies/allComments',requestOptions) 
+						.then( (response)=> response.json())
+						.then( (data)=> {setStore({allComments: data}, console.log(data))})
+					}	catch(error){
+						console.log("hasnt been added")
+					}
+			},
+			delComment: (comment_id) => {
+				fetch(`https://curly-umbrella-jx66v5vqx49fp4xv-3001.app.github.dev/api/movies/comment/${comment_id}`,{method: 'DELETE'})
+				alert("Comment deleted")			
+			},
+			editComment: (comment_id,comment_body) => {
+				const editOptions = {
+				method: 'PUT',
+				headers: { 'Content-Type': 'application/json', },
+				body: JSON.stringify({"comment_body": comment_body})
+			};
+				fetch(`https://curly-umbrella-jx66v5vqx49fp4xv-3001.app.github.dev/api/movies/comment/${comment_id}`,editOptions)
+				.then(response => response.json())
+				.then(data => {
+					console.log(`Comentario editado exitosamente: ${data}`);
+					alert("El comentario se editó correctamente");
+				})
+				.catch(error => {
+					console.error('Error al editar el comentario', error);
+					alert("Error al editar la comentario");
+				});
+			},
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();

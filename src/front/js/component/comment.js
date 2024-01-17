@@ -1,15 +1,11 @@
 import React, { Component, useContext, useState } from "react";
 import { Context } from "../store/appContext";
 // import "../../styles/comment.css";
-
 export const Comment = () => {
     const { store, actions } = useContext(Context);
     const [comment, setComment] = useState('') 
     const [commentID, setCommentID] = useState('') 
     const [movieID, setMovieID] = useState('') 
-
-    const [allComments, setAllComments] = useState('') 
-
     return(
     <>
         <div className="card text-center mx-5">
@@ -23,20 +19,8 @@ export const Comment = () => {
                 </div>
                 <button onClick={()=>actions.postComment(comment,commentID,movieID)} className="btn btn-primary">Post</button>
             </div>
-        </div>
-        
-        <div className="card text-center mx-5">
-            <ul className="list-group">
-                {store.allComments.map((item)=>
-                    <li className="list-group-item">{item.comment_body}
-                        <button onClick={()=>actions.deleteComment(commentID)} type="button" className="btn btn-danger mx-4">Delete</button>
-                    </li>
-                )}
-            </ul>
-        </div>
-        
+        </div>   
     </>
     );
 };
-
 export default Comment

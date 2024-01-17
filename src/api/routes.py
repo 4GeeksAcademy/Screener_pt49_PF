@@ -161,8 +161,7 @@ def addComment():
     #repository layer
     db.session.add(new_comment)
     db.session.commit()
-
-    response_body = {'msg": "Your comment has been posted'}
+    response_body = {'msg': 'Your comment has been posted'}
     return (response_body)
 
 @api.route('/movies/allComments', methods=['GET'])
