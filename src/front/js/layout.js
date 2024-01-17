@@ -11,6 +11,8 @@ import { Movies } from "./pages/movies";
 import { MoviesApi } from "./pages/moviesApi";
 import { MovieForm } from "./pages/movieForm";
 import { MovieEditForm } from "./pages/editmovie";
+import Comment from "./component/comment"; 
+import Comment_list from "./component/comment_list"; 
 import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -38,8 +40,9 @@ const Layout = () => {
                         <Route element={<MovieForm />} path="/movieForm" />
                         <Route element={<MovieEditForm />} path="/editmovie/:theid" />
                         <Route element={<Single />} path="/single/:theid" />
+                        <Route element={<Comment />} path="/movies/comment" />
+                        <Route element={<Comment_list />} path="/movies/comment_list" />
                         <Route element={<h1>Not found!</h1>} />
-                        
                     </Routes>
                     <Footer />
                 </ScrollToTop>

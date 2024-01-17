@@ -1,7 +1,6 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			message: null,
 			demo: [
 				{
 					title: "FIRST",
@@ -19,6 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			popularMovies: [],
 			movies: [],
 			moviePreApi: {},
+			allComments: []
 		},
 		
 		actions: {
@@ -145,9 +145,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				  } if (!response.ok) {
 					alert("ERROR: La pelicula no se pudo agregar a la api")
-					throw new Error('Error al guardar la película en la API');
-					
-
+					throw new Error('Error al guardar la película en la API');					
 				  }
 			  
 				  const data = await response.json();
@@ -232,7 +230,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 				.catch(err => console.error(err))
 			},
-
 			deleteMovieFromAPI: async (movieId) => {
 				try {
 
@@ -259,8 +256,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error('Detalles del error:', error);
 				}
 			},
-		
-
 			getMessage: async () => {
 				try{
 
@@ -272,6 +267,55 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}catch(error){
 					console.log("Error loading message from backend", error)
 				}
+			},
+//  ---------------------------------------------------------------------------------------------- COMMENT SECTION BELOW
+
+			postComment: (comment,commentID,movieID) => {
+				{
+				  const response = fetch('https://curly-umbrella-jx66v5vqx49fp4xv-3001.app.github.dev/api/movies/comment', {
+					method: 'POST',
+					headers: {
+					  'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({"comment_body": comment,"comment_id": commentID, "movie_id": movieID}),
+				  });
+				return alert("Your comment has been added")
+				} 
+			  },
+
+			getComments: async() => {
+				try{
+					var requestOptions = {
+						method: 'GET',
+						headers: { 'Content-Type': 'application/json', }
+					};	
+						fetch('https://curly-umbrella-jx66v5vqx49fp4xv-3001.app.github.dev/api/movies/allComments',requestOptions) 
+						.then( (response)=> response.json())
+						.then( (data)=> {setStore({allComments: data}, console.log(data))})
+					}	catch(error){
+						console.log("hasnt been added")
+					}
+			},
+			delComment: (comment_id) => {
+				fetch(`https://curly-umbrella-jx66v5vqx49fp4xv-3001.app.github.dev/api/movies/comment/${comment_id}`,{method: 'DELETE'})
+				alert("Comment deleted")			
+			},
+			editComment: (comment_id,comment_body) => {
+				const editOptions = {
+				method: 'PUT',
+				headers: { 'Content-Type': 'application/json', },
+				body: JSON.stringify({"comment_body": comment_body})
+			};
+				fetch(`https://curly-umbrella-jx66v5vqx49fp4xv-3001.app.github.dev/api/movies/comment/${comment_id}`,editOptions)
+				.then(response => response.json())
+				.then(data => {
+					console.log(`Comentario editado exitosamente: ${data}`);
+					alert("El comentario se editó correctamente");
+				})
+				.catch(error => {
+					console.error('Error al editar el comentario', error);
+					alert("Error al editar la comentario");
+				});
 			},
 			changeColor: (index, color) => {
 				//get the store
