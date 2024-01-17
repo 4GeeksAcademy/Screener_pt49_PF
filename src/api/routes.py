@@ -23,7 +23,7 @@ def handle_hello():
 
 #[GET] Listar los users
 
-@api.route('/user', methods=[ 'GET'])
+@api.route('/user', methods=['GET'])
 def get_user():
 
     all_users=User.query.all()
@@ -34,7 +34,7 @@ def get_user():
 
 #[GET] Listar un solo user
 
-@api.route('/user/<int:user_id>', methods=[ 'GET'])
+@api.route('/user/<int:user_id>', methods=['GET'])
 
 def get_a_user(user_id):
 

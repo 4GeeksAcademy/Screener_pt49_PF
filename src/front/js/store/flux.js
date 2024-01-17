@@ -27,9 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//[POST] CREAR nuevo user
 
 				postUser: (email, password, username) => {
-				console.log("Hola desde flux")
-
-				console.log(email, password)
+				console.log(email)
 
 					const requestOptions = {
 							method: 'POST',
@@ -44,7 +42,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					)
 				};
 
-					fetch("https://stunning-trout-4j77wgq5j46w2qg9g-3001.app.github.dev/api/user", requestOptions)
+					fetch(process.env.BACKEND_URL + "/api/user", requestOptions)
 					.then(response => response.json())
 					.then(data => console.log(data))
 						
@@ -61,7 +59,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						
 					};
 					
-					fetch("https://stunning-trout-4j77wgq5j46w2qg9g-3001.app.github.dev/api/user", requestOptions)
+					fetch(process.env.BACKEND_URL + "/api/user", requestOptions)
 					.then(response => response.json())
 					.then(data => 
 							{
@@ -81,7 +79,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						
 					};
 					
-					fetch(`https://stunning-trout-4j77wgq5j46w2qg9g-3001.app.github.dev/api/user/${id}`, requestOptions)
+					fetch(process.env.BACKEND_URL +  `/api/user/${id}`, requestOptions)
 					.then(response => response.json())
 					.then((data) => 
 							{   
@@ -89,7 +87,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							console.log("hello")
 							})
 					//incluimos el fetch de [GET[]  traer la Lista para que se nos vuelva a cargar la list actualizada después de eliminar user.
-					fetch("https://stunning-trout-4j77wgq5j46w2qg9g-3001.app.github.dev/api/user")
+					fetch(process.env.BACKEND_URL + "/api/user")
 					.then( (response)=>response.json())
 					.then( (data)=>setStore({ users:data }))
 					
@@ -116,7 +114,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						
 					};
 					
-					fetch(`https://stunning-trout-4j77wgq5j46w2qg9g-3001.app.github.dev/api/user/${id}`, requestOptions)
+					fetch(process.env.BACKEND_URL + `/api/user/${id}`, requestOptions)
 					.then(response => response.json())
 					.then((data) => 
 							  console.log(data),
@@ -124,7 +122,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							
 							)
 					//incluimos el fetch de [GET[]  traer la Lista para que se nos vuelva a cargar la list actualizada después de editar user.
-					fetch("https://stunning-trout-4j77wgq5j46w2qg9g-3001.app.github.dev/api/user")
+					fetch(process.env.BACKEND_URL + "/api/user")
 					.then( (response)=>response.json())
 					.then( (data)=>setStore({ users:data }))
 					
@@ -134,7 +132,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			saveMovieToAPI: async (movieData) => {
 				try {
-				  const response = await fetch('https://sturdy-halibut-jx96pjv7pvp2pr7-3001.app.github.dev/api/movies', {
+				  const response = await fetch(process.env.BACKEND_URL + "/api/movies", {
 					method: 'POST',
 					headers: {
 					  'Content-Type': 'application/json',
@@ -158,7 +156,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				  console.error('Error al intentar guardar la película:', error.message);
 				  console.error('Detalles del error:', error);
-				  // Puedes manejar el error según tus necesidades
 				}
 			  },
 			  
@@ -227,7 +224,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getMoviesFromApi: async () => {
-				fetch("https://sturdy-halibut-jx96pjv7pvp2pr7-3001.app.github.dev/api/movies")
+				fetch(process.env.BACKEND_URL + "/api/movies")
 				.then(res => res.json())
 				.then((data) => {
 					console.log(data)
@@ -244,7 +241,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return;
 					}
 			
-					const response = await fetch(`https://sturdy-halibut-jx96pjv7pvp2pr7-3001.app.github.dev/api/movies/${movieId}`, {
+					const response = await fetch(process.env.BACKEND_URL + `/api/movies/${movieId}`, {
 						method: 'DELETE',
 						headers: {
 							'Content-Type': 'application/json',
@@ -266,7 +263,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getMessage: async () => {
 				try{
-					// fetching data from the backend
+
 					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
 					const data = await resp.json()
 					setStore({ message: data.message })
@@ -342,7 +339,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						
 			
 
-				fetch(`https://sturdy-halibut-jx96pjv7pvp2pr7-3001.app.github.dev/api/movies/${id}`, editOptions)
+				fetch(process.env.BACKEND_URL + `/api/movies/${id}`, editOptions)
 				.then(response => response.json())
 				.then(data => {
 					console.log(`Película editada exitosamente: ${data}`);
