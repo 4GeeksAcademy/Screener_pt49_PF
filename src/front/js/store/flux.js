@@ -1,7 +1,6 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			message: null,
 			demo: [
 				{
 					title: "FIRST",
@@ -15,11 +14,121 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 
+			users:[],
 			popularMovies: [],
 			movies: [],
 			moviePreApi: {},
+			allComments: []
 		},
+		
 		actions: {
+
+		
+			//[POST] CREAR nuevo user
+
+				postUser: (email, password, username) => {
+				console.log(email)
+
+					const requestOptions = {
+							method: 'POST',
+							headers:{"content-type": "application/json"},
+							body: JSON.stringify(
+						{
+
+								"email": email,
+								"password": password,
+								"username": username
+						}
+					)
+				};
+
+					fetch(process.env.BACKEND_URL + "/api/user", requestOptions)
+					.then(response => response.json())
+					.then(data => console.log(data))
+						
+					},
+
+			//[GET] TRAER users 
+			
+			getUser: () => {
+				console.log( " i am working")
+
+					const requestOptions = {
+						method: 'GET',
+						headers: {"content-type": "application/json"},
+						
+					};
+					
+					fetch(process.env.BACKEND_URL + "/api/user", requestOptions)
+					.then(response => response.json())
+					.then(data => 
+							{
+							console.log(data);
+							setStore({ users: data })
+							}
+				)},
+
+			//[DELETE] BORRAR user 
+
+			deleteUser: (id) => {
+				console.log( " i am working")
+
+					const requestOptions = {
+						method: 'DELETE',
+						headers: {"content-type": "application/json"},
+						
+					};
+					
+					fetch(process.env.BACKEND_URL +  `/api/user/${id}`, requestOptions)
+					.then(response => response.json())
+					.then((data) => 
+							{   
+							console.log(data),
+							console.log("hello")
+							})
+					//incluimos el fetch de [GET[]  traer la Lista para que se nos vuelva a cargar la list actualizada después de eliminar user.
+					fetch(process.env.BACKEND_URL + "/api/user")
+					.then( (response)=>response.json())
+					.then( (data)=>setStore({ users:data }))
+					
+
+				},
+
+			
+            //[PUT] EDITAR user 
+
+			editUser: (id,userdata) => {
+				
+
+					const requestOptions = {
+						method: 'PUT',
+						headers: {"content-type": "application/json"},
+						body: JSON.stringify(
+							{
+	
+									"email": userdata.email,
+									"password":userdata.password,
+									"username": userdata.username
+							}
+						)
+						
+					};
+					
+					fetch(process.env.BACKEND_URL + `/api/user/${id}`, requestOptions)
+					.then(response => response.json())
+					.then((data) => 
+							  console.log(data),
+							  console.log("hello"),
+							
+							)
+					//incluimos el fetch de [GET[]  traer la Lista para que se nos vuelva a cargar la list actualizada después de editar user.
+					fetch(process.env.BACKEND_URL + "/api/user")
+					.then( (response)=>response.json())
+					.then( (data)=>setStore({ users:data }))
+					
+
+				},
+
 
 			saveMovieToAPI: async (movieData) => {
 				try {
@@ -36,9 +145,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				  } if (!response.ok) {
 					alert("ERROR: La pelicula no se pudo agregar a la api")
-					throw new Error('Error al guardar la película en la API');
-					
-
+					throw new Error('Error al guardar la película en la API');					
 				  }
 			  
 				  const data = await response.json();
@@ -47,7 +154,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				  console.error('Error al intentar guardar la película:', error.message);
 				  console.error('Detalles del error:', error);
-				  // Puedes manejar el error según tus necesidades
 				}
 			  },
 			  
@@ -124,7 +230,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 				.catch(err => console.error(err))
 			},
-
 			deleteMovieFromAPI: async (movieId) => {
 				try {
 
@@ -151,11 +256,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error('Detalles del error:', error);
 				}
 			},
-		
-
 			getMessage: async () => {
 				try{
-					// fetching data from the backend
+
 					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
 					const data = await resp.json()
 					setStore({ message: data.message })
@@ -164,6 +267,57 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}catch(error){
 					console.log("Error loading message from backend", error)
 				}
+			},
+//  ---------------------------------------------------------------------------------------------- COMMENT SECTION BELOW
+
+			postComment: (comment,commentID,movieID) => {
+				{
+				  const response = fetch(process.env.BACKEND_URL + "/api/movies/comment", {
+					method: 'POST',
+					headers: {
+					  'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({"comment_body": comment,"comment_id": commentID, "movie_id": movieID}),
+				  });
+				  if (response.ok){
+				return alert("Your comment has been added")
+				  }
+				} 
+			  },
+
+			getComments: async() => {
+				try{
+					var requestOptions = {
+						method: 'GET',
+						headers: { 'Content-Type': 'application/json', }
+					};	
+						fetch(process.env.BACKEND_URL + "/api/movies/allComments",requestOptions) 
+						.then( (response)=> response.json())
+						.then( (data)=> {setStore({allComments: data}, console.log(data))})
+					}	catch(error){
+						console.log("hasnt been added")
+					}
+			},
+			delComment: (comment_id) => {
+				fetch(process.env.BACKEND_URL + `/api/movies/comment/${comment_id}`,{method: 'DELETE'})
+				alert("Comment deleted")			
+			},
+			editComment: (comment_id,comment_body) => {
+				const editOptions = {
+				method: 'PUT',
+				headers: { 'Content-Type': 'application/json', },
+				body: JSON.stringify({"comment_body": comment_body})
+			};
+				fetch(process.env.BACKEND_URL + `/api/movies/comment/${comment_id}`,editOptions)
+				.then(response => response.json())
+				.then(data => {
+					console.log(`Comentario editado exitosamente: ${data}`);
+					alert("El comentario se editó correctamente");
+				})
+				.catch(error => {
+					console.error('Error al editar el comentario', error);
+					alert("Error al editar la comentario");
+				});
 			},
 			changeColor: (index, color) => {
 				//get the store

@@ -6,15 +6,17 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    username = db.Column(db.String(120), unique=True, nullable=False)
+   
 
     def __repr__(self):
-        return f'<User {self.email}>'
+        return f'<User {self.username}>'
 
     def serialize(self):
         return {
             "id": self.id,
             "email": self.email,
+            "username": self.username,
             # do not serialize the password, its a security breach
         }
     
@@ -107,4 +109,21 @@ class Movie(db.Model):
             "original_title": self.original_title,
             "video": self.video,
             "vote_count": self.vote_count,
+        }
+    
+class Comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    comment_id = db.Column(db.Integer, unique=True, nullable=False)
+    movie_id = db.Column(db.Integer, unique=False, nullable=False)
+    comment_body = db.Column(db.String(250), unique=False, nullable=False)
+
+    def __repr__(self):
+        return f'<Comments {"comment_id: " + self.id}>'
+
+    def serialize(self):
+        return {
+            "comment_body": self.comment_body,
+            "comment_id": self.comment_id,
+            "movie_id": self.movie_id
+            # do not serialize the password, its a security breach
         }
