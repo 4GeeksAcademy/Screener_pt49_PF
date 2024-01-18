@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import { UserForm } from "./usersForm";
+import  Login  from "./login";
 
 
 export const Home = () => {
@@ -13,10 +14,11 @@ export const Home = () => {
 		<div className="text-center mt-5">
 			
 			<UserForm/>
+			<Login />
 			
 			
 			<Link to = "/users">
-			<button  className="btn btn-outline-primary"> Link me to My users List</button>
+				<button  className="btn btn-outline-primary"> Link me to My users List</button>
 			</Link>
 
 			

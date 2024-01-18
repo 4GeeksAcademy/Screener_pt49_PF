@@ -13,6 +13,8 @@ import { MovieForm } from "./pages/movieForm";
 import { MovieEditForm } from "./pages/editmovie";
 import Comment from "./component/comment"; 
 import Comment_list from "./component/comment_list"; 
+import Login from "./pages/login"; 
+import Signup from "./pages/signup"; 
 import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -42,6 +44,8 @@ const Layout = () => {
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<Comment />} path="/movies/comment" />
                         <Route element={<Comment_list />} path="/movies/comment_list" />
+                        <Route element={<Signup />} path="/signup" />
+                        <Route element={<Login />} path="/login" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />

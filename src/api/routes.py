@@ -5,11 +5,19 @@ from flask import Flask, request, jsonify, url_for, Blueprint, make_response
 from api.models import db, User, Movie, Comment
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
+# FLASK IMPORT JWT BELOW
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended import JWTManager
 
 api = Blueprint('api', __name__)
 
 # Allow CORS requests to this API
 CORS(api)
+
+# Create a JWTManager instance
+jwt = JWTManager(api)
 
 
 @api.route('/hello', methods=['POST', 'GET'])
@@ -24,6 +32,7 @@ def handle_hello():
 #[GET] Listar los users
 
 @api.route('/user', methods=['GET'])
+# @jwt_required()
 def get_user():
 
     all_users=User.query.all()
@@ -49,12 +58,11 @@ def add_new_user():
 
     request_body_user = request.get_json()
 
-    new_user = User(
-    
+    new_user = User(    
         email=request_body_user["email"],
         password=request_body_user["password"],
-        username=request_body_user["username"]
-       ,
+        username=request_body_user["username"],
+        age=request_body_user["age"]       
            )
     db.session.add( new_user)
     db.session.commit()
@@ -72,6 +80,7 @@ def edit_user(user_id):
     user.email = data.get('email',user.email)
     user.password = data.get('password',user.password)
     user.username = data.get('username',user.username)
+    user.age = data.get('age',user.age)
     
 
     db.session.commit()
@@ -93,6 +102,21 @@ def delete_user(user_id):
 
     return jsonify({'message': f'User with ID {user_id} deleted successfully'}), 200
 
+    #[POST] Login de un user
+
+@api.route("/login", methods=["POST"])
+def login():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+    user = User.query.filter_by(email=email).first()
+
+    if user is None:
+        return jsonify({"msg" : "Incorrect email "}), 401
+    if user.password != password:
+        return jsonify({"msg": "Incorrect password"}), 401
+
+    access_token = create_access_token(identity=email)
+    return jsonify(access_token=access_token)
 
 
 

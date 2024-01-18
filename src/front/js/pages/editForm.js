@@ -12,13 +12,14 @@ export const EditUser = () => {
 	 const [email, setEmail] = useState("");
 	 const [password, setPassword] = useState("");
 	 const [username, setUsername]= useState("");
+	 const [age, setAge]= useState("");
 
      const { theid } = useParams();
 
      const{ store, actions}=useContext(Context)
      
     const handleEditUser=() =>{
-            const userdata={email, password, username};
+            const userdata={email, password, username, age};
 
             actions.editUser(theid ,userdata)
         }
@@ -42,18 +43,25 @@ export const EditUser = () => {
             
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="exampleInputPassword1" class="form-label">Password</label>
+                    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
                     <input 
                     value={password}
                     onChange={(e)=> setPassword(e.target.value)}
-                    type="password" class="form-control" id="exampleInputPassword1"/>
+                    type="password" className="form-control" id="exampleInputPassword1"/>
                 </div>
 				<div className="mb-3">
-                    <label htmlFor="exampleInputUsername1" class="form-label">Username</label>
+                    <label htmlFor="exampleInputUsername1" className="form-label">Username</label>
                     <input 
                     value={username}
                     onChange={(e)=> setUsername(e.target.value)}
-                    type="username" class="form-control" id="exampleInputPassword1"/>
+                    type="username" className="form-control" id="exampleInputPassword1"/>
+                </div>
+				<div className="mb-3">
+                    <label htmlFor="exampleInputUsername1" className="form-label">Age</label>
+                    <input 
+                    value={age}
+                    onChange={(e)=> setAge(e.target.value)}
+                    type="number" className="form-control" id="age"/>
                 </div>
 
                 <button onClick={()=>handleEditUser()}

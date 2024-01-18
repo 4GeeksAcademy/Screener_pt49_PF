@@ -18,7 +18,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			popularMovies: [],
 			movies: [],
 			moviePreApi: {},
-			allComments: []
+			allComments: [],
+			auth: false
 		},
 		
 		actions: {
@@ -26,7 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		
 			//[POST] CREAR nuevo user
 
-				postUser: (email, password, username) => {
+				postUser: (email, password, username,age) => {
 				console.log(email)
 
 					const requestOptions = {
@@ -34,18 +35,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 							headers:{"content-type": "application/json"},
 							body: JSON.stringify(
 						{
-
 								"email": email,
 								"password": password,
-								"username": username
+								"username": username,
+								"age": age
 						}
 					)
 				};
-
 					fetch(process.env.BACKEND_URL + "/api/user", requestOptions)
 					.then(response => response.json())
-					.then(data => console.log(data))
-						
+					.then(data => console.log(data))						
 					},
 
 			//[GET] TRAER users 
@@ -108,7 +107,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	
 									"email": userdata.email,
 									"password":userdata.password,
-									"username": userdata.username
+									"username": userdata.username,
+									"age": userdata.age
 							}
 						)
 						
@@ -320,7 +320,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 //  ---------------------------------------------------------------------------------------------- LOGIN SECTION BELOW
 
+			loginData (e,email,password){
+				e.preventDefault()
 
+				const requestOptions = {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						"email": email,
+						"password": password
+					})
+				};
+				const response = fetch(process.env.BACKEND_URL + "/api/login", requestOptions)
+				.then(response => {
+					console.log(response.status)
+					if(response.status === 200){
+						setStore({auth : true})
+					}
+					return  response.json()
+				})
+				.then(data => { 
+					localStorage.setItem("token", data.access_token);
+					}
+				)
+			},
+
+			logOut(){
+				setStore({ auth: false })
+				localStorage.removeItem("token");
+			},
 
 
 
