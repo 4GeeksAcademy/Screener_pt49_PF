@@ -16,7 +16,7 @@ export const MoviesUser = () => {
       <div className="d-flex flex-wrap">
         {store.movies.length > 0 &&
           store.movies.map((movie) => (
-            <Link to={`/moviedetails/${movie.id}`} key={movie.id} className="ms-4">
+            <Link to={`/moviedetails/${movie.id}`} key={movie.id} className="ms-1 mt-1">
               <img style={{ width: "150px" }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
             </Link>
           ))}

@@ -42,18 +42,18 @@ export const EditUser = () => {
             
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="exampleInputPassword1" class="form-label">Password</label>
+                    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
                     <input 
                     value={password}
                     onChange={(e)=> setPassword(e.target.value)}
-                    type="password" class="form-control" id="exampleInputPassword1"/>
+                    type="password" className="form-control" id="exampleInputPassword1"/>
                 </div>
 				<div className="mb-3">
-                    <label htmlFor="exampleInputUsername1" class="form-label">Username</label>
+                    <label htmlFor="exampleInputUsername1" className="form-label">Username</label>
                     <input 
                     value={username}
                     onChange={(e)=> setUsername(e.target.value)}
-                    type="username" class="form-control" id="exampleInputPassword1"/>
+                    type="username" className="form-control" id="exampleInputUserName1"/>
                 </div>
 
                 <button onClick={()=>handleEditUser()}
