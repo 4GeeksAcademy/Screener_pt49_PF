@@ -66,6 +66,9 @@ export const MovieDetails = () => {
                             ))}
                         </div>
                         </div>
+                        <div>
+                        <button>Agregar a la Watchlist</button>
+                        </div>
                             <Comment movieID={theid} />
                         </div>
                     </div>
