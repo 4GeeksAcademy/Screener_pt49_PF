@@ -209,6 +209,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					alert("Error al editar la comentario");
 				});
 			},
+
+//  ---------------------------------------------------------------------------------------------- LOGIN SECTION BELOW
+
+
+
+
+
+
+
+
+
+
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
