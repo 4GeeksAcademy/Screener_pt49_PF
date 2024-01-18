@@ -18,11 +18,12 @@ export const UserForm = () => {
  		function sendData(e){
 		e.preventDefault()
 
-		 actions.postUser(email, password, username)
-
-			
-
-	}
+		 actions.postUser(email, password, username),
+         setEmail(""),
+         setPassword(""),
+         setUsername(""),
+         alert("Usuario Creado correctamente")
+}
 
 	return (
 		<div>

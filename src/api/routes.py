@@ -240,12 +240,14 @@ def edit_movie(movie_id):
 
 
 
+
+
 @api.route('/movies/comment', methods=['POST'])
 def addComment():
     actual_comment = request.get_json()['comment_body']
-    comment_id = request.get_json()['comment_id']
+    user_id = request.get_json()['user_id']
     movie_id = request.get_json()['movie_id']
-    new_comment = Comment(comment_body=actual_comment, comment_id=comment_id, movie_id=movie_id)
+    new_comment = Comment(comment_body=actual_comment, user_id=user_id, movie_id=movie_id)
     db.session.add(new_comment)
     db.session.commit()
     response_body = {'msg': 'Your comment has been posted'}
@@ -257,14 +259,15 @@ def getComments():
     map_comments = list(map(lambda comment : comment.serialize() ,allComments))
     return jsonify(map_comments), 200
 
+
 @api.route('/movies/comment/<int:comment_id>', methods=['GET'])
 def getSpecificComments(comment_id):
-    map_comments = Comment.query.filter_by(comment_id = comment_id).first()
+    map_comments = Comment.query.filter_by(id = comment_id).first()
     return jsonify(map_comments.serialize()), 200
 
 @api.route('/movies/comment/<int:comment_id>', methods=['PUT'])
 def updateComment(comment_id):
-    existingComment = Comment.query.filter_by(comment_id = comment_id).first()
+    existingComment = Comment.query.filter_by(id = comment_id).first()
     data = request.get_json()
     existingComment.comment_body = data.get('comment_body', existingComment.comment_body)
     db.session.commit()
@@ -274,7 +277,7 @@ def updateComment(comment_id):
 
 @api.route('/movies/comment/<int:comment_id>', methods=['DELETE'])
 def deleteSpecificComment(comment_id):
-    existingComment = Comment.query.filter_by(comment_id = comment_id).first()
+    existingComment = Comment.query.filter_by(id = comment_id).first()
     db.session.delete(existingComment)
     db.session.commit()
     response_body = "Your comment has been deleted"
