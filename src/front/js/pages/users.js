@@ -8,6 +8,7 @@ export const User = () => {
     
     useEffect(() => {
 		actions.getUser();
+    actions.deleteUser();
 	  }, []);
 
 	const { store, actions } = useContext(Context);
@@ -32,7 +33,7 @@ export const User = () => {
                 </p>
                 <p>{ myUser.id} </p>
                 <button  className="btn btn-primary"
-                onClick={()=>actions.deleteUser( myUser.id)}>DELETE user</button>
+                onClick={()=>actions.deleteUser(myUser.id)}>DELETE user</button>
 
                 <Link to={`/editForm/${myUser.id}`}>
                 <button  className="btn btn-secondary"

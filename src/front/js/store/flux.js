@@ -272,14 +272,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			postComment: (comment,commentID,movieID) => {
 				{
-				  const response = fetch('https://curly-umbrella-jx66v5vqx49fp4xv-3001.app.github.dev/api/movies/comment', {
+				  const response = fetch(process.env.BACKEND_URL + "/api/movies/comment", {
 					method: 'POST',
 					headers: {
 					  'Content-Type': 'application/json',
 					},
 					body: JSON.stringify({"comment_body": comment,"comment_id": commentID, "movie_id": movieID}),
 				  });
+				  if (response.ok){
 				return alert("Your comment has been added")
+				  }
 				} 
 			  },
 
@@ -289,7 +291,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						method: 'GET',
 						headers: { 'Content-Type': 'application/json', }
 					};	
-						fetch('https://curly-umbrella-jx66v5vqx49fp4xv-3001.app.github.dev/api/movies/allComments',requestOptions) 
+						fetch(process.env.BACKEND_URL + "/api/movies/allComments",requestOptions) 
 						.then( (response)=> response.json())
 						.then( (data)=> {setStore({allComments: data}, console.log(data))})
 					}	catch(error){
@@ -297,7 +299,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 			},
 			delComment: (comment_id) => {
-				fetch(`https://curly-umbrella-jx66v5vqx49fp4xv-3001.app.github.dev/api/movies/comment/${comment_id}`,{method: 'DELETE'})
+				fetch(process.env.BACKEND_URL + `/api/movies/comment/${comment_id}`,{method: 'DELETE'})
 				alert("Comment deleted")			
 			},
 			editComment: (comment_id,comment_body) => {
@@ -306,7 +308,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				headers: { 'Content-Type': 'application/json', },
 				body: JSON.stringify({"comment_body": comment_body})
 			};
-				fetch(`https://curly-umbrella-jx66v5vqx49fp4xv-3001.app.github.dev/api/movies/comment/${comment_id}`,editOptions)
+				fetch(process.env.BACKEND_URL + `/api/movies/comment/${comment_id}`,editOptions)
 				.then(response => response.json())
 				.then(data => {
 					console.log(`Comentario editado exitosamente: ${data}`);

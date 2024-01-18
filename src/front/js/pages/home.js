@@ -23,6 +23,8 @@ export const Home = () => {
 			<h1>Hello Rigo!!</h1>
 			<Link to={"/movies"} ><button>Movies</button></Link>
 			<Link to={"/moviesApi"} ><button>Movies de la api</button></Link>
+			<Link to={"/movies/comment"} ><button>Crear Comentario</button></Link>
+			<Link to={"/movies/comment_list"} ><button>ver comentarios</button></Link>
 			<div className="alert alert-info">
 				{store.message || "Loading message from the backend (make sure your python backend is running)..."}
 			</div>
