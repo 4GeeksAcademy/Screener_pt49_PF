@@ -21,8 +21,9 @@ export const Home = () => {
 
 			
 			<h1>Hello Rigo!!</h1>
-			<Link to={"/movies"} ><button>Movies</button></Link>
-			<Link to={"/moviesApi"} ><button>Movies de la api</button></Link>
+			<Link to={"/moviesUser"} ><button>Todas las peliculas</button></Link>
+			<Link to={"/movies"} ><button>Crear una pelicula</button></Link>
+			<Link to={"/moviesApi"} ><button>Admin de peliculas</button></Link>
 			<Link to={"/movies/comment"} ><button>Crear Comentario</button></Link>
 			<Link to={"/movies/comment_list"} ><button>ver comentarios</button></Link>
 			<div className="alert alert-info">
