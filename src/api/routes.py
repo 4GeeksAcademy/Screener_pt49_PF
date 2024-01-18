@@ -21,12 +21,99 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
+#[GET] Listar los users
+
+@api.route('/user', methods=['GET'])
+def get_user():
+
+    all_users=User.query.all()
+    results= list( map( lambda user:user.serialize(), all_users ))
+ 
+  
+    return jsonify( results), 200
+
+#[GET] Listar un solo user
+
+@api.route('/user/<int:user_id>', methods=['GET'])
+
+def get_a_user(user_id):
+
+    one_user = User.query.filter_by(id=user_id).first()
+    return jsonify( one_user.serialize()), 200
+
+    
+#[POST] Añadir un nuevo user
+
+@api.route('/user', methods=['POST'])
+def add_new_user():
+
+    request_body_user = request.get_json()
+
+    new_user = User(
+    
+        email=request_body_user["email"],
+        password=request_body_user["password"],
+        username=request_body_user["username"]
+       ,
+           )
+    db.session.add( new_user)
+    db.session.commit()
+
+    return jsonify( request_body_user), 200
+
+#[PUT] Editar un user
+
+@api.route('/user/<int:user_id>', methods=['PUT'])
+def edit_user(user_id):
+    user = User.query.get(user_id)
+
+    data = request.get_json()
+
+    user.email = data.get('email',user.email)
+    user.password = data.get('password',user.password)
+    user.username = data.get('username',user.username)
+    
+
+    db.session.commit()
+
+    response_body = {'message': f"user {user.username} edited successfully."}
+    return jsonify(response_body)
+
+    #[DELETE] Eliminar un user
+
+@api.route('/user/<int:user_id>', methods=['DELETE'])
+def delete_user(user_id):
+    user = User.query.get(user_id)
+
+    if not user:
+        return jsonify({'message': 'User not found'}), 404
+
+    db.session.delete(user)
+    db.session.commit()
+
+    return jsonify({'message': f'User with ID {user_id} deleted successfully'}), 200
+
+
+
+
+
+
+    
 @api.route('/movies', methods=['GET'])
 def get_movies():
 
     movies = Movie.query.all()
     serialized_movies = [movie.serialize() for movie in movies]
     return jsonify(serialized_movies)
+
+@api.route('/movies/<int:movie_id>', methods=['GET'])
+def get_all_movies(movie_id):
+
+    one_movie = Movie.query.filter_by(id=movie_id).first()
+    return jsonify(one_movie.serialize()), 200
+
+
+
 
 @api.route('/movies', methods=['POST'])
 def add_movie_from_api():
@@ -94,6 +181,8 @@ def delete_movie(movie_id):
     response_body = {"msg": f"La película{movie.title} se eliminó correctamente."}
     return jsonify(response_body)
 
+    
+
 @api.route('/movies/<int:movie_id>', methods=['PUT'])
 def edit_movie(movie_id):
     movie = Movie.query.get(movie_id)
@@ -149,16 +238,14 @@ def edit_movie(movie_id):
     response_body = {"msg": f"La película {movie.title} se editó correctamente."}
     return jsonify(response_body)
 
-# ---------------------------------------------------------------------------------------------- COMMENT SECTION BELOW
+
+
 @api.route('/movies/comment', methods=['POST'])
 def addComment():
     actual_comment = request.get_json()['comment_body']
     comment_id = request.get_json()['comment_id']
     movie_id = request.get_json()['movie_id']
-    #service
     new_comment = Comment(comment_body=actual_comment, comment_id=comment_id, movie_id=movie_id)
-    #service
-    #repository layer
     db.session.add(new_comment)
     db.session.commit()
     response_body = {'msg': 'Your comment has been posted'}
@@ -193,7 +280,6 @@ def deleteSpecificComment(comment_id):
     response_body = "Your comment has been deleted"
     return jsonify(response_body), 200
 
-#  ---------------------------------------------------------------------------------------------- LOGIN SECTION BELOW
 
 
 

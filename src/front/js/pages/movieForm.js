@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export const MovieForm = ({ actions, store }) => {
   const [formValues, setFormValues] = useState({
@@ -113,38 +114,32 @@ export const MovieForm = ({ actions, store }) => {
   };
 
   return (
-    <div>
+    <>
+    <div className='container'>
       <h2>Formulario de Película</h2>
       <form onSubmit={handleSubmit}>
-      <label>
-          id:
-          <input type="text" name="id" value={formValues.id} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Título:
-          <input type="text" name="title" value={formValues.title} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Fecha de Lanzamiento:
-          <input
+      <label>id:<input type="text" name="id" value={formValues.id} onChange={handleChange} /></label>
+      <br />
+      <label>Título:<input type="text" name="title" value={formValues.title} onChange={handleChange} /></label>
+      <br />
+      <label>Fecha de Lanzamiento:
+      <input
             type="text"
             name="release_date"
             value={formValues.release_date}
             onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          Poster Path:
-          <input
+      />
+      </label>
+      <br />
+      <label>Poster Path:
+      <input
             type="text"
             name="poster_path"
             value={formValues.poster_path}
             onChange={handleChange}
-          />
-        </label>
+      />
+      </label>
+      <br />
         <label>
           Backdrop path:
           <input
@@ -223,8 +218,6 @@ export const MovieForm = ({ actions, store }) => {
             onChange={handleChange}
           />
         </label>
-        <br />
-        {/* Agrega otros campos del formulario aquí */}
         <br />
         <label>
           Adult:
@@ -335,6 +328,7 @@ export const MovieForm = ({ actions, store }) => {
             onChange={handleCheckboxChange}
           />
         </label>
+        <br />
         <label>
           Violence:
           <input
@@ -344,7 +338,6 @@ export const MovieForm = ({ actions, store }) => {
             onChange={handleCheckboxChange}
           />
         </label>
-        <br />
         <br />
         <label>
           Halloween:
@@ -367,7 +360,7 @@ export const MovieForm = ({ actions, store }) => {
         </label>
         <br />
         <label>
-          Hard to Watch:
+          Hard_to_Watch:
           <input
             type="checkbox"
             name="hard_to_watch"
@@ -397,7 +390,7 @@ export const MovieForm = ({ actions, store }) => {
         </label>
         <br />
         <label>
-          Light Film:
+          Light_Film:
           <input
             type="checkbox"
             name="light_film"
@@ -437,7 +430,7 @@ export const MovieForm = ({ actions, store }) => {
         </label>
         <br />
         <label>
-          Plot Twists:
+          plot_twits:
           <input
             type="checkbox"
             name="plot_twits"
@@ -447,7 +440,7 @@ export const MovieForm = ({ actions, store }) => {
         </label>
         <br />
         <label>
-          Science Fiction:
+          Science_Fiction:
           <input
             type="checkbox"
             name="science_fiction"
@@ -467,7 +460,7 @@ export const MovieForm = ({ actions, store }) => {
         </label>
         <br />
         <label>
-          Sunday Movie:
+          Sunday_Movie:
           <input
             type="checkbox"
             name="sunday_movie"
@@ -477,7 +470,7 @@ export const MovieForm = ({ actions, store }) => {
         </label>
         <br />
         <label>
-          Suspense:
+        suspence:
           <input
             type="checkbox"
             name="suspence"
@@ -496,8 +489,9 @@ export const MovieForm = ({ actions, store }) => {
           />
         </label>
         <br />
+
         <label>
-          War:
+          War: 
           <input
             type="checkbox"
             name="war"
@@ -507,7 +501,7 @@ export const MovieForm = ({ actions, store }) => {
         </label>
         <br />
         <label>
-          White Noise:
+          White_Noise:
           <input
             type="checkbox"
             name="white_noise"
@@ -516,8 +510,11 @@ export const MovieForm = ({ actions, store }) => {
           />
         </label>
         <br />
+        
         <button type="submit">Guardar Película</button>
       </form>
     </div>
+
+    </>
   );
 };
