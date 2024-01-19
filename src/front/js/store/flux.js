@@ -186,7 +186,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 			
 				try {
-					const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=es-ES&page=18', options);
+					const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=es-ES&page=17', options);
 					const data = await response.json();
 			
 					if (data.results) {
