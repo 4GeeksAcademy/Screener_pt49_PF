@@ -1,45 +1,61 @@
-import React, { useContext, useState } from "react";
+import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-import { Navigate } from "react-router-dom";
+import "../../styles/home.css";
 
-const Signup = () => {
+export const Signup = () => {
 
-    const { store, actions } = useContext(Context);
+	 // dar memoria  a las variables 
+	 const [email, setEmail] = useState("");
+	 const [password, setPassword] = useState("");
+	 const [username, setUsername]= useState("");
+	 const [age, setAge]= useState("");
 
+     const{ store, actions}=useContext(Context)
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [userName, setUserName] = useState('')
-    const [age, setAge] = useState('')
+     
+ 		function sendData(e){
+		e.preventDefault()
+		 actions.postUser(email,password,username,age)
+	}
 
-        
-        return (
-        <div className="text-center">
-            {store.auth === true ? <Navigate to="/private"/> : null}
-            <h1 className="text-center">Login</h1>
-            <form className="w-50 mx-auto" onSubmit={(e)=>actions.sendData(e,email,password)}>
-                <div className="col-auto mb-4">
-                    <label htmlFor="inputPassword2" className="visually-hidden">Username</label>
-                    <input type="password" onChange={(e)=>setUserName(e.target.value)} className="form-control" id="inputPassword2" placeholder="Password"require/>
+	return (
+		<div>          
+          <form className="w-50 mx-auto " onSubmit={sendData} > 
+                <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">Email</label>
+                    <input 
+                    value={email}
+                    onChange={(e)=> setEmail(e.target.value)}
+                    type="email"
+                    className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"required/>
+            
                 </div>
-                <div className="col-auto mb-4">
-                    <label htmlFor="staticEmail2" className="visually-hidden">Email</label>
-                    <input type="text" onChange={(e)=>setEmail(e.target.value)} className="form-control" id="staticEmail2" placeholder="email@example.com"require/>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+                    <input 
+                    value={password}
+                    onChange={(e)=> setPassword(e.target.value)}
+                    type="password" className="form-control" id="exampleInputPassword1"required/>
                 </div>
-                <div className="col-auto mb-4">
-                    <label htmlFor="inputPassword2" className="visually-hidden">Password</label>
-                    <input type="password" onChange={(e)=>setPassword(e.target.value)} className="form-control" id="inputPassword2" placeholder="Password"require/>
+				<div className="mb-3">
+                    <label htmlFor="exampleInputUsername1" className="form-label">Username</label>
+                    <input 
+                    value={username}
+                    onChange={(e)=> setUsername(e.target.value)}
+                    type="username" className="form-control" id="exampleInputPassword1"required/>
                 </div>
-                <div className="col-auto mb-4">
-                    <label htmlFor="inputPassword2" className="visually-hidden">Age</label>
-                    <input type="password" onChange={(e)=>setAge(e.target.value)} className="form-control" id="inputPassword2" placeholder="Password"require/>
+				<div className="mb-3">
+                    <label htmlFor="exampleInputUsername1" className="form-label">Age</label>
+                    <input 
+                    value={age}
+                    onChange={(e)=> setAge(e.target.value)}
+                    type="number" className="form-control" id="exampleInputPassword1"required/>
                 </div>
-                <div className="col-auto">
-                    <button onClick={()=>postUser()} type="submit" className="btn btn-primary mb-3">Enter</button>
-                </div>
-            </form>
+                <button 
+                 type="submit" className="btn btn-primary">Save</button>				
+        </form>
         </div>
-    )
-}
+	);
+};
 
 export default Signup

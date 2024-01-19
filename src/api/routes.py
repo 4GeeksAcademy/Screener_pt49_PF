@@ -17,7 +17,7 @@ api = Blueprint('api', __name__)
 CORS(api)
 
 # Create a JWTManager instance
-jwt = JWTManager(api)
+
 
 
 @api.route('/hello', methods=['POST', 'GET'])
@@ -37,7 +37,6 @@ def get_user():
 
     all_users=User.query.all()
     results= list( map( lambda user:user.serialize(), all_users ))
- 
   
     return jsonify( results), 200
 

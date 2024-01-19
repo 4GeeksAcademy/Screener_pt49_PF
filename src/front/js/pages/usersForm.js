@@ -1,8 +1,5 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-
-
-import rigoImageUrl from "../../img/rigo-baby.jpg";{}
 import "../../styles/home.css";
 
 export const UserForm = () => {
@@ -14,7 +11,6 @@ export const UserForm = () => {
 	 const [age, setAge]= useState("");
 
      const{ store, actions}=useContext(Context)
-
      
  		function sendData(e){
 		e.preventDefault()

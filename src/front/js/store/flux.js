@@ -19,7 +19,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			movies: [],
 			moviePreApi: {},
 			allComments: [],
-			auth: false
+			auth: false,
+			isAdmin: false
 		},
 		
 		actions: {
@@ -350,27 +351,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				localStorage.removeItem("token");
 			},
 
-
-
-
-
-
-
-
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
-			},
+//  ---------------------------------------------------------------------------------------------- EDIT MOVIE BELOW
 
 			editMovie: (editmovie, id) => {
 
@@ -420,9 +401,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"white_noise": editmovie.white_noise,
 						})
 				};
-						
-			
-
 				fetch(process.env.BACKEND_URL + `/api/movies/${id}`, editOptions)
 				.then(response => response.json())
 				.then(data => {
@@ -434,8 +412,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					alert("Error al editar la película");
 				});
 		},  
-
-
 		}
 	};
 };

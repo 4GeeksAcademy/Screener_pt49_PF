@@ -13,27 +13,19 @@ export const Home = () => {
 	return (
 		<div className="text-center mt-5">
 			
-			<UserForm/>
 			<Login />
 			
 			
 			<Link to = "/users">
 				<button  className="btn btn-outline-primary"> Link me to My users List</button>
 			</Link>
+			<Link to = "/signup">
+				<button  className="btn btn-outline-primary">Signup</button>
+			</Link>
 
 			
-			<h1>Hello Rigo!!</h1>
-			<Link to={"/movies"} ><button>Movies</button></Link>
-			<Link to={"/moviesApi"} ><button>Movies de la api</button></Link>
-			<div className="alert alert-info">
-				{store.message || "Loading message from the backend (make sure your python backend is running)..."}
-			</div>
-			<p>
-				This boilerplate comes with lots of documentation:{" "}
-				<a href="https://start.4geeksacademy.com/starters/react-flask">
-					Read documentation
-				</a>
-			</p>
+			<Link to={"/movies"} ><button className="btn btn-outline-primary">Movies</button></Link>
+			<Link to={"/moviesApi"} ><button className="btn btn-outline-primary">Movies de la api</button></Link>
 		</div>
 	);
 };
