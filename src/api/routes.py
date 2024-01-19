@@ -120,7 +120,8 @@ def get_watchlist():
 
 def get_an_user_watchlist(user_id):
 
-   user_watchlist = User.query.filter_by(id=user_id).first()
+   user_watchlist = Watchlist.query.filter_by(id=user_id).first()
+
    return jsonify( user_watchlist.serialize()), 200
 
 
