@@ -20,7 +20,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			moviePreApi: {},
 			allComments: [],
 			auth: false,
-			isAdmin: false
+			adminLogin: false
 		},
 		
 		actions: {
@@ -366,9 +366,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				)
 			},
+			loginAdmin (e,email,password){
+				e.preventDefault()
+
+				const requestOptions = {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						"email": email,
+						"password": password
+					})
+				};
+				const response = fetch(process.env.BACKEND_URL + "/api/screener.admin/local.login", requestOptions)
+				.then(response => {
+					console.log(response.status)
+					if(response.status === 200){
+						setStore({adminLogin : true})
+					}
+					return  response.json()
+				})
+				.then(data => { 
+					localStorage.setItem("token", data.access_token);
+					}
+				)
+			},
 
 			logOut(){
 				setStore({ auth: false })
+				localStorage.removeItem("token");
+			},
+			adminLogOut(){
+				setStore({ adminLogin: false })
 				localStorage.removeItem("token");
 			},
 

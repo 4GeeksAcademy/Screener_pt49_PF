@@ -13,8 +13,10 @@ import { MovieForm } from "./pages/movieForm";
 import { MovieEditForm } from "./pages/editmovie";
 import Comment from "./component/comment"; 
 import Comment_list from "./component/comment_list"; 
+import Adminlogin from "./pages/adminLogin"; 
 import Login from "./pages/login"; 
 import Signup from "./pages/signup"; 
+import { AdminPanel } from "./pages/adminPanel";
 import Private from "./pages/private"; 
 import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
@@ -47,6 +49,8 @@ const Layout = () => {
                         <Route element={<Comment_list />} path="/movies/comment_list" />
                         <Route element={<Signup />} path="/signup" />
                         <Route element={<Login />} path="/login" />
+                        <Route element={<Adminlogin />} path="/adminlogin" />
+                        <Route element={<AdminPanel />} path="/adminPanel" />
                         <Route element={<Private />} path="/private" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
