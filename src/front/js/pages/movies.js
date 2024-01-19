@@ -17,6 +17,10 @@ export const Movies = () => {
         setCurrentMovieIndex((prevIndex) => (prevIndex + 1) % store.popularMovies.length);
     };
 
+    const handlePreMovie = () => {
+        setCurrentMovieIndex((prevIndex) => (prevIndex - 1) % store.popularMovies.length);
+    };
+
     const handlePropertyInputChange = (property) => {
         const updatedMovies = store.popularMovies.map((movie, index) => {
             if (index === currentMovieIndex) {
@@ -39,9 +43,9 @@ export const Movies = () => {
 
     const propertyLabels = [
         "Comedy", "Couple", "Party", "Solitary", "Action", "Drama", "Family", "Kids",
-        "Animation", "Violence", "Crime", "Historical", "Science Fiction", "Marathon", "Happy", "Hard to Watch",
-        "Light Film", "Motivating", "War", "Disney", "Suspense", "Sunday Movie", "Terror", "Christmas",
-        "Halloween", "White Noise", "Plot Twists"
+        "Animation", "Violence", "Crime", "Historical", "Science_Fiction", "Marathon", "Happy", "Hard_to_Watch",
+        "Light_Film", "Motivating", "War", "Disney", "suspence", "Sunday_Movie", "Terror", "Christmas",
+        "Halloween", "White_Noise", "plot_twits"
     ];
 
     const renderPropertyInputs = () => {
@@ -65,6 +69,7 @@ export const Movies = () => {
         };
 
         return (
+            <div className="container" style={{marginTop: "80px"}}>
             <div className="row">
                 <div className="col-md-4">
                     {renderInputsForColumn(firstColumnLabels)}
@@ -76,11 +81,12 @@ export const Movies = () => {
                     {renderInputsForColumn(thirdColumnLabels)}
                 </div>
             </div>
+            </div>
         );
     };
 
     return (
-        <>
+        <>  
             <h1>Movies de la API TMDB</h1>
             {store.popularMovies.length > 0 && (
                 <div className="container">
@@ -95,13 +101,14 @@ export const Movies = () => {
                         </div>
                         <div className="col-12">
                             <p>{store.popularMovies[currentMovieIndex].overview}</p>
-                            <div className="container border">
+                            <div className="container">
                                 <button className="me-2" onClick={handleNextMovie}>Siguiente pelicula</button>
+                                <button className="me-2" onClick={handlePreMovie}>Pelicula anterior</button>
                                 <button className="me-2" onClick={handleSaveMovie}>Agregarle propiedades a la pelicula</button>
                             </div>
-                            <MovieForm actions={actions} store={store} /> {/* Renderiza el formulario */}
                         </div>
-                    </div>
+                        </div>
+                            <MovieForm actions={actions} store={store} />
                 </div>
             )}
         </>

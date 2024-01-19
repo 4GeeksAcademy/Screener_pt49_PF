@@ -2,20 +2,18 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
-
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
+import { Single } from "./pages/single";
+import { User } from "./pages/users";
+import { EditUser } from "./pages/editForm";
 import { Movies } from "./pages/movies";
 import { MoviesApi } from "./pages/moviesApi";
 import { MovieForm } from "./pages/movieForm";
 import { MovieEditForm } from "./pages/editmovie";
-import { Single } from "./pages/single"; 
-
 import Comment from "./component/comment"; 
 import Comment_list from "./component/comment_list"; 
-
 import injectContext from "./store/appContext";
-
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 
@@ -34,6 +32,8 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
+                        <Route element={<User />} path="/users" />
+                        <Route element={< EditUser />} path="/editForm/:theid" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Movies />} path="/movies" />
                         <Route element={<MoviesApi />} path="/moviesApi" />
