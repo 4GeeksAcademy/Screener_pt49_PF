@@ -1,5 +1,6 @@
 import React, { Component, useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 // import "../../styles/comment_list.css";
 
 export const Comment_list = () => {
@@ -28,8 +29,10 @@ export const Comment_list = () => {
         <div className="card text-center mx-5">
             <ul className="list-group">
             {store.allComments.map((item)=>             
-                    <li key= {item.id} className="list-group-item">{item.comment_body}
-                        <p>{item.id}</p>
+                    <li key= {item.id} className="list-group-item"><b>Comentario:</b> {item.comment_body}
+                        <p><b>ID del comentario:</b> {item.id}</p>
+                        <p><b>ID del usuario:</b> {item.user_id}</p>
+                        <p><b>ID de la pelicula:</b> <Link to={`/moviedetails/${item.movie_id}`} >{item.movie_id}</Link></p>
                         <button data={item.id} onClick={()=>setId(item.id)} type="button" className="btn btn-secondary mx-4" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
                         <button onClick={()=>handledelComment(item.id)} type="button" className="btn btn-danger mx-4">Delete</button>
                     </li>                                                                
