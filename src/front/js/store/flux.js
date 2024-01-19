@@ -19,8 +19,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			movies: [],
 			moviePreApi: {},
 			allComments: [],
-			auth: false,
-			isAdmin: false
+			auth: false
 		},
 		
 		actions: {
