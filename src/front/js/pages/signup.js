@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 
-export const UserForm = () => {
+export const Signup = () => {
 
 	 // dar memoria  a las variables 
 	 const [email, setEmail] = useState("");
@@ -11,14 +11,11 @@ export const UserForm = () => {
 	 const [age, setAge]= useState("");
 
      const{ store, actions}=useContext(Context)
+
      
  		function sendData(e){
 		e.preventDefault()
-
-		 actions.postUser(email, password, username)
-
-			
-
+		 actions.postUser(email,password,username,age)
 	}
 
 	return (
@@ -60,3 +57,5 @@ export const UserForm = () => {
         </div>
 	);
 };
+
+export default Signup
