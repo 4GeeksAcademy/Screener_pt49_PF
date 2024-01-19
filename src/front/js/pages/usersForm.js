@@ -14,7 +14,11 @@ export const UserForm = () => {
      
  		function sendData(e){
 		e.preventDefault()
-		 actions.postUser(email,password,username,age)
+
+		 actions.postUser(email, password, username)
+
+			
+
 	}
 
 	return (

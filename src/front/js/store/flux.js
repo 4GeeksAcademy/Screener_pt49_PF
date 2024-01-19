@@ -43,10 +43,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					)
 				};
-					fetch(process.env.BACKEND_URL + "/api/user", requestOptions)
-					.then(response => response.json())
-					.then(data => console.log(data))						
-					},
+
+				fetch(process.env.BACKEND_URL + "/api/user", requestOptions)
+				.then(response => response.json())
+				.then(data => {
+					console.log(data);
+		
+					if (response.status === 200) {
+						alert("Usuario creado correctamente");
+					}
+				})
+				.catch(error => {
+					console.error("Error al crear usuario:", error);
+				});
+		},
 
 			//[GET] TRAER users 
 			
@@ -269,20 +279,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error loading message from backend", error)
 				}
 			},
-//  ---------------------------------------------------------------------------------------------- COMMENT SECTION BELOW
 
-			postComment: (comment,commentID,movieID) => {
-				{
-				  const response = fetch('https://curly-umbrella-jx66v5vqx49fp4xv-3001.app.github.dev/api/movies/comment', {
-					method: 'POST',
-					headers: {
-					  'Content-Type': 'application/json',
-					},
-					body: JSON.stringify({"comment_body": comment,"comment_id": commentID, "movie_id": movieID}),
-				  });
-				return alert("Your comment has been added")
-				} 
-			  },
+
+			postComment: async (comment, userID, movieID) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + "/api/movies/comment", {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({ "comment_body": comment, "user_id": userID, "movie_id": movieID }),
+					});
+			
+					if (response.ok) {
+						alert("Your comment has been added");
+					} else {
+						console.error("Error posting comment:", response.status, response.statusText);
+						// Puedes mostrar un mensaje de error más específico si lo deseas
+						alert("Error posting comment. Please try again later.");
+					}
+				} catch (error) {
+					console.error("Unexpected error posting comment:", error);
+					// Puedes mostrar un mensaje de error más específico si lo deseas
+					alert("Unexpected error posting comment. Please try again later.");
+				}
+			},
 
 			getComments: async() => {
 				try{
@@ -290,24 +311,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 						method: 'GET',
 						headers: { 'Content-Type': 'application/json', }
 					};	
-						fetch('https://curly-umbrella-jx66v5vqx49fp4xv-3001.app.github.dev/api/movies/allComments',requestOptions) 
+						fetch(process.env.BACKEND_URL + "/api/movies/allComments",requestOptions) 
 						.then( (response)=> response.json())
 						.then( (data)=> {setStore({allComments: data}, console.log(data))})
 					}	catch(error){
 						console.log("hasnt been added")
 					}
 			},
-			delComment: (comment_id) => {
-				fetch(`https://curly-umbrella-jx66v5vqx49fp4xv-3001.app.github.dev/api/movies/comment/${comment_id}`,{method: 'DELETE'})
+			delComment: (id) => {
+				fetch(process.env.BACKEND_URL + `/api/movies/comment/${id}`,{method: 'DELETE'})
 				alert("Comment deleted")			
 			},
-			editComment: (comment_id,comment_body) => {
+			editComment: (id,comment_body) => {
 				const editOptions = {
 				method: 'PUT',
 				headers: { 'Content-Type': 'application/json', },
 				body: JSON.stringify({"comment_body": comment_body})
 			};
-				fetch(`https://curly-umbrella-jx66v5vqx49fp4xv-3001.app.github.dev/api/movies/comment/${comment_id}`,editOptions)
+				fetch(process.env.BACKEND_URL + `/api/movies/comment/${id}`,editOptions)
 				.then(response => response.json())
 				.then(data => {
 					console.log(`Comentario editado exitosamente: ${data}`);

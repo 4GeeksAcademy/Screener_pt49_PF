@@ -8,15 +8,30 @@ export const Comment_list = () => {
     const [id, setId] = useState('');
     useEffect(() => {
         actions.getComments();
+
     }, []);
+
+    const handledelComment = (commentID) =>{
+        actions.delComment(commentID)
+        actions.getComments()
+    }
+
+    const handleeditComment = (id,newText) =>{
+        actions.editComment(id,newText)
+        actions.getComments()
+    }
+
+
+    
     return(
         <>        
         <div className="card text-center mx-5">
             <ul className="list-group">
             {store.allComments.map((item)=>             
-                    <li key= {item.comment_id} className="list-group-item">{item.comment_body}
-                        <button data={item.comment_id} onClick={()=>setId(item.comment_id)} type="button" className="btn btn-secondary mx-4" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
-                        <button onClick={()=>actions.delComment(item.comment_id)} type="button" className="btn btn-danger mx-4">Delete</button>
+                    <li key= {item.id} className="list-group-item">{item.comment_body}
+                        <p>{item.id}</p>
+                        <button data={item.id} onClick={()=>setId(item.id)} type="button" className="btn btn-secondary mx-4" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+                        <button onClick={()=>handledelComment(item.id)} type="button" className="btn btn-danger mx-4">Delete</button>
                     </li>                                                                
             )}
             </ul>
@@ -33,7 +48,7 @@ export const Comment_list = () => {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button onClick={()=>actions.editComment(id,newText)} value= {newText} type="button" className="btn btn-primary">Save changes</button>
+                        <button onClick={()=>handleeditComment(id,newText)} value= {newText} type="button" className="btn btn-primary">Save changes</button>
                         <button onClick={()=>console.log(newText)} type="button" className="btn btn-primary">Check content</button>
                     </div>
                 </div>
