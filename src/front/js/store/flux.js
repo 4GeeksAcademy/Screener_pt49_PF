@@ -18,7 +18,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			popularMovies: [],
 			movies: [],
 			moviePreApi: {},
-			allComments: []
+			allComments: [],
+			auth: false
 		},
 		
 		actions: {
@@ -26,7 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		
 			//[POST] CREAR nuevo user
 
-				postUser: (email, password, username) => {
+				postUser: (email, password, username,age) => {
 				console.log(email)
 
 					const requestOptions = {
@@ -34,10 +35,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 							headers:{"content-type": "application/json"},
 							body: JSON.stringify(
 						{
-
 								"email": email,
 								"password": password,
-								"username": username
+								"username": username,
+								"age": age
 						}
 					)
 				};
@@ -116,7 +117,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	
 									"email": userdata.email,
 									"password":userdata.password,
-									"username": userdata.username
+									"username": userdata.username,
+									"age": userdata.age
 							}
 						)
 						
@@ -336,20 +338,40 @@ const getState = ({ getStore, getActions, setStore }) => {
 					alert("Error al editar la comentario");
 				});
 			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
+//  ---------------------------------------------------------------------------------------------- LOGIN SECTION BELOW
 
-				//reset the global store
-				setStore({ demo: demo });
+			loginData (e,email,password){
+				e.preventDefault()
+
+				const requestOptions = {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						"email": email,
+						"password": password
+					})
+				};
+				const response = fetch(process.env.BACKEND_URL + "/api/login", requestOptions)
+				.then(response => {
+					console.log(response.status)
+					if(response.status === 200){
+						setStore({auth : true})
+					}
+					return  response.json()
+				})
+				.then(data => { 
+					localStorage.setItem("token", data.access_token);
+					}
+				)
 			},
+
+			logOut(){
+				setStore({ auth: false })
+				localStorage.removeItem("token");
+			},
+
+//  ---------------------------------------------------------------------------------------------- EDIT MOVIE BELOW
 
 			editMovie: (editmovie, id) => {
 
@@ -399,9 +421,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"white_noise": editmovie.white_noise,
 						})
 				};
-						
-			
-
 				fetch(process.env.BACKEND_URL + `/api/movies/${id}`, editOptions)
 				.then(response => response.json())
 				.then(data => {
@@ -413,8 +432,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					alert("Error al editar la película");
 				});
 		},  
-
-
 		}
 	};
 };

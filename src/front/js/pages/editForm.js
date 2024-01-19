@@ -12,13 +12,14 @@ export const EditUser = () => {
 	 const [email, setEmail] = useState("");
 	 const [password, setPassword] = useState("");
 	 const [username, setUsername]= useState("");
+	 const [age, setAge]= useState("");
 
      const { theid } = useParams();
 
      const{ store, actions}=useContext(Context)
      
     const handleEditUser=() =>{
-            const userdata={email, password, username};
+            const userdata={email, password, username, age};
 
             actions.editUser(theid ,userdata)
         }
@@ -53,7 +54,14 @@ export const EditUser = () => {
                     <input 
                     value={username}
                     onChange={(e)=> setUsername(e.target.value)}
-                    type="username" className="form-control" id="exampleInputUserName1"/>
+                    type="username" className="form-control" id="exampleInputPassword1"/>
+                </div>
+				<div className="mb-3">
+                    <label htmlFor="exampleInputUsername1" className="form-label">Age</label>
+                    <input 
+                    value={age}
+                    onChange={(e)=> setAge(e.target.value)}
+                    type="number" className="form-control" id="age"/>
                 </div>
 
                 <button onClick={()=>handleEditUser()}
