@@ -138,7 +138,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					
 
 				},
+                  // WATCHLIST///
 
+                  //[GET]  watchlist 
+				  //[POST]   watchlist
+				  //[DELETE]  watchlist
+
+      
 
 			saveMovieToAPI: async (movieData) => {
 				try {

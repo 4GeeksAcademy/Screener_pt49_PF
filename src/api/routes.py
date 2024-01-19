@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint, make_response
-from api.models import db, User, Movie, Comment
+from api.models import db, User, Movie, Comment, Watchlist;
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 # FLASK IMPORT JWT BELOW
@@ -101,6 +101,55 @@ def delete_user(user_id):
 
     return jsonify({'message': f'User with ID {user_id} deleted successfully'}), 200
 
+#### WATCHLIST  #####
+
+#[GET watchlist de todos los users ] 
+
+@api.route('/watchlist', methods=['GET'])
+
+def get_watchlist():
+
+    watchlist=Watchlist.query.all()
+    results= list( map( lambda movie:movie.serialize(), watchlist ))
+
+    return jsonify( results), 200
+
+#[GET watchlist de un  user en particular ] 
+
+@api.route('/watchlist/<int:user_id>', methods=['GET'])
+
+def get_an_user_watchlist(user_id):
+
+   user_watchlist = User.query.filter_by(id=user_id).first()
+   return jsonify( user_watchlist.serialize()), 200
+
+
+#[POST watchlist ] 
+    
+@api.route('/watchlist', methods=['POST'])
+def add_new_watchlist():
+
+    request_body_watchlist = request.get_json()
+
+    new_watchlist = Watchlist(    
+        user_id= request_body_watchlist["user_id"],
+        movie_id= request_body_watchlist["movie_id"],
+            
+           )
+    db.session.add( new_watchlist)
+    db.session.commit()
+
+    return jsonify(request_body_watchlist), 200
+
+
+
+#[DELETE watchlist] 
+
+
+
+
+
+
     #[POST] Login de un user
 
 @api.route("/login", methods=["POST"])
@@ -116,9 +165,6 @@ def login():
 
     access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token)
-
-
-
 
 
     
