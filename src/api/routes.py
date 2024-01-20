@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint, make_response
-from api.models import db, User, Movie, Comment
+from api.models import db, User, Movie, Comment, LocalAdmin
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 # FLASK IMPORT JWT BELOW
@@ -117,11 +117,7 @@ def login():
     access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token)
 
-
-
-
-
-    
+# ---------------------------------------------------------------------------- MOVIES
 @api.route('/movies', methods=['GET'])
 def get_movies():
 
@@ -134,8 +130,6 @@ def get_all_movies(movie_id):
 
     one_movie = Movie.query.filter_by(id=movie_id).first()
     return jsonify(one_movie.serialize()), 200
-
-
 
 
 @api.route('/movies', methods=['POST'])
@@ -306,6 +300,90 @@ def deleteSpecificComment(comment_id):
     response_body = "Your comment has been deleted"
     return jsonify(response_body), 200
 
+#----------------------------------------------------------------------------------------LocalAdmin
+
+#[GET] Listar los LocalAdmin
+
+@api.route('/localadmin', methods=['GET'])
+# @jwt_required()
+def get_local_admin():
+
+    all_LocalAdmin=LocalAdmin.query.all()
+    results= list( map( lambda LocalAdmin:LocalAdmin.serialize(), all_LocalAdmin ))
+  
+    return jsonify( results), 200
+
+#[GET] Listar un solo localAdmin
+
+@api.route('/localadmin/<int:localAdmin_id>', methods=['GET'])
+
+def get_one_local_admin(localAdmin_id):
+
+    one_localAdmin = LocalAdmin.query.filter_by(id=localAdmin_id).first()
+    return jsonify( one_localAdmin.serialize()), 200
+
+    
+#[POST] Añadir un nuevo localAdmin
+
+@api.route('/localadmin', methods=['POST'])
+def add_local_admin():
+
+    request_body_localAdmin = request.get_json()
+
+    new_localAdmin = LocalAdmin(    
+        email=request_body_localAdmin["email"],
+        password=request_body_localAdmin["password"],   
+        username=request_body_localAdmin["username"]   
+           )
+    db.session.add(new_localAdmin)
+    db.session.commit()
+
+    return jsonify(request_body_localAdmin), 200
+
+#[PUT] Editar un localAdmin
+
+@api.route('/localadmin/<int:localAdmin_id>', methods=['PUT'])
+def edit_local_admin(localAdmin_id):
+    localAdmin = LocalAdmin.query.get(localAdmin_id)
+
+    data = request.get_json()
+
+    localAdmin.email = data.get('email',localAdmin.email)
+    localAdmin.password = data.get('password',localAdmin.password)
+    localAdmin.username = data.get('username',localAdmin.username)
+    db.session.commit()
+    response_body = {'message': f"localAdmin {localAdmin.username} edited successfully."}
+    return jsonify(response_body)
+
+    #[DELETE] Eliminar un localAdmin
+
+@api.route('/localadmin/<int:localAdmin_id>', methods=['DELETE'])
+def delete_local_admin(localAdmin_id):
+    localAdmin = LocalAdmin.query.get(localAdmin_id)
+
+    if not localAdmin:
+        return jsonify({'message': 'local admin not found'}), 404
+
+    db.session.delete(localAdmin)
+    db.session.commit()
+
+    return jsonify({'message': f'Local admin with ID {localAdmin_id} deleted successfully'}), 200
+
+    #[POST] Login de un localAdmin
+
+@api.route("screener.admin/local.login", methods=["POST"])
+def login_admin():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+    localAdmin = LocalAdmin.query.filter_by(email=email).first()
+
+    if localAdmin is None:
+        return jsonify({"msg" : "Incorrect email "}), 401
+    if localAdmin.password != password:
+        return jsonify({"msg": "Incorrect password"}), 401
+
+    access_token = create_access_token(identity=email)
+    return jsonify(access_token=access_token)
 
 
 
