@@ -13,6 +13,7 @@ import { MoviesApi } from "./pages/moviesApi";
 import { MovieForm } from "./pages/movieForm";
 import { MovieEditForm } from "./pages/editmovie";
 import { MoviesUser } from "./pages/moviesUser";
+import { AdminPanel } from "./pages/adminPanel";
 import Comment from "./component/comment"; 
 import Comment_list from "./component/comment_list"; 
 import Login from "./pages/login"; 
@@ -50,6 +51,7 @@ const Layout = () => {
                         <Route element={<Comment_list />} path="/movies/comment_list" />
                         <Route element={<MoviesUser />} path="/moviesUser" />
                         <Route element={<Signup />} path="/signup" />
+                        <Route element={<AdminPanel />} path="/adminPanel" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<Private />} path="/private" />
                         <Route element={<h1>Not found!</h1>} />

@@ -7,25 +7,17 @@ import { UserForm } from "./usersForm";
 import  Login  from "./login";
 
 
-export const Home = () => {
+export const AdminPanel = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
 		<div className="text-center mt-5">
 			
-			<Login />
 			
-			
-			<Link to = "/users">
-				<button  className="btn btn-outline-primary"> Link me to My users List</button>
-			</Link>
-			<Link to = "/signup">
-				<button  className="btn btn-outline-primary">Signup</button>
-			</Link>
-
-			<Link to={"/moviesUser"} ><button className="btn btn-outline-primary">All Movies</button></Link>
+			<Link to = "/users"><button  className="btn btn-outline-primary">Administrador de usuarios</button></Link>
 			<Link to={"/movies"} ><button className="btn btn-outline-primary">Create a Movie</button></Link>
-			<Link to={"/moviesApi"} ><button className="btn btn-outline-primary">Movie admin</button></Link>
+			<Link to={"/moviesApi"} ><button className="btn btn-outline-primary">Administrador de peliculas</button></Link>
+			<Link to={"/movies/comment_list"}><button className="btn btn-outline-primary">Administrador de comentarios</button></Link>
 		</div>
 	);
 };

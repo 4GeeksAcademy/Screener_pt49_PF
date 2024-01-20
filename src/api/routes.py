@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint, make_response
-from api.models import db, User, Movie, Comment
+from api.models import db, User, Movie, Comment, Watchlist
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 # FLASK IMPORT JWT BELOW
@@ -115,7 +115,7 @@ def login():
         return jsonify({"msg": "Incorrect password"}), 401
 
     access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
+    return jsonify(access_token=access_token, user=user.serialize())
 
 
 
@@ -307,6 +307,51 @@ def deleteSpecificComment(comment_id):
     return jsonify(response_body), 200
 
 
+#### WATCHLIST  #####
+
+#[GET watchlist de todos los users ] 
+
+@api.route('/watchlist', methods=['GET'])
+
+def get_watchlist():
+
+    watchlist=Watchlist.query.all()
+    results= list( map( lambda movie:movie.serialize(), watchlist ))
+
+    return jsonify( results), 200
+
+#[GET watchlist de un  user en particular ] 
+
+@api.route('/watchlist/<int:user_id>', methods=['GET'])
+def get_an_user_watchlist(user_id):
+    user_watchlist_entries = Watchlist.query.filter_by(user_id=user_id).all()
+
+    movies = []
+    for entry in user_watchlist_entries:
+        movie = Movie.query.get(entry.movie_id)
+        movies.append(movie.serialize())
+
+    return jsonify(movies), 200
+
+
+#[POST watchlist ] 
+    
+
+@api.route('/watchlist/<int:user_id>/new', methods=['POST'])
+def add_to_watchlist(user_id):
+    data = request.get_json()
+
+    movie_id = data['movie_id']
+
+    user = User.query.get(user_id)
+    movie = Movie.query.get(movie_id)
+
+    user.watchlist_entries.append(Watchlist(movie_id=movie.id))
+    db.session.commit()
+
+    return jsonify({'message': 'Película agregada a la watchlist correctamente'}), 201
+
+#[DELETE watchlist] 
 
 
 

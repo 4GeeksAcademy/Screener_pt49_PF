@@ -17,19 +17,15 @@ export const MovieDetails = () => {
     };
 
     useEffect(() => {
+        console.log(tuUserID)
         const fetchData = async () => {
             try {
-                // Obtener información del elenco solo en la fase de montaje
                 if (cast.length === 0) {
                     const response = await fetch(`https://api.themoviedb.org/3/movie/${theid}/credits?language=es-ES`, options);
                     const data = await response.json();
                     setCast(data.cast.slice(0, 5));
                 }
-    
-                // Fetch para obtener comentarios
                 actions.getComments();
-    
-                // Fetch para obtener información de la película
                 actions.getMoviesFromApi();
             } catch (error) {
                 console.error(error);
@@ -38,6 +34,8 @@ export const MovieDetails = () => {
     
         fetchData();
     }, []);
+
+    const tuUserID = store.userID
 
     const movie = store.movies.find(movie => movie.id === parseInt(theid));
     const relevantComments = store.allComments.filter(comment => comment.movie_id === parseInt(theid));
@@ -69,7 +67,7 @@ export const MovieDetails = () => {
                         <div>
                         <button>Agregar a la Watchlist</button>
                         </div>
-                            <Comment movieID={theid} />
+                            <Comment movieID={theid} userID={tuUserID} />
                         </div>
                     </div>
                     <div className="col-md-4">

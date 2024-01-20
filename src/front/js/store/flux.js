@@ -19,7 +19,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			movies: [],
 			moviePreApi: {},
 			allComments: [],
-			auth: false
+			auth: false,
+			userId: null,
+			userToken:""
 		},
 		
 		actions: {
@@ -354,20 +356,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				const response = fetch(process.env.BACKEND_URL + "/api/login", requestOptions)
 				.then(response => {
-					console.log(response.status)
-					if(response.status === 200){
-						setStore({auth : true})
-					}
-					return  response.json()
+				  console.log(response);
+				  console.log(response.status);
+				  if (response.status === 200) {
+					return response.json();
+				  } else {
+					console.error("Error en la solicitud:", response.status);
+				  }
 				})
-				.then(data => { 
+				.then(data => {
+				  if (data) {
+					console.log("User ID:", data.user.id);
 					localStorage.setItem("token", data.access_token);
-					}
-				)
+					setStore({
+					  auth: true,
+					  userToken: data,
+					  userId: data.user.id,  // Agrega el ID del usuario al store
+					});
+				  }
+				})
+				.catch(error => {
+				  console.error("Error en la solicitud:", error);
+				});
 			},
 
 			logOut(){
-				setStore({ auth: false })
+				setStore({ auth: false, userToken:"", userId:null })
 				localStorage.removeItem("token");
 			},
 

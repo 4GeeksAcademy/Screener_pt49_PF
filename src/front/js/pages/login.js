@@ -11,7 +11,6 @@ const Login = () => {
 
         return (
         <div className="text-center">
-            {store.auth === true ? <Navigate to="/private"/> : null}
             <h1 className="text-center">Login</h1>
             <form className="w-50 mx-auto" onSubmit={(e)=>actions.loginData(e,email,password)}>
                 <div className="col-auto mb-4">
