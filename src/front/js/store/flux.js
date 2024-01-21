@@ -19,6 +19,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			movies: [],
 			moviePreApi: {},
 			allComments: [],
+			watchlist:[],
 			auth: false
 		},
 		
@@ -138,11 +139,54 @@ const getState = ({ getStore, getActions, setStore }) => {
 					
 
 				},
-                  // WATCHLIST///
+// ------------------------------------WATCHLIST---------------------------
 
-                  //[GET]  watchlist 
-				  //[POST]   watchlist
+                  //[GET] Traer  Watchlists
+				  
+				  getWatchlist: () => {
+					
+	                    const requestOptions = {
+							method: 'GET',
+							headers: {"content-type": "application/json"},
+							
+						};
+						
+						fetch(process.env.BACKEND_URL + "/api/watchlist", requestOptions)
+						.then(response => response.json())
+						.then(data => 
+								{
+								console.log(data);
+								setStore({ watchlist: data })
+								}
+					)},
+
+				  
+				
 				  //[DELETE]  watchlist
+
+				  deleteWatchlist: (id) => {
+					
+					console.log("Deleting watchlist item with ID:", id);
+
+					
+	                    const requestOptions = {
+							method: 'DELETE',
+							headers: {"content-type": "application/json"},
+							
+						};
+						
+						fetch(process.env.BACKEND_URL +  `/api/watchlist/${id}`, requestOptions)
+						.then(response => response.json())
+						.then((data) => {
+							// Puedes manejar la respuesta de la API aquí
+							console.log("Delete watchlist response:", data);
+						})
+	
+					},
+
+					 
+	
+
 
       
 
