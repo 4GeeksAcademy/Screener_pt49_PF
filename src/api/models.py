@@ -8,6 +8,7 @@ class User(db.Model):
     password = db.Column(db.String(80), unique=False, nullable=False)
     username = db.Column(db.String(120), unique=True, nullable=False)
     age = db.Column(db.Integer, unique=False, nullable=False)
+    watchlist_entries = db.relationship('Watchlist', backref='user', lazy=True)
    
 
     def __repr__(self):
@@ -64,6 +65,7 @@ class Movie(db.Model):
     original_title = db.Column(db.String(3000), nullable=False)
     video = db.Column(db.Boolean, nullable=False)
     vote_count = db.Column(db.Integer, nullable=False)
+    watchlist_entries = db.relationship('Watchlist', backref='movie', lazy=True)
 
     def __repr__(self):
         return f'<Movie {self.title}>'
@@ -132,8 +134,9 @@ class Comment(db.Model):
 
 class Watchlist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, unique=False, nullable=False)
-    movie_id = db.Column(db.Integer, unique=False, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    movie_id = db.Column(db.Integer, db.ForeignKey('movie.id'), nullable=False)
+
     
 
     def __repr__(self):
