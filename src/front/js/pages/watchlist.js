@@ -27,7 +27,7 @@ export const Watchlist = () => {
                 <p key= { myWatchlist.id}> { myWatchlist.movie_id}  
                 </p>
 
-                <p>{  myWatchlist.id} </p>
+                <p>Id movie{  myWatchlist.id} </p>
 
                 <button  className="btn btn-primary"
                 onClick={()=>actions.deleteWatchlist( myWatchlist.id)}>DELETE Watchlist</button>
