@@ -17,7 +17,6 @@ export const MovieDetails = () => {
     };
 
     useEffect(() => {
-        console.log(tuUserID)
         const fetchData = async () => {
             try {
                 if (cast.length === 0) {

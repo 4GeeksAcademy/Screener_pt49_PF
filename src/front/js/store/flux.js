@@ -21,7 +21,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			allComments: [],
 			auth: false,
 			userId: null,
-			userToken:""
+			userToken:"",
+			adminLogin: false
+
 		},
 		
 		actions: {
@@ -190,7 +192,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 			
 				try {
-					const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=es-ES&page=17', options);
+					const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=es-ES&page=3', options);
 					const data = await response.json();
 			
 					if (data.results) {
@@ -283,6 +285,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			postComment: async (comment, userID, movieID) => {
+				console.log("Datos a enviar:", { "comment_body": comment, "user_id": userID, "movie_id": movieID });
 				try {
 					const response = await fetch(process.env.BACKEND_URL + "/api/movies/comment", {
 						method: 'POST',
@@ -296,12 +299,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 						alert("Your comment has been added");
 					} else {
 						console.error("Error posting comment:", response.status, response.statusText);
-						// Puedes mostrar un mensaje de error más específico si lo deseas
-						alert("Error posting comment. Please try again later.");
+						// Obtén y muestra el mensaje de error del servidor si está disponible
+						const errorResponse = await response.json().catch(() => null);
+						const errorMessage = errorResponse ? errorResponse.error : "Unknown error";
+						alert(`Error posting comment: ${errorMessage}. Please try again later.`);
 					}
 				} catch (error) {
 					console.error("Unexpected error posting comment:", error);
-					// Puedes mostrar un mensaje de error más específico si lo deseas
 					alert("Unexpected error posting comment. Please try again later.");
 				}
 			},
@@ -379,9 +383,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  console.error("Error en la solicitud:", error);
 				});
 			},
+			loginAdmin (e,email,password){
+				e.preventDefault()
+
+				const requestOptions = {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						"email": email,
+						"password": password
+					})
+				};
+				const response = fetch(process.env.BACKEND_URL + "/api/screener.admin/local.login", requestOptions)
+				.then(response => {
+					console.log(response.status)
+					if(response.status === 200){
+						setStore({adminLogin : true})
+					}
+					return  response.json()
+				})
+				.then(data => { 
+					localStorage.setItem("token", data.access_token);
+					}
+				)
+			},
 
 			logOut(){
 				setStore({ auth: false, userToken:"", userId:null })
+				localStorage.removeItem("token");
+			},
+			adminLogOut(){
+				setStore({ adminLogin: false })
 				localStorage.removeItem("token");
 			},
 

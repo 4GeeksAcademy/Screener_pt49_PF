@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
@@ -6,8 +6,14 @@ export const Comment = ({ movieID, UserID }) => {
     const { store, actions } = useContext(Context);
     const [comment, setComment] = useState('');
 
+    useEffect(() => {
+        console.log(store.userId)
+    }, []);
+
+    
+
     const handlePostComment = () => {
-        actions.postComment(comment, UserID, movieID);
+        actions.postComment(comment, store.userId, movieID);
         setComment('');
     };
 
@@ -24,7 +30,7 @@ export const Comment = ({ movieID, UserID }) => {
                             placeholder="Leave a comment here"
                             id="commentArea"
                         ></textarea>
-                        <input value={store.userId} className="form-control" placeholder="User ID" id="userID"></input>
+                        <input value={store.userId} className="form-control" placeholder="User ID" id={store.userId}></input>
                         <input value={movieID} className="form-control" placeholder="Movie ID" id="movieID"></input>
                         <label htmlFor="commentArea">Comment</label>
                     </div>
@@ -37,9 +43,6 @@ export const Comment = ({ movieID, UserID }) => {
                         <p>Debes <Link to="/">iniciar sesión</Link> para dejar un comentario.</p>
                     )}
 
-                    <Link to={"/movies/comment_list"}>
-                        <button>View Comments</button>
-                    </Link>
                 </div>
             </div>
         </>

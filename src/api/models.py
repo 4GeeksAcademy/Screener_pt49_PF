@@ -119,9 +119,15 @@ class Movie(db.Model):
     
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, unique=False, nullable=False)
-    movie_id = db.Column(db.Integer, unique=False, nullable=False)
     comment_body = db.Column(db.String(250), unique=False, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    movie_id = db.Column(db.Integer, db.ForeignKey('movie.id'), nullable=False)
+
+    user = db.relationship('User', backref=db.backref('comments', lazy=True))
+    movie = db.relationship('Movie', backref=db.backref('comments', lazy=True))
+
+
+    
 
     def __repr__(self):
         return f'<Comments {self.comment_body}>'
@@ -133,6 +139,7 @@ class Comment(db.Model):
             "user_id": self.user_id,
             "movie_id": self.movie_id
         }
+
 
 class Watchlist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -149,4 +156,24 @@ class Watchlist(db.Model):
             "id": self.id,
             "user_id": self.user_id,
             "movie_id": self.movie_id
+        }
+
+    
+class LocalAdmin(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(80), unique=False, nullable=False)
+    username = db.Column(db.String(120), unique=True, nullable=False)
+   
+    def __repr__(self):
+        return f'<LocalAdmin {self.username}>'
+
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "email": self.email,
+            "username": self.username
+            # do not serialize the password, its a security breach
+
         }
