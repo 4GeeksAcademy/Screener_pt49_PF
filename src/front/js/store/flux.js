@@ -192,7 +192,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 			
 				try {
-					const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=es-ES&page=3', options);
+					const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=es-ES&page=4', options);
 					const data = await response.json();
 			
 					if (data.results) {
@@ -363,9 +363,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  console.log(response);
 				  console.log(response.status);
 				  if (response.status === 200) {
+					alert("Inicio de sesión exitoso");
 					return response.json();
 				  } else {
 					console.error("Error en la solicitud:", response.status);
+					alert("Error en el inicio de sesión, revise el Email o la contraseña")
 				  }
 				})
 				.then(data => {
@@ -375,7 +377,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({
 					  auth: true,
 					  userToken: data,
-					  userId: data.user.id,  // Agrega el ID del usuario al store
+					  userId: data.user.id, 
 					});
 				  }
 				})
@@ -416,6 +418,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ adminLogin: false })
 				localStorage.removeItem("token");
 			},
+
 
 //  ---------------------------------------------------------------------------------------------- EDIT MOVIE BELOW
 
@@ -478,6 +481,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					alert("Error al editar la película");
 				});
 		},  
+
+		
+
+
 		}
 	};
 };

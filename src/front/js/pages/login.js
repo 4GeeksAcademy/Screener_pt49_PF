@@ -7,7 +7,8 @@ const Login = () => {
     const { store, actions } = useContext(Context);
     
     const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [password, setPassword] = useState('');
+    
 
         return (
         <div className="text-center">

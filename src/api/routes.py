@@ -443,5 +443,16 @@ def add_to_watchlist(user_id):
 
 #[DELETE watchlist] 
 
+@api.route('/watchlist/<int:user_id>/delete/<int:movie_id>', methods=['DELETE'])
+def remove_from_watchlist(user_id, movie_id):
+    watchlist_entry = Watchlist.query.filter_by(user_id=user_id, movie_id=movie_id).first()
+
+    if watchlist_entry:
+        db.session.delete(watchlist_entry)
+        db.session.commit()
+        return jsonify({'message': 'Película eliminada de la watchlist correctamente'}), 200
+    else:
+        return jsonify({'message': 'La película no se encontró en la watchlist'}), 404
+
 
 

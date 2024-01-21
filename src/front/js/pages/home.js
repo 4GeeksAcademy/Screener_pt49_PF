@@ -20,6 +20,7 @@ export const Home = () => {
 			</Link>
 
 			<Link to={"/moviesUser"} ><button className="btn btn-outline-primary">All Movies</button></Link>
+			<Link to={"/randomMovie"} ><button className="btn btn-outline-primary">Random movie</button></Link>
 
 		</div>
 	);

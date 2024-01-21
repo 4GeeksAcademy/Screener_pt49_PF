@@ -8,6 +8,7 @@ export const Comment = ({ movieID, UserID }) => {
 
     useEffect(() => {
         console.log(store.userId)
+        actions.getComments();
     }, []);
 
     

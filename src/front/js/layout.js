@@ -23,6 +23,8 @@ import Private from "./pages/private";
 import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { RandomMovie } from "./pages/ramdommovie";
+
 
 //create your first component
 const Layout = () => {
@@ -54,6 +56,7 @@ const Layout = () => {
                         <Route element={<Signup />} path="/signup" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<Adminlogin />} path="/adminlogin" />
+                        <Route element={<RandomMovie />} path="/randomMovie" />
                         <Route element={<AdminPanel />} path="/adminPanel" />
                         <Route element={<Private />} path="/private" />
                         <Route element={<h1>Not found!</h1>} />
