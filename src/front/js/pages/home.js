@@ -15,17 +15,13 @@ export const Home = () => {
 			
 			<Login />
 			
-			
-			<Link to = "/users">
-				<button  className="btn btn-outline-primary"> Link me to My users List</button>
-			</Link>
 			<Link to = "/signup">
 				<button  className="btn btn-outline-primary">Signup</button>
 			</Link>
 
-			
-			<Link to={"/movies"} ><button className="btn btn-outline-primary">Movies</button></Link>
-			<Link to={"/moviesApi"} ><button className="btn btn-outline-primary">Movies de la api</button></Link>
+			<Link to={"/moviesUser"} ><button className="btn btn-outline-primary">All Movies</button></Link>
+			<Link to={"/randomMovie"} ><button className="btn btn-outline-primary">Random movie</button></Link>
+
 		</div>
 	);
 };

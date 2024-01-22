@@ -6,11 +6,13 @@ import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import { User } from "./pages/users";
+import { MovieDetails } from "./pages/moviedetails"; 
 import { EditUser } from "./pages/editForm";
 import { Movies } from "./pages/movies";
 import { MoviesApi } from "./pages/moviesApi";
 import { MovieForm } from "./pages/movieForm";
 import { MovieEditForm } from "./pages/editmovie";
+import { MoviesUser } from "./pages/moviesUser";
 import Comment from "./component/comment"; 
 import Comment_list from "./component/comment_list"; 
 import Adminlogin from "./pages/adminLogin"; 
@@ -21,6 +23,8 @@ import Private from "./pages/private";
 import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { RandomMovie } from "./pages/ramdommovie";
+
 
 //create your first component
 const Layout = () => {
@@ -44,12 +48,15 @@ const Layout = () => {
                         <Route element={<MoviesApi />} path="/moviesApi" />
                         <Route element={<MovieForm />} path="/movieForm" />
                         <Route element={<MovieEditForm />} path="/editmovie/:theid" />
+                        <Route element={<MovieDetails />} path="/moviedetails/:theid" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<Comment />} path="/movies/comment" />
                         <Route element={<Comment_list />} path="/movies/comment_list" />
+                        <Route element={<MoviesUser />} path="/moviesUser" />
                         <Route element={<Signup />} path="/signup" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<Adminlogin />} path="/adminlogin" />
+                        <Route element={<RandomMovie />} path="/randomMovie" />
                         <Route element={<AdminPanel />} path="/adminPanel" />
                         <Route element={<Private />} path="/private" />
                         <Route element={<h1>Not found!</h1>} />

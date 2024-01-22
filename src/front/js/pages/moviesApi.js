@@ -21,7 +21,7 @@ export const MoviesApi = () => {
 
   return (
     <>
-      <h1>Movies de la API</h1>
+      <h1>Ediatar, eliminar y ver peliculas ADMIN</h1>
       {store.movies.length > 0 &&
         store.movies.map((movie) => (
           <div className="container border" key={movie.id}>
@@ -32,9 +32,11 @@ export const MoviesApi = () => {
               <button className="ms-4" onClick={() => handleDeleteMovie(movie.id)}>
                 Eliminar pelicula
               </button>
-              {/* Utiliza Link para redirigir al formulario de edición */}
               <Link to={`/editmovie/${movie.id}`} className="ms-4">
                 Editar pelicula
+              </Link>
+              <Link to={`/moviedetails/${movie.id}`} className="ms-4">
+                <button>Ficha de la pelicula</button>
               </Link>
             </div>
           </div>

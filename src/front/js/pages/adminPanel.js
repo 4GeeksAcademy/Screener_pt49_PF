@@ -5,6 +5,9 @@ import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import { UserForm } from "./usersForm";
 import  Login  from "./login";
+
+
+
 // import  Navbar_admin  from "./component/navbar_admin";
 export const AdminPanel = () => {
     const { store, actions } = useContext(Context);
@@ -17,3 +20,4 @@ export const AdminPanel = () => {
         </div>
     );
 };
+

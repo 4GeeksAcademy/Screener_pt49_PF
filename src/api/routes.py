@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint, make_response
-from api.models import db, User, Movie, Comment, LocalAdmin
+from api.models import db, User, Movie, Comment, LocalAdmin, Watchlist
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 # FLASK IMPORT JWT BELOW
@@ -115,7 +115,7 @@ def login():
         return jsonify({"msg": "Incorrect password"}), 401
 
     access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
+    return jsonify(access_token=access_token, user=user.serialize())
 
 # ---------------------------------------------------------------------------- MOVIES
 @api.route('/movies', methods=['GET'])
@@ -261,14 +261,26 @@ def edit_movie(movie_id):
 
 @api.route('/movies/comment', methods=['POST'])
 def addComment():
-    actual_comment = request.get_json()['comment_body']
-    user_id = request.get_json()['user_id']
-    movie_id = request.get_json()['movie_id']
-    new_comment = Comment(comment_body=actual_comment, user_id=user_id, movie_id=movie_id)
-    db.session.add(new_comment)
-    db.session.commit()
-    response_body = {'msg': 'Your comment has been posted'}
-    return (response_body)
+    try:
+        comment_body = request.get_json()['comment_body']
+        user_id = request.get_json()['user_id'] 
+        movie_id = request.get_json()['movie_id']
+
+        user = User.query.get(user_id)
+        movie = Movie.query.get(movie_id)
+
+        if user is None or movie is None:
+            return {'error': 'User or movie not found'}, 404
+
+        new_comment = Comment(comment_body=comment_body, user=user, movie=movie)
+        db.session.add(new_comment)
+        db.session.commit()
+
+        response_body = {'msg': 'Your comment has been posted'}
+        return response_body
+
+    except Exception as e:
+        return {'error': str(e)}, 500
 
 @api.route('/movies/allComments', methods=['GET'])
 def getComments():
@@ -385,6 +397,62 @@ def login_admin():
     access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token)
 
+#### WATCHLIST  #####
+
+#[GET watchlist de todos los users ] 
+
+@api.route('/watchlist', methods=['GET'])
+
+def get_watchlist():
+
+    watchlist=Watchlist.query.all()
+    results= list( map( lambda movie:movie.serialize(), watchlist ))
+
+    return jsonify( results), 200
+
+#[GET watchlist de un  user en particular ] 
+
+@api.route('/watchlist/<int:user_id>', methods=['GET'])
+def get_an_user_watchlist(user_id):
+    user_watchlist_entries = Watchlist.query.filter_by(user_id=user_id).all()
+
+    movies = []
+    for entry in user_watchlist_entries:
+        movie = Movie.query.get(entry.movie_id)
+        movies.append(movie.serialize())
+
+    return jsonify(movies), 200
+
+
+#[POST watchlist ] 
+    
+
+@api.route('/watchlist/<int:user_id>/new', methods=['POST'])
+def add_to_watchlist(user_id):
+    data = request.get_json()
+
+    movie_id = data['movie_id']
+
+    user = User.query.get(user_id)
+    movie = Movie.query.get(movie_id)
+
+    user.watchlist_entries.append(Watchlist(movie_id=movie.id))
+    db.session.commit()
+
+    return jsonify({'message': 'Película agregada a la watchlist correctamente'}), 201
+
+#[DELETE watchlist] 
+
+@api.route('/watchlist/<int:user_id>/delete/<int:movie_id>', methods=['DELETE'])
+def remove_from_watchlist(user_id, movie_id):
+    watchlist_entry = Watchlist.query.filter_by(user_id=user_id, movie_id=movie_id).first()
+
+    if watchlist_entry:
+        db.session.delete(watchlist_entry)
+        db.session.commit()
+        return jsonify({'message': 'Película eliminada de la watchlist correctamente'}), 200
+    else:
+        return jsonify({'message': 'La película no se encontró en la watchlist'}), 404
 
 
 
