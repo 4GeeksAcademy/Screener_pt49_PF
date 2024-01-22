@@ -26,7 +26,7 @@ It is recomended to install the backend first, make sure you have Python 3.8, Pi
 | Postgress | postgres://username:password@localhost:5432/example |
 
 4. Migrate the migrations: `$ pipenv run migrate` (skip if you have not made changes to the models on the `./src/api/models.py`)
-5. Run the migrations: `$ pipenv run upgrade`
+pipenv run migrate5. Run the migrations: `$ pipenv run upgrade`
 6. Run the application: `$ pipenv run start`
 
 > Note: Codespaces users can connect to psql by typing: `psql -h localhost -U gitpod example`

@@ -18,10 +18,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			movies: [],
 			moviePreApi: {},
 			allComments: [],
+			watchlist:[],
+			User_watchlist:[],
 			auth: false,
 			userId: null,
 			userToken:"",
 			adminLogin: false
+
 		},
 		
 		actions: {
@@ -140,6 +143,73 @@ const getState = ({ getStore, getActions, setStore }) => {
 					
 
 				},
+
+				// ------------------------------------WATCHLIST---------------------------
+
+                  //[GET] Traer  Watchlists
+				  
+				  getWatchlist: () => {
+					
+					const requestOptions = {
+						method: 'GET',
+						headers: {"content-type": "application/json"},
+						
+					};
+					
+					fetch(process.env.BACKEND_URL + "/api/watchlist", requestOptions)
+					.then(response => response.json())
+					.then(data => 
+							{
+							console.log(data);
+							setStore({ watchlist: data })
+							}
+				)},
+
+			   //[GET] Traer  Watchlist de un User
+				getUserWatchlist: () => {
+					
+					const requestOptions = {
+						method: 'GET',
+						headers: {"content-type": "application/json"},
+						
+					};
+					
+					fetch(process.env.BACKEND_URL + "/api/watchlist/4", requestOptions)
+					.then(response => response.json())
+					.then(data => 
+							{
+							console.log(data);
+							setStore({ User_watchlist: data })
+							}
+				)},
+
+			  
+			
+			  //[DELETE]  watchlist
+			  deleteWatchlist: ( movieId) => {
+				
+			
+				const requestOptions = {
+					method: 'DELETE',
+					headers: { "Content-Type": "application/json" },
+				};
+			
+				fetch(`${process.env.BACKEND_URL}/api/watchlist/user/4/delete/movie/${movieId}`, requestOptions)
+					.then(response => {
+						if (!response.ok) {
+							throw new Error(`Failed to delete watchlist item for and Movie ID ${movieId}`);
+						}
+						return response.json();
+					})
+					.then(data => {
+						// Puedes manejar la respuesta de la API aquí
+						console.log("Delete watchlist response:", data);
+					})
+					.catch(error => {
+						console.error(error);
+					});
+			},
+			
 
 
 			saveMovieToAPI: async (movieData) => {
@@ -488,3 +558,5 @@ const getState = ({ getStore, getActions, setStore }) => {
 };
 
 export default getState;
+
+
