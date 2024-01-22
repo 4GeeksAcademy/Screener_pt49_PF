@@ -15,13 +15,10 @@ export const Home = () => {
 			
 			<Login />
 			
-			
-			<Link to = "/users">
-				<button  className="btn btn-outline-primary"> Link me to My users List</button>
-			</Link>
 			<Link to = "/signup">
 				<button  className="btn btn-outline-primary">Signup</button>
 			</Link>
+
 
 			
 			<Link to={"/movies"} ><button className="btn btn-outline-primary">Movies</button></Link>
@@ -29,6 +26,10 @@ export const Home = () => {
 			<Link to={"/watchlist"} ><button className="btn btn-outline-primary">Watchlist</button></Link>
 			<Link to={"/watchlistUser"} ><button className="btn btn-outline-primary">Watchlist User</button></Link>
 			
+
+			<Link to={"/moviesUser"} ><button className="btn btn-outline-primary">All Movies</button></Link>
+			<Link to={"/randomMovie"} ><button className="btn btn-outline-primary">Random movie</button></Link>
+
 		</div>
 	);
 };

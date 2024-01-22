@@ -2,18 +2,18 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Navigate } from "react-router-dom";
 
-const Login = () => {
+const AdminLogin = () => {
 
     const { store, actions } = useContext(Context);
     
     const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('');
-    
+    const [password, setPassword] = useState('')
 
         return (
-        <div className="text-center">
+        <div className="text-center bg-dark">
+            {store.adminLogin === true ? <Navigate to="/adminPanel"/> : null}
             <h1 className="text-center">Login</h1>
-            <form className="w-50 mx-auto" onSubmit={(e)=>actions.loginData(e,email,password)}>
+            <form className="w-50 mx-auto" onSubmit={(e)=>actions.loginAdmin(e,email,password)}>
                 <div className="col-auto mb-4">
                     <label htmlFor="staticEmail2" className="visually-hidden">Email</label>
                     <input type="text" onChange={(e)=>setEmail(e.target.value)} className="form-control" id="staticEmail2" placeholder="email@example.com"/>
@@ -30,4 +30,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default AdminLogin
