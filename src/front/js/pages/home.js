@@ -27,6 +27,8 @@ export const Home = () => {
 			<Link to={"/movies"} ><button className="btn btn-outline-primary">Movies</button></Link>
 			<Link to={"/moviesApi"} ><button className="btn btn-outline-primary">Movies de la api</button></Link>
 			<Link to={"/watchlist"} ><button className="btn btn-outline-primary">Watchlist</button></Link>
+			<Link to={"/watchlistUser"} ><button className="btn btn-outline-primary">Watchlist User</button></Link>
+			
 		</div>
 	);
 };

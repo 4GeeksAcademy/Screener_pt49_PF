@@ -20,6 +20,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			moviePreApi: {},
 			allComments: [],
 			watchlist:[],
+			User_watchlist:[],
+			
 			auth: false
 		},
 		
@@ -161,21 +163,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 							}
 				)},
 
+			   //[GET] Traer  Watchlist de un User
+				getUserWatchlist: () => {
+					
+					const requestOptions = {
+						method: 'GET',
+						headers: {"content-type": "application/json"},
+						
+					};
+					
+					fetch(process.env.BACKEND_URL + "/api/watchlist/4", requestOptions)
+					.then(response => response.json())
+					.then(data => 
+							{
+							console.log(data);
+							setStore({ User_watchlist: data })
+							}
+				)},
+
 			  
 			
 			  //[DELETE]  watchlist
-			  deleteWatchlist: (userId, movieId) => {
-				console.log("Deleting watchlist item with User ID:", userId, "and Movie ID:", movieId);
+			  deleteWatchlist: ( movieId) => {
+				
 			
 				const requestOptions = {
 					method: 'DELETE',
 					headers: { "Content-Type": "application/json" },
 				};
 			
-				fetch(`${process.env.BACKEND_URL}/api/watchlist/user/${userId}/delete/movie/${movieId}`, requestOptions)
+				fetch(`${process.env.BACKEND_URL}/api/watchlist/user/4/delete/movie/${movieId}`, requestOptions)
 					.then(response => {
 						if (!response.ok) {
-							throw new Error(`Failed to delete watchlist item for User ID ${userId} and Movie ID ${movieId}`);
+							throw new Error(`Failed to delete watchlist item for and Movie ID ${movieId}`);
 						}
 						return response.json();
 					})
