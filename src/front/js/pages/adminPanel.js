@@ -17,6 +17,7 @@ export const AdminPanel = () => {
             <Link to={"/movies"} ><button className="btn btn-outline-primary">Create a Movie</button></Link>
             <Link to={"/moviesApi"} ><button className="btn btn-outline-primary">Administrador de peliculas</button></Link>
             <Link to={"/movies/comment_list"}><button className="btn btn-outline-primary">Administrador de comentarios</button></Link>
+            <Link to={"/watchlist"} ><button className="btn btn-outline-primary">Watchlist</button></Link>
         </div>
     );
 };
