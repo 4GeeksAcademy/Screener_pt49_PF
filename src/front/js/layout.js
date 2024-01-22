@@ -26,6 +26,8 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { RandomMovie } from "./pages/ramdommovie";
+import { MovieByName } from "./pages/movieByName";
+
 
 
 //create your first component
@@ -63,6 +65,7 @@ const Layout = () => {
                         <Route element={<Private />} path="/private" />
                         <Route element={<Watchlist />} path="/watchlist" />
                         <Route element={<WatchlistUser />} path="/watchlistUser" />
+                        <Route element={<MovieByName />} path="/movieByName" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
