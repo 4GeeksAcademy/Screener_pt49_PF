@@ -54,15 +54,27 @@ def get_a_user(user_id):
 
 @api.route('/user', methods=['POST'])
 def add_new_user():
-
     request_body_user = request.get_json()
+    # Check if the email exists in the database
+    existing_user = User.query.filter_by(email=request_body_user['email']).first()
+    if existing_user:
+        response = {'message': 'Email already exists','status': 400}
+        return jsonify(response), 400
 
+# Check if the username exists in the database
+    existing_user = User.query.filter_by(username=request_body_user['username']).first()
+    if existing_user:
+        response = {'message': 'Username already exists','status': 400}
+        return jsonify(response), 400
+
+# If the email and username do not exist, create the new user
     new_user = User(    
         email=request_body_user["email"],
         password=request_body_user["password"],
         username=request_body_user["username"],
         age=request_body_user["age"]       
-           )
+            )
+
     db.session.add( new_user)
     db.session.commit()
 

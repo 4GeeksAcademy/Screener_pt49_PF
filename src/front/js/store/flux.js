@@ -33,7 +33,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//[POST] CREAR nuevo user
 
 				postUser: (email, password, username,age) => {
-				console.log(email)
+
 
 					const requestOptions = {
 							method: 'POST',
@@ -49,13 +49,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 
 				fetch(process.env.BACKEND_URL + "/api/user", requestOptions)
-				.then(response => response.json())
-				.then(data => {
-					console.log(data);
-		
-					if (response.status === 200) {
-						alert("Usuario creado correctamente");
-					}
+				.then(response => {
+					if (response.ok) {
+						alert("Registro exitoso");
+					}else if (response['status'] === 400){
+                        alert("El nombre de usuario o el correo ya esta en uso");
+                    }
+					return response.json();
 				})
 				.catch(error => {
 					console.error("Error al crear usuario:", error);
@@ -65,14 +65,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//[GET] TRAER users 
 			
 			getUser: () => {
-				console.log( " i am working")
-
 					const requestOptions = {
 						method: 'GET',
-						headers: {"content-type": "application/json"},
-						
-					};
-					
+						headers: {"content-type": "application/json"},						
+					};					
 					fetch(process.env.BACKEND_URL + "/api/user", requestOptions)
 					.then(response => response.json())
 					.then(data => 
@@ -503,6 +499,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  console.error("Error en la solicitud:", error);
 				});
 			},
+
 			loginAdmin (e,email,password){
 				e.preventDefault()
 
@@ -519,6 +516,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(response.status)
 					if(response.status === 200){
 						setStore({adminLogin : true})
+						alert("Inicio de sesión exitoso");
 					}
 					return  response.json()
 				})
