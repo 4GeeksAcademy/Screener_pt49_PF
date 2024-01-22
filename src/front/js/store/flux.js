@@ -13,7 +13,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-
 			users:[],
 			popularMovies: [],
 			movies: [],
@@ -23,7 +22,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			userId: null,
 			userToken:"",
 			adminLogin: false
-
 		},
 		
 		actions: {

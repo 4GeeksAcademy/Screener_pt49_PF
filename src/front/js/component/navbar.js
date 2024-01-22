@@ -16,6 +16,11 @@ export const Navbar = () => {
 						{store.auth === true ? <button onClick={()=>actions.logOut()} className="btn btn-primary">Logout</button> : null}
 					</Link>
 				</div>
+				<div className="ml-auto">
+					<Link to="adminLogin">
+						{store.adminLogin === true ? <button onClick={()=>actions.adminLogOut()} className="btn btn-primary">ADMIN Logout</button> : null}
+					</Link>
+				</div>
 			</div>
 		</nav>
 	);
