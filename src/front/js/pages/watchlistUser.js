@@ -1,26 +1,35 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Link } from "react-router-dom";
 
 
 export const WatchlistUser = () => {
+
+    const [deletionCompleted, setDeletionCompleted] = useState(false);
+    const { store, actions } = useContext(Context);
+    const theId = store.userId
     
     useEffect(() => {
-		
-        actions.getUserWatchlist();
+        actions.getUserWatchlist(store.userId);
 	  }, []);
+      if (deletionCompleted) {
+        setDeletionCompleted(false);
+      }
 
-	const { store, actions } = useContext(Context);
+    const handleDeleteMovieWatchlist = async (user_id, movie_id ) => {
+        await actions.deleteMovieFromWatchlist(user_id, movie_id);
+        setDeletionCompleted(true);
+    };
 
 	return (
 		<div className="text-center mt-5">
 			
 			      <h1> WATCHLIST USER</h1>
 
-                  { store.User_watchlist.map (( myWatchlist) => 
+                  { store.User_watchlist.map ((myWatchlist) => 
 
-        <div className="container border">
+        <div key={myWatchlist.id} className="container border">
             <p> 
                 {myWatchlist.title }
             </p>
@@ -31,12 +40,8 @@ export const WatchlistUser = () => {
    
 
     <button  className="btn btn-primary"
-    onClick={()=>actions.deleteWatchlist( myWatchlist.id)}>DELETE Watchlist</button>
+    onClick={()=>handleDeleteMovieWatchlist(theId, myWatchlist.id )}>DELETE Watchlist</button>
 
-   
-    <button  className="btn btn-secondary"  
-    onClick={ console.log (myWatchlist.id)}
-    >EDIT Watchlist</button>
 
     
 </div>

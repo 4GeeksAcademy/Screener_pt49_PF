@@ -8,7 +8,6 @@ export const Watchlist = () => {
     
     useEffect(() => {
 		actions.getWatchlist();
-        actions.deleteWatchlist();
 	  }, []);
 
 	const { store, actions } = useContext(Context);
@@ -16,25 +15,17 @@ export const Watchlist = () => {
 	return (
 		<div className="text-center mt-5">
 			
-			      <h1> WATCHLIST </h1>
+			      <h1> WATCHLIST de todos los usuarios </h1>
 
 
             { store.watchlist.map (( myWatchlist) => 
 
-            <div className="container border">
-                <p key= { myWatchlist.id}>{ myWatchlist.user_id}</p>
-                
-                <p key= { myWatchlist.id}> { myWatchlist.movie_id}  
+            <div key={myWatchlist.id} className="container border">
+                <p>Id del usuario:{ myWatchlist.user_id}</p>
+                <p>Id de la película{ myWatchlist.movie_id}  
                 </p>
+                <button onClick={()=>actions.deleteWatchlist(myWatchlist.user_id)} className="btn btn-primary">DELETE Watchlist</button>
 
-                <p>Id movie{  myWatchlist.id} </p>
-
-                <button  className="btn btn-primary"
-                onClick={()=>actions.deleteWatchlist( myWatchlist.id)}>DELETE Watchlist</button>
-
-                
-                <button  className="btn btn-secondary"
-                >EDIT Watchlist</button>
             
                 
             </div>

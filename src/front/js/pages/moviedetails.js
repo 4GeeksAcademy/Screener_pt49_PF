@@ -34,7 +34,7 @@ export const MovieDetails = () => {
         fetchData();
     }, []);
 
-    const tuUserID = store.userID
+    const tuUserID = store.userId
 
     const movie = store.movies.find(movie => movie.id === parseInt(theid));
     const relevantComments = store.allComments.filter(comment => comment.movie_id === parseInt(theid));
@@ -64,7 +64,7 @@ export const MovieDetails = () => {
                         </div>
                         </div>
                         <div>
-                        <button>Agregar a la Watchlist</button>
+                        <button onClick={()=>actions.addMovieToWatchlist(tuUserID, theid)}>Agregar a la Watchlist</button>
                         </div>
                             <Comment movieID={theid} userID={tuUserID} />
                         </div>

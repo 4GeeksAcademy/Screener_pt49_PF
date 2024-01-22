@@ -19,12 +19,6 @@ export const Home = () => {
 				<button  className="btn btn-outline-primary">Signup</button>
 			</Link>
 
-
-			
-			
-			<Link to={"/watchlistUser"} ><button className="btn btn-outline-primary">Watchlist User</button></Link>
-			
-
 			<Link to={"/moviesUser"} ><button className="btn btn-outline-primary">All Movies</button></Link>
 			<Link to={"/randomMovie"} ><button className="btn btn-outline-primary">Random movie</button></Link>
 

@@ -15,6 +15,9 @@ export const Navbar = () => {
 					<Link to="/">
 						{store.auth === true ? <button onClick={()=>actions.logOut()} className="btn btn-primary">Logout</button> : null}
 					</Link>
+					<Link to={"/watchlistUser"} >
+					{store.auth === true ? <button className="btn btn-outline-primary">Watchlist User</button> : null}
+					</Link>
 				</div>
 				<div className="ml-auto">
 					<Link to="adminLogin">

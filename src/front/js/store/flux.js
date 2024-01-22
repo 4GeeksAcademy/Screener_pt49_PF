@@ -166,7 +166,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				)},
 
 			   //[GET] Traer  Watchlist de un User
-				getUserWatchlist: () => {
+				getUserWatchlist: (user_id) => {
 					
 					const requestOptions = {
 						method: 'GET',
@@ -174,7 +174,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						
 					};
 					
-					fetch(process.env.BACKEND_URL + "/api/watchlist/4", requestOptions)
+					fetch(process.env.BACKEND_URL + `/api/watchlist/${user_id}`, requestOptions)
 					.then(response => response.json())
 					.then(data => 
 							{
@@ -183,10 +183,60 @@ const getState = ({ getStore, getActions, setStore }) => {
 							}
 				)},
 
+				 //[POST]  watchlist movie (for users)
+
+				 addMovieToWatchlist: (userId, movieId) => {
+					const requestOptions = {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({ movie_id: movieId }),
+					};
+				
+					fetch(`${process.env.BACKEND_URL}/api/watchlist/${userId}/new`, requestOptions)
+						.then(response => {
+							if (!response.ok) {
+								throw new Error(`Failed to add movie to watchlist for user ID ${userId}`);
+							}
+							return response.json();
+						})
+						.then(data => {
+							// Puedes manejar la respuesta de la API aquí
+							console.log("Add to watchlist response:", data);
+						})
+						.catch(error => {
+							console.error(error);
+						});
+				},
+
+
+
 			  
 			
-			  //[DELETE]  watchlist
-			  deleteWatchlist: ( movieId) => {
+			  //[DELETE]  watchlist movie (for users)
+			  deleteMovieFromWatchlist: (userId, movieId) => {
+				const requestOptions = {
+					method: 'DELETE',
+					headers: { "Content-Type": "application/json" },
+				};
+			
+				fetch(`${process.env.BACKEND_URL}/api/watchlist/${userId}/delete/${movieId}`, requestOptions)
+					.then(response => {
+						if (!response.ok) {
+							throw new Error(`Failed to delete watchlist item for Movie ID ${movieId}`);
+						}
+						return response.json();
+					})
+					.then(data => {
+						// Puedes manejar la respuesta de la API aquí
+						console.log("Delete watchlist response:", data);
+					})
+					.catch(error => {
+						console.error(error);
+					});
+			},
+
+			//[DELETE]  watchlist (for ADMIN)
+			deleteWatchlist: (userId, movieId) => {
 				
 			
 				const requestOptions = {
@@ -194,7 +244,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					headers: { "Content-Type": "application/json" },
 				};
 			
-				fetch(`${process.env.BACKEND_URL}/api/watchlist/user/4/delete/movie/${movieId}`, requestOptions)
+				fetch(`${process.env.BACKEND_URL}/api/watchlist/${userId}/delete/`, requestOptions)
 					.then(response => {
 						if (!response.ok) {
 							throw new Error(`Failed to delete watchlist item for and Movie ID ${movieId}`);
