@@ -31,8 +31,8 @@ export const Comment = ({ movieID, UserID }) => {
                             placeholder="Leave a comment here"
                             id="commentArea"
                         ></textarea>
-                        <input value={store.userId} className="form-control" placeholder="User ID" id={store.userId}></input>
-                        <input value={movieID} className="form-control" placeholder="Movie ID" id="movieID"></input>
+                        <input type="hidden" value={store.userId} className="form-control" placeholder="User ID" style="display: none;"></input>
+                        <input style="display: none" value={movieID} className="form-control" placeholder="Movie ID" id="movieID"></input>
                         <label htmlFor="commentArea">Comment</label>
                     </div>
                     
