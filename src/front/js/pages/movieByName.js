@@ -81,8 +81,11 @@ export const MovieByName = () => {
             <h1 className="ms-5">Buscar películas por nombre y agregarlas a la Api</h1>
             <div>
                 <input className="ms-5 mt-4" style={{width:"50rem", height:"2rem", }} type="text" value={inputValue} onChange={handleInputChange} placeholder="Ingrese el nombre de la película" />
-            <button className="ms-2" onClick={handleSearch}>Buscar</button>
             </div>
+            <div>
+                <button style={{width:"17rem"}} className="ms-5 mt-1" onClick={handleSearch}>Buscar</button>
+            </div>
+            
             <button className=" ms-5 mt-1" onClick={handleMapForward}>Siguiente película</button>
             <button className="ms-1" onClick={handleMapBackward}>Película anterior</button>
             

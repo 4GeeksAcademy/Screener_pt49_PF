@@ -115,23 +115,18 @@ export const MovieForm = ({ actions, store }) => {
 
   return (
     <>
-    <div className='container'>
+    <div className='container mt-2'>
       <h2>Formulario de Película</h2>
       <form onSubmit={handleSubmit}>
-      <label>id:<input type="text" name="id" value={formValues.id} onChange={handleChange} /></label>
-      <br />
-      <label>Título:<input type="text" name="title" value={formValues.title} onChange={handleChange} /></label>
-      <br />
-      <label>Fecha de Lanzamiento:
-      <input
-            type="text"
-            name="release_date"
-            value={formValues.release_date}
-            onChange={handleChange}
-      />
-      </label>
-      <br />
-      <label>Poster Path:
+        <div className='container'>
+          <label>id: <input type="text" name="id" value={formValues.id} onChange={handleChange} /></label>
+          <label className='ms-1'>Título: <input type="text" name="title" value={formValues.title} onChange={handleChange} /></label>
+          <label className='ms-1'>Fecha de Lanzamiento: <input type="text" name="release_date" value={formValues.release_date} onChange={handleChange}/></label>
+      </div>
+
+      <div className='container mt-2'>
+      <label>
+        Poster Path:
       <input
             type="text"
             name="poster_path"
@@ -139,28 +134,32 @@ export const MovieForm = ({ actions, store }) => {
             onChange={handleChange}
       />
       </label>
-      <br />
-        <label>
+
+      <label className='ms-1'>
           Backdrop path:
-          <input
+      <input
             type="text"
             name="poster_path"
             value={formValues.backdrop_path}
             onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          Overview:
+      />
+      </label>
+      </div>
+
+        <div className='container mt-2'>
+          <label>
+          Overview:   
           <textarea
             name="overview"
             value={formValues.overview}
             onChange={handleChange}
           />
-        </label>
-        <br />
+          </label>
+        </div>
+
+        <div className='container mt-2'>
         <label>
-          Vote Average:
+          Vote Average: 
           <input
             type="text"
             name="vote_average"
@@ -168,8 +167,8 @@ export const MovieForm = ({ actions, store }) => {
             onChange={handleChange}
           />
         </label>
-        <br />
-        <label>
+  
+        <label className='ms-1'>
           Género IDs:
           <input
             type="text"
@@ -178,8 +177,8 @@ export const MovieForm = ({ actions, store }) => {
             onChange={handleChange}
           />
         </label>
-        <br />
-        <label>
+  
+        <label className='ms-1'>
           Popularidad:
           <input
             type="text"
@@ -188,7 +187,9 @@ export const MovieForm = ({ actions, store }) => {
             onChange={handleChange}
           />
         </label>
-        <br />
+        </div>
+
+        <div className='container mt-2 mb-3'>
         <label>
           Lenguaje original:
           <input
@@ -198,7 +199,6 @@ export const MovieForm = ({ actions, store }) => {
             onChange={handleChange}
           />
         </label>
-        <br />
         <label>
           Titulo original:
           <input
@@ -208,7 +208,6 @@ export const MovieForm = ({ actions, store }) => {
             onChange={handleChange}
           />
         </label>
-        <br />
         <label>
           Conteo de votos:
           <input
@@ -218,7 +217,8 @@ export const MovieForm = ({ actions, store }) => {
             onChange={handleChange}
           />
         </label>
-        <br />
+
+        </div> 
         <label>
           Adult:
           <input
