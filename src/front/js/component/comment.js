@@ -31,19 +31,14 @@ export const Comment = ({ movieID, UserID }) => {
                             placeholder="Leave a comment here"
                             id="commentArea"
                         ></textarea>
-                        <input type="hidden" value={store.userId} className="form-control" placeholder="User ID" style="display: none;"></input>
-                        <input style="display: none" value={movieID} className="form-control" placeholder="Movie ID" id="movieID"></input>
+                        <input value={store.userId} className="d-none form-control" placeholder="User ID"></input>
+                        <input value={movieID} className="d-none form-control" placeholder="Movie ID" id="movieID"></input>
                         <label htmlFor="commentArea">Comment</label>
                     </div>
-                    
-                    {store.auth ? (
                         <button onClick={() => handlePostComment()} className="btn btn-primary">
                             Post
                         </button>
-                    ) : (
                         <p>Debes <Link to="/">iniciar sesión</Link> para dejar un comentario.</p>
-                    )}
-
                 </div>
             </div>
         </>

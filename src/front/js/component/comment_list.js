@@ -11,12 +11,10 @@ export const Comment_list = () => {
         actions.getComments();
 
     }, []);
-
     const handledelComment = (commentID) =>{
         actions.delComment(commentID)
         actions.getComments()
     }
-
     const handleeditComment = (id,newText) =>{
         actions.editComment(id,newText)
         actions.getComments()

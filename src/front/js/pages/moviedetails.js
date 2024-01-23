@@ -49,24 +49,28 @@ export const MovieDetails = () => {
                             <div className="col-md-4">
                                 <img style={{ width: "350px" }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
                             </div>
-                        <div className="col-md-4">
-                            <h1>{movie.title}</h1>
-                            <p>{movie.overview}</p>
-                            <p>Título original: <b>{movie.original_title}</b></p>
-
-                        <div className="d-flex">
-                             {cast.map((actor, index) => (
-                                <div key={index} className="me-3">
-                                <img style={{ width: "100px" }} src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={movie.title} />
-                                <p className="text-center mt-2">{actor.name} - {actor.character}</p>
+                            <div className="col-md-4">
+                                <h1>{movie.title}</h1>
+                                <p>{movie.overview}</p>
+                                <p>Título original: <b>{movie.original_title}</b></p>
+                                <div className="d-flex">
+                                    {cast.map((actor, index) => (
+                                        <div key={index} className="me-3">
+                                        <img style={{ width: "100px" }} src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={movie.title} />
+                                        <p className="text-center mt-2">{actor.name} - {actor.character}</p>
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
-                        </div>
-                        </div>
-                        <div>
-                        <button onClick={()=>actions.addMovieToWatchlist(tuUserID, theid)}>Agregar a la Watchlist</button>
-                        </div>
-                            <Comment movieID={theid} userID={tuUserID} />
+                            </div>
+                            {store.auth === true ? 
+                            <div className="container comment">
+                                <div>
+                                    <button onClick={()=>actions.addMovieToWatchlist(tuUserID, theid)}>Agregar a la Watchlist</button>
+                                </div>
+                                <Comment movieID={theid} userID={tuUserID} />
+                            </div>
+                                : null
+                                }
                         </div>
                     </div>
                     <div className="col-md-4">
