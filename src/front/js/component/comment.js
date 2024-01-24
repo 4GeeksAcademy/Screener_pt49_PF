@@ -38,8 +38,8 @@ export const Comment = ({ movieID, UserID }) => {
                         <button onClick={() => handlePostComment()} className="btn btn-primary">
                             Post
                         </button>
-                        <p>Debes <Link to="/">iniciar sesión</Link> para dejar un comentario.</p>
-                </div>
+                    </div>
+                    {store.auth === false ? <p>Debes <Link to="/">iniciar sesión</Link> para dejar un comentario.</p> : null}
             </div>
         </>
     );

@@ -510,12 +510,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 				.then(data => {
 				  if (data) {
-					console.log("User ID:", data.user.id);
 					localStorage.setItem("token", data.access_token);
 					setStore({
 					  auth: true,
 					  userToken: data,
 					  userId: data.user.id, 
+					  username: data.user.username
 					});
 				  }
 				})

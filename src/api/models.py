@@ -117,7 +117,7 @@ class Movie(db.Model):
     
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    comment_body = db.Column(db.String(250), unique=False, nullable=False)
+    comment_body = db.Column(db.String(1000), unique=False, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     movie_id = db.Column(db.Integer, db.ForeignKey('movie.id'), nullable=False)
 

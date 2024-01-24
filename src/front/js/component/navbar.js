@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 	return (
-		<nav className="navbar navbar-expand-lg bg-body-tertiary">
+		<nav className="navbar navbar-expand-lg bg-body-light">
 			<div className="container">
 				<Link to="/">
 					<span className="navbar-brand mb-0 h1">Screener</span>

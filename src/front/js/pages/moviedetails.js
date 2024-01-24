@@ -1,7 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useResolvedPath } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Comment } from "../component/comment";
+import { Link } from "react-router-dom";
+import "../../styles/movieDetails.css";
+
 
 export const MovieDetails = () => {
     const { store, actions } = useContext(Context);
@@ -40,14 +43,29 @@ export const MovieDetails = () => {
     const relevantComments = store.allComments.filter(comment => comment.movie_id === parseInt(theid));
 
     return (
-        <div>
+        <div className="fullMovieDetail">
             {movie ? (
                 <div>
                     <div className="container">
-                        <img style={{ width: "55rem", opacity: "1" }} src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt={movie.title} />
+                        {store.auth === true ? 
+                            <div className="container comment">
+                                <div>
+                                    <button onClick={()=>actions.addMovieToWatchlist(tuUserID, theid)} type="button" className="addToWatchList">
+                                        <span className="button__text">Add to watchlist</span>
+                                        <span className="button__icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
+                                                <line y2="19" y1="5" x2="12" x1="12"></line>
+                                                <line y2="12" y1="12" x2="19" x1="5"></line>
+                                            </svg>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                                : null
+                        }
                         <div className="row mt-5 ">
                             <div className="col-md-4">
-                                <img style={{ width: "350px" }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+                                <img style={{ width: "350px", borderRadius: "15px" }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
                             </div>
                             <div className="col-md-4">
                                 <h1>{movie.title}</h1>
@@ -56,30 +74,27 @@ export const MovieDetails = () => {
                                 <div className="d-flex">
                                     {cast.map((actor, index) => (
                                         <div key={index} className="me-3">
-                                        <img style={{ width: "100px" }} src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={movie.title} />
-                                        <p className="text-center mt-2">{actor.name} - {actor.character}</p>
+                                            <img style={{ width: "100px", borderRadius: "50%"}} src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={movie.title} />
+                                            <p className="text-center mt-2">{actor.name} - {actor.character}</p>
                                         </div>
                                     ))}
                                 </div>
                             </div>
-                            {store.auth === true ? 
-                            <div className="container comment">
-                                <div>
-                                    <button onClick={()=>actions.addMovieToWatchlist(tuUserID, theid)}>Agregar a la Watchlist</button>
-                                </div>
-                                <Comment movieID={theid} userID={tuUserID} />
+                            <div className="d-flex justify-content-center ">
+                                <img style={{ width: "55rem", opacity: "1",borderRadius: "15px" }} src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt={movie.title} />
                             </div>
-                                : null
-                                }
                         </div>
                     </div>
-                    <div className="col-md-4">
+                    <div className="container-fluid col-8 list-group">
                         <h2>Comentarios:</h2>
-                        <ul>
+                        {store.auth === false ? <p>Debes <Link to="/">iniciar sesión</Link> para dejar un comentario.</p> : null}
+                        <ul className="list-group">
                             {relevantComments.map((comment, index) => (
-                                <li key={index}>
-                                    <p>Usuario id: {comment.user_id}</p>
-                                    <p>Comentario: {comment.comment_body}</p>
+                                <li className="list-group-item d-flex justify-content-between align-items-start" key={index}>
+                                    <div class="ms-2 me-auto">
+                                        <div className="fw-bold">Usuario id: {comment.user_id}</div>
+                                        {comment.comment_body}
+                                    </div>
                                 </li>
                             ))}
                         </ul>
