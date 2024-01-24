@@ -45,6 +45,8 @@ export const RandomMovie = () => {
             <p><b>Aqui puedes obtener una pelicula al azar pero debes iniciar sesión primero. <Link to="/">¡Haz clic aquí para iniciar sesión!</Link></b></p>
             </div>
           )}
+          
         </>
+        
       )
           }

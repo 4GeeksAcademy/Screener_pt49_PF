@@ -11,6 +11,7 @@ export const Movies = () => {
     useEffect(() => {
         actions.getPopularMovies();
         actions.getMoviesFromApi();
+        actions.getMovieByName();
     }, []);
 
     const handleNextMovie = () => {
@@ -87,7 +88,9 @@ export const Movies = () => {
 
     return (
         <>  
-            <h1>Movies de la API TMDB</h1>
+            <div className="container">
+            <h1>Películas listadas para agregar a la Api</h1>
+            </div>
             {store.popularMovies.length > 0 && (
                 <div className="container">
                     <div className="row">

@@ -23,7 +23,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			auth: false,
 			userId: null,
 			userToken:"",
-			adminLogin: false
+			adminLogin: false,
+			moviesByName:[]
 
 		},
 		
@@ -296,6 +297,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore(data);
 			},
 
+			getMovieByName: async (movieName) => {
+				const options = {
+					method: 'GET',
+					headers: {
+						accept: 'application/json',
+						Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5M2ZhNzNkZjUyZTYyNWQ5NGQ1NzMyNGI1YTFlNDgzYSIsInN1YiI6IjY1OTQwNzAwY2U0ZGRjNmQzODdmMDIzMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DNQabtAWxQcVNGg9_oMH8JWkdoAHIrOkmlBiwpj1oG8'
+					}
+				};
+		
+				const url = `https://api.themoviedb.org/3/search/movie?query=${movieName}&include_adult=false&language=es-ES&page=1`;
+		
+				try {
+					const response = await fetch(url, options);
+					const data = await response.json();
+		
+					// Actualiza el estado en consecuencia
+					setStore({ moviesByName: data });
+				} catch (error) {
+					console.error('Error al obtener películas por nombre:', error);
+					// Puedes manejar el error de alguna manera si lo deseas
+				}
+			},
+
 			getPopularMovies: async () => {
 				const options = {
 					method: 'GET',
@@ -306,7 +330,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 			
 				try {
-					const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=es-ES&page=4', options);
+					const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=es-ES&page=5', options);
 					const data = await response.json();
 			
 					if (data.results) {
