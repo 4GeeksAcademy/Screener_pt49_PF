@@ -13,9 +13,10 @@ export const Navbar = () => {
 				</Link>
 				<div className="ml-auto">
 					<Link to={"/watchlistUser"} >
-					{store.auth === true ? <button className="btn btn-outline-primary">Watchlist User</button> : null}
+						{store.auth === true ? <button className="btn btn-outline-primary">Watchlist User<span className="badge bg-warning rounded-pill ms-2">{store.watchlist.length}</span>
+					</button> : null}
 					</Link>
-				</div>
+				</div>    
 
 				<div className="ml-auto">
 					<Link to="adminLogin">

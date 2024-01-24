@@ -8,16 +8,12 @@ export const Comment = ({ movieID, UserID }) => {
 
     useEffect(() => {
         console.log(store.userId)
-        actions.getComments();
-    }, []);
-
-    
+    }, [actions.getComments()]);
 
     const handlePostComment = () => {
         actions.postComment(comment, store.userId, movieID);
         setComment('');
     };
-
     return (
         <>
             <div className="text-center mx-5">

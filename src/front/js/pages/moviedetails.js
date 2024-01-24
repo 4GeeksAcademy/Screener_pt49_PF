@@ -25,15 +25,14 @@ export const MovieDetails = () => {
                 if (cast.length === 0) {
                     const response = await fetch(`https://api.themoviedb.org/3/movie/${theid}/credits?language=es-ES`, options);
                     const data = await response.json();
-                    setCast(data.cast.slice(0, 5));
+                    setCast(data.cast.slice(0, 4));
                 }
-                actions.getComments();
                 actions.getMoviesFromApi();
+                actions.getComments();
             } catch (error) {
                 console.error(error);
             }
         };
-    
         fetchData();
     }, []);
 
@@ -64,7 +63,7 @@ export const MovieDetails = () => {
                                 : null
                         }
                         <div className="row mt-5 ">
-                            <div className="col-md-4">
+                            <div className="d-flex col-md-4">
                                 <img style={{ width: "350px", borderRadius: "15px" }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
                             </div>
                             <div className="col-md-4">
@@ -74,14 +73,11 @@ export const MovieDetails = () => {
                                 <div className="d-flex">
                                     {cast.map((actor, index) => (
                                         <div key={index} className="me-3">
-                                            <img style={{ width: "100px", borderRadius: "50%"}} src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={movie.title} />
+                                            <img style={{ width: "100px", borderRadius: "15px"}} src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={movie.title} />
                                             <p className="text-center mt-2">{actor.name} - {actor.character}</p>
                                         </div>
                                     ))}
                                 </div>
-                            </div>
-                            <div className="d-flex justify-content-center ">
-                                <img style={{ width: "55rem", opacity: "1",borderRadius: "15px" }} src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt={movie.title} />
                             </div>
                         </div>
                     </div>
@@ -94,8 +90,8 @@ export const MovieDetails = () => {
                     <div className="container-fluid col-8 list-group">
                         <h2>Comentarios:</h2>
                         <ul className="list-group">
-                            {relevantComments.map((comment, index) => (
-                                <li className="list-group-item d-flex justify-content-between align-items-start bg-secondary text-light" key={index}>
+                            {relevantComments.reverse().map((comment, index) => (
+                                <li className="list-group-item d-flex justify-content-between align-items-start bg-secondary text-light mb-2" key={index}>
                                     <div className="ms-2 me-auto">
                                         <div className="fw-bold">Usuario id: {comment.user_id}</div>
                                         {comment.comment_body}
