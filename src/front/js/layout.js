@@ -27,6 +27,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { RandomMovie } from "./pages/ramdommovie";
 import { MovieByName } from "./pages/movieByName";
+import { GetRecomendation } from "./pages/getRecomendation";
 
 
 
@@ -59,6 +60,7 @@ const Layout = () => {
                         <Route element={<MoviesUser />} path="/moviesUser" />
                         <Route element={<Signup />} path="/signup" />
                         <Route element={<Login />} path="/login" />
+                        <Route element={<GetRecomendation />} path="/getRecomendation" />
                         <Route element={<Adminlogin />} path="/adminlogin" />
                         <Route element={<RandomMovie />} path="/randomMovie" />
                         <Route element={<AdminPanel />} path="/adminPanel" />
