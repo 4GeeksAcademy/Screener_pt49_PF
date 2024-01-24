@@ -85,13 +85,18 @@ export const MovieDetails = () => {
                             </div>
                         </div>
                     </div>
+                    {store.auth === true ? 
+                        <div className="container-fluid col-8">
+                            <Comment movieID={theid} userID={tuUserID} />
+                        </div>
+                            : <p className="container-fluid col-8 my-3">Debes <Link to="/login">iniciar sesión</Link> para dejar un comentario.</p>
+                    }
                     <div className="container-fluid col-8 list-group">
                         <h2>Comentarios:</h2>
-                        {store.auth === false ? <p>Debes <Link to="/">iniciar sesión</Link> para dejar un comentario.</p> : null}
                         <ul className="list-group">
                             {relevantComments.map((comment, index) => (
-                                <li className="list-group-item d-flex justify-content-between align-items-start" key={index}>
-                                    <div class="ms-2 me-auto">
+                                <li className="list-group-item d-flex justify-content-between align-items-start bg-secondary text-light" key={index}>
+                                    <div className="ms-2 me-auto">
                                         <div className="fw-bold">Usuario id: {comment.user_id}</div>
                                         {comment.comment_body}
                                     </div>

@@ -20,9 +20,9 @@ export const Comment = ({ movieID, UserID }) => {
 
     return (
         <>
-            <div className="card text-center mx-5">
-                <div className="card-body">
-                    <h5 className="card-title">Enter your comment here</h5>
+            <div className="text-center mx-5">
+                <div className="container-fluid">
+                    <h5 className="m-3">Enter your comment here</h5>
                     <div className="form-floating">
                         <textarea
                             onChange={(e) => setComment(e.target.value)}
@@ -35,7 +35,7 @@ export const Comment = ({ movieID, UserID }) => {
                         <input value={movieID} className="d-none form-control" placeholder="Movie ID" id="movieID"></input>
                         <label htmlFor="commentArea">Comment</label>
                     </div>
-                        <button onClick={() => handlePostComment()} className="btn btn-primary">
+                        <button onClick={() => handlePostComment()} className="btn btn-secondary m-3">
                             Post
                         </button>
                     </div>
