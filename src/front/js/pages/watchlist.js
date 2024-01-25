@@ -1,6 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
+import "../../styles/watchlist.css";
+
+
 import { Link } from "react-router-dom";
 
 
@@ -24,7 +27,7 @@ export const Watchlist = () => {
                 <p>Id del usuario:{ myWatchlist.user_id}</p>
                 <p>Id de la película{ myWatchlist.movie_id}  
                 </p>
-                <button onClick={()=>actions.deleteWatchlist(myWatchlist.user_id)} className="btn btn-primary">DELETE Watchlist</button>
+                <button onClick={()=>actions.deleteWatchlist(myWatchlist.user_id)} >DELETE Watchlist</button>
 
             
                 

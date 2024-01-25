@@ -18,10 +18,7 @@ export const User = () => {
 			
 			      <h1> MY USERS LIST </h1>
 
-                <button  className="btn btn-outline-primary"
-                onClick={ () =>actions.getUser() }>
-                  GET My users List
-                </button>
+           
 
             { store.users.map (( myUser) => 
 
@@ -32,11 +29,11 @@ export const User = () => {
                 {myUser.username}  
                 </p>
                 <p>{ myUser.id} </p>
-                <button  className="btn btn-primary"
+                <button  
                 onClick={()=>actions.deleteUser(myUser.id)}>DELETE user</button>
 
                 <Link to={`/editForm/${myUser.id}`}>
-                <button  className="btn btn-secondary"
+                <button  
                 >EDIT user</button>
                 </Link>
                 

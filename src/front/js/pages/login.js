@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Navigate } from "react-router-dom";
+import "../../styles/login.css"
 
 const Login = () => {
 
@@ -23,7 +24,7 @@ const Login = () => {
                     <input type="password" onChange={(e)=>setPassword(e.target.value)} className="form-control" id="inputPassword2" placeholder="Password"/>
                 </div>
                 <div className="col-auto">
-                    <button type="submit" className="btn btn-primary mb-3">Enter</button>
+                    <button type="submit" >Enter</button>
                 </div>
             </form>
         </div>

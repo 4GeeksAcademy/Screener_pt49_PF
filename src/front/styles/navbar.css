@@ -1,0 +1,27 @@
+nav {
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+    height: 80px; /* Ajusta la altura según tus necesidades */
+    background-color:#183D3D; /* Ajusta el color de fondo según tus necesidades */
+    
+  }
+
+button{
+    border-radius: 3px;
+    background-color:#183D3D;
+    color: white;
+    border: 2px solid #183D3D;
+    padding: 10px ;
+    text-align: center;
+    font-size: 16px;
+    margin-right: 10px;
+    
+}
+span{
+    color:white
+    
+}
+
+
+ 
