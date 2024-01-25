@@ -456,7 +456,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					};	
 						fetch(process.env.BACKEND_URL + "/api/movies/allComments",requestOptions) 
 						.then( (response)=> response.json())
-						.then( (data)=> {setStore({allComments: data}, console.log(data))})
+						.then( (data)=> {setStore({allComments: data})})
 					}	catch(error){
 						console.log("hasnt been added")
 					}
