@@ -13,23 +13,23 @@ export const Navbar = () => {
 				</Link>
 				<div className="ml-auto">
 					<Link to={"/watchlistUser"} >
-						{store.auth === true ? <button className="btn btn-outline-primary">Watchlist User<span className="badge bg-warning rounded-pill ms-2">{store.watchlist.length}</span>
+						{store.auth === true ? <button className="btn btn-outline-primary">My watchlist<span className="badge bg-secondary rounded-pill ms-2">{store.watchlist.length}</span>
 					</button> : null}
 					</Link>
 				</div>    
 
 				<div className="ml-auto">
 					<Link to="adminLogin">
-						{store.adminLogin === true ? <button onClick={()=>actions.adminLogOut()} className="btn btn-primary">ADMIN Logout</button> : null}
+						{store.adminLogin === true ? <button onClick={()=>actions.adminLogOut()} className="btn btn-secondary">ADMIN Logout</button> : null}
 					</Link>
 					<div className="col">
 						<div className="btn-group">
-							<Link to={"/moviesUser"} ><button className="btn btn-outline-primary">All Movies</button></Link>
-							<Link to={"/randomMovie"} ><button className="btn btn-outline-primary">Random movie</button></Link>
-							{store.auth === true ? <Link to="/"><button onClick={()=>actions.logOut()} className="btn btn-primary">Logout</button></Link> : 
+							<Link to={"/moviesUser"} ><button className="btn btn-outline-secondary">All Movies</button></Link>
+							<Link to={"/randomMovie"} ><button className="btn btn-outline-secondary">Random movie</button></Link>
+							{store.auth === true ? <Link to="/"><button onClick={()=>actions.logOut()} className="btn btn-secondary">Logout</button></Link> : 
 							<div className="btn-group" role="group" aria-label="Basic example">
-								<Link to = "/signup"><button type="button" className="btn btn-success">Signup</button></Link>
-								<Link to = "/login"><button type="button" className="btn btn-success">Login</button></Link>
+								<Link to = "/signup"><button type="button" className="btn btn-secondary">Signup</button></Link>
+								<Link to = "/login"><button type="button" className="btn btn-secondary">Login</button></Link>
 							</div>
 							}
 						</div>

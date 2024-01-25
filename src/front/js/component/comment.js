@@ -5,14 +5,14 @@ import { Link } from "react-router-dom";
 export const Comment = ({ movieID, UserID }) => {
     const { store, actions } = useContext(Context);
     const [comment, setComment] = useState('');
-
-    useEffect(() => {
-        console.log(store.userId)
-    }, [actions.getComments()]);
-
-    const handlePostComment = () => {
-        actions.postComment(comment, store.userId, movieID);
-        setComment('');
+    const handlePostComment = async () => {
+        try {
+            await actions.postComment(comment, store.userId, movieID);
+            setComment('');
+            await actions.getComments();
+        } catch (error) {
+            console.error(error);
+        }
     };
     return (
         <>
