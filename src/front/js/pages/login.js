@@ -12,18 +12,18 @@ const Login = () => {
         return (
         <div className="text-center">
             {store.auth === true ? <Navigate to="/private"/> : null}
-            <h1 className="text-center">Login</h1>
+            <h1 className="text-center">Iniciar sesion</h1>
             <form className="w-50 mx-auto" onSubmit={(e)=>actions.loginData(e,email,password)}>
                 <div className="col-auto mb-4">
                     <label htmlFor="staticEmail2" className="visually-hidden">Email</label>
-                    <input type="text" onChange={(e)=>setEmail(e.target.value)} className="form-control" id="staticEmail2" placeholder="email@example.com"/>
+                    <input type="text" onChange={(e)=>setEmail(e.target.value)} className="form-control" id="staticEmail2" placeholder="usuario@gmail.com"/>
                 </div>
                 <div className="col-auto mb-4">
-                    <label htmlFor="inputPassword2" className="visually-hidden">Password</label>
-                    <input type="password" onChange={(e)=>setPassword(e.target.value)} className="form-control" id="inputPassword2" placeholder="Password"/>
+                    <label htmlFor="inputPassword2" className="visually-hidden">Contraseña</label>
+                    <input type="password" onChange={(e)=>setPassword(e.target.value)} className="form-control" id="inputPassword2" placeholder="Contraseña"/>
                 </div>
                 <div className="col-auto">
-                    <button type="submit" className="btn btn-primary mb-3">Enter</button>
+                    <button type="submit" className="btn btn-primary mb-3">Entrar</button>
                 </div>
             </form>
         </div>
