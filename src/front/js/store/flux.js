@@ -45,7 +45,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					try {
 						const response = await fetch(url, options);
 						const result = await response.json();
-						console.log(result.ratings.imdb.score);
 						setStore({ imdbRating: result.ratings.imdb.score })
 					} catch (error) {
 						console.error(error);

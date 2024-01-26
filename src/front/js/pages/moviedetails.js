@@ -82,7 +82,7 @@ export const MovieDetails = () => {
                             </div>
                             <div className="col-md-4">
                                 <div className="card bg-secondary">
-                                    <p>IMDB Score: {"movieRating goes here"}</p>
+                                    <p>IMDB Score: {"movieRating"}</p>
                                 </div>
                             </div>
                         </div>
