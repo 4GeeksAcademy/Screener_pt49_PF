@@ -314,3 +314,21 @@ select.list-dt:focus {
     opacity: 0;
     transition: opacity 500ms ease-in-out;
   }
+
+  .onBoardingButton {
+    width: 70%;
+    display: block;
+     margin: 10px auto;
+    border:none;
+  }
+
+  .movie-container {
+    height: 100%; /* o el valor que desees */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .movie-poster {
+    width: 100%;
+  }
