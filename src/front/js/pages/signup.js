@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/home.css";
+import "../../styles/signup.css";
 
 export const Signup = () => {
 
@@ -52,7 +52,7 @@ export const Signup = () => {
                         type="number" className="form-control" id="exampleInputPassword1"required/>
                     </div>
                     <button 
-                    type="submit" className="btn btn-primary">Save</button>				
+                    type="submit" >Save</button>				
             </form>
         </div>
 	);
