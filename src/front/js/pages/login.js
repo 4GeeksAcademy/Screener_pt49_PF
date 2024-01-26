@@ -11,6 +11,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     
         return (
+       
         <div className="text-center">
             {store.auth === true ? <Navigate to="/private"/> : null}
             <h1 className="text-center">Login</h1>
@@ -28,6 +29,8 @@ const Login = () => {
                 </div>
             </form>
         </div>
+        
+      
     )
 }
 

@@ -3,6 +3,7 @@ import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Navigate } from "react-router-dom";
 import "../../styles/navbar.css"
+import Logo from "../../img/Logo100x100.png";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
@@ -10,7 +11,7 @@ export const Navbar = () => {
 		<nav className="navbar navbar-expand-lg bg-body-light">
 			<div className="container">
 				<Link to="/">
-					<span className="navbar-brand mb-0 h1">SCREENER</span>
+				<img src={Logo} alt="Client img" className="rounded mr-3" />
 				</Link>
 				<div className="ml-auto">
 					<Link to={"/watchlistUser"} >
