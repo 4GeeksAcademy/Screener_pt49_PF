@@ -191,7 +191,14 @@ def add_movie_from_api():
         original_language=data['original_language'],
         original_title=data['original_title'],
         video=data['video'],
-        vote_count=data['vote_count']
+        vote_count=data['vote_count'],
+        romantic=data['romantic'],
+        disney_live=data['disney_live'],
+        new=data['new'],
+        classic=data['classic'],
+        children=data['children'],
+        cry=data['cry'],
+        live_action=data['live_action']
     )
 
     db.session.add(new_movie)
@@ -263,6 +270,14 @@ def edit_movie(movie_id):
     movie.original_title = data.get('original_title', movie.original_title)
     movie.video = data.get('video', movie.video)
     movie.vote_count = data.get('vote_count', movie.vote_count)
+
+    movie.romantic = data.get('romantic', movie.romantic)
+    movie.disney_live = data.get('disney_live', movie.disney_live)
+    movie.new = data.get('new', movie.new)
+    movie.classic = data.get('classic', movie.classic)
+    movie.children = data.get('children', movie.children)
+    movie.cry = data.get('cry', movie.cry)
+    movie.live_action = data.get('live_action', movie.live_action)
 
     db.session.commit()
 
