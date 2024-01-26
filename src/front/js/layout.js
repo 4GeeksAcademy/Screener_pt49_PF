@@ -12,7 +12,7 @@ import { Movies } from "./pages/movies";
 import { MoviesApi } from "./pages/moviesApi";
 import { MovieForm } from "./pages/movieForm";
 import { MovieEditForm } from "./pages/editmovie";
-import { Watchlist } from "./pages/watchlist";
+import { WatchlistAdmin } from "./pages/watchlistAdmin";
 import { WatchlistUser } from "./pages/watchlistUser";
 import { MoviesUser } from "./pages/moviesUser";
 import Comment from "./component/comment"; 
@@ -65,7 +65,7 @@ const Layout = () => {
                         <Route element={<RandomMovie />} path="/randomMovie" />
                         <Route element={<AdminPanel />} path="/adminPanel" />
                         <Route element={<Private />} path="/private" />
-                        <Route element={<Watchlist />} path="/watchlist" />
+                        <Route element={<WatchlistAdmin />} path="/WatchlistAdmin" />
                         <Route element={<WatchlistUser />} path="/watchlistUser" />
                         <Route element={<MovieByName />} path="/movieByName" />
                         <Route element={<h1>Not found!</h1>} />

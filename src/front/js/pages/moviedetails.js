@@ -28,6 +28,7 @@ export const MovieDetails = () => {
                 }
                 actions.getMoviesFromApi();
                 actions.getComments();
+                // actions.getRating(theid);
             } catch (error) {
                 console.error(error);
             }
@@ -36,6 +37,7 @@ export const MovieDetails = () => {
     }, []);
 
     const tuUserID = store.userId
+    const movieRating = store.imdbRating
 
     const movie = store.movies.find(movie => movie.id === parseInt(theid));
     const relevantComments = store.allComments.filter(comment => comment.movie_id === parseInt(theid));
@@ -51,7 +53,7 @@ export const MovieDetails = () => {
                                     <button onClick={()=>actions.addMovieToWatchlist(tuUserID, theid)} type="button" className="addToWatchList">
                                         <span className="button__text">Add to watchlist</span>
                                         <span className="button__icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" className="svg">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" stroke="currentColor" height="24" fill="none" className="svg">
                                                 <line y2="19" y1="5" x2="12" x1="12"></line>
                                                 <line y2="12" y1="12" x2="19" x1="5"></line>
                                             </svg>
@@ -72,10 +74,15 @@ export const MovieDetails = () => {
                                 <div className="d-flex">
                                     {cast.map((actor, index) => (
                                         <div key={index} className="me-3">
-                                            <img style={{ width: "100px", borderRadius: "15px"}} src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={movie.title} />
+                                            <img style={{ width: "60px", borderRadius: "15px"}} src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={movie.title} />
                                             <p className="text-center mt-2">{actor.name} - {actor.character}</p>
                                         </div>
                                     ))}
+                                </div>
+                            </div>
+                            <div className="col-md-4">
+                                <div className="card bg-secondary">
+                                    <p>IMDB Score: {"movieRating goes here"}</p>
                                 </div>
                             </div>
                         </div>

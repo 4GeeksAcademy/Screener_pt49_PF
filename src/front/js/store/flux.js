@@ -24,11 +24,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 			userId: null,
 			userToken:"",
 			adminLogin: false,
-			moviesByName:[]
+			moviesByName:[],
+			imdbRating: []
 
 		},
 		
 		actions: {
+
+			// [GET] Movie's rating
+
+				getRating: async (TMDB_ID) => {
+					const url = `https://movies-ratings2.p.rapidapi.com/ratings?id=${TMDB_ID}`;
+					const options = {
+						method: 'GET',
+						headers: {
+							'X-RapidAPI-Key': '2d63679966msh6ab2eb399151c6ap1f2472jsn6819f340dd0d',
+							'X-RapidAPI-Host': 'movies-ratings2.p.rapidapi.com'
+						}
+					};
+					try {
+						const response = await fetch(url, options);
+						const result = await response.json();
+						console.log(result.ratings.imdb.score);
+						setStore({ imdbRating: result.ratings.imdb.score })
+					} catch (error) {
+						console.error(error);
+					}
+				},
 
 		
 			//[POST] CREAR nuevo user
@@ -377,7 +399,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(process.env.BACKEND_URL + "/api/movies")
 				.then(res => res.json())
 				.then((data) => {
-					console.log(data)
 					setStore({ movies: data });
 				})
 				.catch(err => console.error(err))

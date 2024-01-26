@@ -4,7 +4,7 @@ import "../../styles/home.css";
 import { Link } from "react-router-dom";
 
 
-export const Watchlist = () => {
+export const WatchlistAdmin = () => {
 
   const { store, actions } = useContext(Context);
 

@@ -21,6 +21,7 @@ export const Comment = ({ movieID, UserID }) => {
                     <h5 className="m-3">Enter your comment here</h5>
                     <div className="form-floating">
                         <textarea
+                            key={store.userId}
                             onChange={(e) => setComment(e.target.value)}
                             value={comment}
                             className="form-control"

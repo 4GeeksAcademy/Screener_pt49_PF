@@ -19,6 +19,7 @@ export const WatchlistUser = () => {
 
     const handleDeleteMovieWatchlist = async (user_id, movie_id ) => {
         await actions.deleteMovieFromWatchlist(user_id, movie_id);
+        await actions.getUserWatchlist(user_id);
         setDeletionCompleted(true);
     };
 
