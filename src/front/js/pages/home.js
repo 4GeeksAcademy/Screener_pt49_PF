@@ -13,7 +13,13 @@ export const Home = () => {
 	return (
 		<div className="text-center mt-5">
 			
-			<img src={Logo} alt="Client img" className="rounded mr-3" />	
+			<img src={Logo} alt="Client img" className="rounded mr-3" />
+			<div>
+			<Link to={"/recomendacion"}>
+			<button className="borderRecomendation"><span className="btn2"><span className="getRecomendationButton">Recomiendame una película!</span></span></button>
+			</Link>
+			</div>
+
 			
 
 			
