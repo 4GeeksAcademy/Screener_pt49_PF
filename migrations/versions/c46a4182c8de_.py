@@ -1,8 +1,14 @@
 """empty message
 
+<<<<<<<< HEAD:migrations/versions/1ecd84bdb4d1_.py
 Revision ID: 1ecd84bdb4d1
 Revises: 
 Create Date: 2024-01-25 21:08:45.160639
+========
+Revision ID: c46a4182c8de
+Revises: 
+Create Date: 2024-01-26 16:19:51.368018
+>>>>>>>> FT-recomendation:migrations/versions/c46a4182c8de_.py
 
 """
 from alembic import op
@@ -10,7 +16,11 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
+<<<<<<<< HEAD:migrations/versions/1ecd84bdb4d1_.py
 revision = '1ecd84bdb4d1'
+========
+revision = 'c46a4182c8de'
+>>>>>>>> FT-recomendation:migrations/versions/c46a4182c8de_.py
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -69,6 +79,13 @@ def upgrade():
     sa.Column('original_title', sa.String(length=3000), nullable=False),
     sa.Column('video', sa.Boolean(), nullable=False),
     sa.Column('vote_count', sa.Integer(), nullable=False),
+    sa.Column('romantic', sa.Boolean(), nullable=False),
+    sa.Column('disney_live', sa.Boolean(), nullable=False),
+    sa.Column('new', sa.Boolean(), nullable=False),
+    sa.Column('classic', sa.Boolean(), nullable=False),
+    sa.Column('children', sa.Boolean(), nullable=False),
+    sa.Column('cry', sa.Boolean(), nullable=False),
+    sa.Column('live_action', sa.Boolean(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('title')
     )

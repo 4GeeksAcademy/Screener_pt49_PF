@@ -1,0 +1,199 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+/*Background color*/
+#grad1 {
+    background-color: #000000;
+};
+
+
+
+/*Fit image in bootstrap div*/
+.fit-image{
+    width: 100%;
+    object-fit: cover;
+}
+
+
+  .onBoardingButton {
+    width: 70%;
+    display: block;
+    margin: 3% auto;
+    border:none;
+  }
+
+  .movie-container {
+    height: 70%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .movie-poster {
+    width: 90%;
+  }
+
+  .onBoardingButton {
+    padding: 15px 25px;
+    border: unset;
+    border-radius: 15px;
+    color: #212121;
+    z-index: 1;
+    background: #e8e8e8;
+    position: relative;
+    font-weight: 1000;
+    font-size: 17px;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms;
+    overflow: hidden;
+   }
+   
+   .onBoardingButton::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    border-radius: 15px;
+    background-color: #70c37f;
+    z-index: -1;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 650ms
+   }
+   
+   .onBoardingButton:hover {
+    color: #e8e8e8;
+   }
+   
+   .onBoardingButton:hover::before {
+    width: 100%;
+   }
+
+   .contenedor {
+    background-color: #0958ea;
+   }
+
+
+   fieldset {
+    background-color: #232D3F !important;
+   }
+
+   h2 {
+    color: rgb(227, 227, 227) !important;   }
+
+    p {
+        color: white !important;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+
+    .fade-enter {
+        opacity: 0;
+      }
+      
+      /* Estilo cuando está ocurriendo la transición */
+      .fade-enter-active {
+        opacity: 1;
+        transition: opacity 500ms;
+      }
+    .card {
+        background-color: #232D3F !important;
+    }
+
+    .movieRecomendationH2 {
+        background-color: #232D3F;
+        margin-inline-start: 20%;
+        margin-inline-end: 20%;
+
+    }
+
+
+
+    .previous {
+      padding: 15px 25px;
+      border: unset;
+      border-radius: 15px;
+      color: #212121;
+      z-index: 1;
+      background: #e8e8e8;
+      position: relative;
+      font-weight: 1000;
+      font-size: 17px;
+      -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+      box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+      transition: all 250ms;
+      overflow: hidden;
+      margin-bottom: 5%;
+     }
+     
+     .previous:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0;
+      border-radius: 15px;
+      background-color: #70c37f;
+      z-index: -1;
+      -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+      box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+      transition: all 650ms
+     }
+     
+     .previous:hover {
+      color: #f10606;
+     }
+     
+     .previous:hover:before {
+      width: 100%;
+     }
+
+
+     .previous {
+      padding: 15px 25px;
+      border: unset;
+      border-radius: 15px;
+      color: #212121;
+      z-index: 1;
+      background: #e8e8e8;
+      position: relative;
+      font-weight: 1000;
+      font-size: 17px;
+      -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+      box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+      transition: all 250ms;
+      overflow: hidden;
+     }
+     
+     .previous::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0;
+      border-radius: 15px;
+      background-color: #05fe32;
+      z-index: -1;
+      -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+      box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+      transition: all 650ms
+     }
+     
+     .previous:hover {
+      color: #232D3F;
+     }
+     
+     .previous:hover::before {
+      width: 100%;
+     }

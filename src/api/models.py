@@ -66,6 +66,14 @@ class Movie(db.Model):
     video = db.Column(db.Boolean, nullable=False)
     vote_count = db.Column(db.Integer, nullable=False)
     watchlist_entries = db.relationship('Watchlist', backref='movie', lazy=True)
+    romantic = db.Column(db.Boolean, nullable=False)
+    disney_live = db.Column(db.Boolean, nullable=False)
+    new = db.Column(db.Boolean, nullable=False)
+    classic = db.Column(db.Boolean, nullable=False)
+    children = db.Column(db.Boolean, nullable=False)
+    cry = db.Column(db.Boolean, nullable=False)
+    live_action = db.Column(db.Boolean, nullable=False)
+    
 
     def __repr__(self):
         return f'<Movie {self.title}>'
@@ -113,6 +121,14 @@ class Movie(db.Model):
             "original_title": self.original_title,
             "video": self.video,
             "vote_count": self.vote_count,
+            "romantic": self.romantic,
+            "disney_live": self.disney_live,
+            "new": self.new,
+            "classic": self.classic,
+            "children": self.children,
+            "cry": self.cry,
+            "live_action": self.live_action,
+            
         }
     
 class Comment(db.Model):
