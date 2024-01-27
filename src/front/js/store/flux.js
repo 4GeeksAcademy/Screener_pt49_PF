@@ -184,22 +184,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				)},
 
 			   //[GET] Traer  Watchlist de un User
-				getUserWatchlist: (user_id) => {
-					
+				getUserWatchlist: (user_id) => {					
 					const requestOptions = {
 						method: 'GET',
-						headers: {"content-type": "application/json"},
-						
-					};
-					
+						headers: {"content-type": "application/json"},						
+					};					
 					fetch(process.env.BACKEND_URL + `/api/watchlist/${user_id}`, requestOptions)
 					.then(response => response.json())
-					.then(data => 
-							{
-							console.log(data);
-							setStore({ User_watchlist: data })
-							}
-				)},
+					.then(data => {console.log(data); setStore({ User_watchlist: data })})
+				},
 
 				 //[POST]  watchlist movie (for users)
 

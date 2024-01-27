@@ -75,10 +75,10 @@ def add_new_user():
         age=request_body_user["age"]       
             )
 
-    db.session.add( new_user)
+    db.session.add(new_user)
     db.session.commit()
 
-    return jsonify( request_body_user), 200
+    return jsonify(request_body_user), 200
 
 #[PUT] Editar un user
 
@@ -447,12 +447,13 @@ def get_an_user_watchlist(user_id):
 @api.route('/watchlist/<int:user_id>/new', methods=['POST'])
 def add_to_watchlist(user_id):
     data = request.get_json()
-
+    existing_movie = Watchlist.query.filter_by(movie_id=data['movie_id']).first()
+    if existing_movie:
+        response = {'message': 'Film already added','status': 400}
+        return jsonify(response), 400
     movie_id = data['movie_id']
-
     user = User.query.get(user_id)
     movie = Movie.query.get(movie_id)
-
     user.watchlist_entries.append(Watchlist(movie_id=movie.id))
     db.session.commit()
 
