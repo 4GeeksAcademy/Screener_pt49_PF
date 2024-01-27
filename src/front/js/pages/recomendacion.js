@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "../../styles/recomendation.css";
 
 
