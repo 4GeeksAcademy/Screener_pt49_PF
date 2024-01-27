@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
+import { Navigate } from "react-router-dom";
 
 export const WatchlistUser = () => {
 
@@ -23,7 +24,8 @@ export const WatchlistUser = () => {
     
 	return (
 		<div className="text-center mt-5">
-                <h1> WATCHLIST USER</h1>
+            {/* {store.auth === false ? <Navigate to="/Login"/> : null} */}
+            <h1> WATCHLIST USER</h1>
             { store.User_watchlist.map ((myWatchlist) => 
                 <div key={myWatchlist.id} className="container border">
                     <p>{myWatchlist.title }</p>

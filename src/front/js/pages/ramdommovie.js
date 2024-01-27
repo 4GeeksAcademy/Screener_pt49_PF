@@ -16,8 +16,7 @@ export const RandomMovie = () => {
     if (movies && movies.length > 0){
         const randomIndex = Math.floor(Math.random() * movies.length);
         const selectedRandomMovie = movies[randomIndex];
-        setrandomMovie(selectedRandomMovie)
-        
+        setrandomMovie(selectedRandomMovie)   
     }
     };
 

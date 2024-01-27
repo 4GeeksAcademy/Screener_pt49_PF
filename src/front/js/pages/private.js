@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
+import { Navigate } from "react-router-dom";
 
 
 const Private = () => {
@@ -10,6 +11,7 @@ const Private = () => {
         return (
 
             <div className="container d-flex w-5 flex-wrap" style={{ height: '500px', width: '100%' }}>
+                {store.auth === false ? <Navigate to="/Login"/> : null}
                 <div className="row border rounded p-3 bg-light">
                     <div className="col d-flex flex-column">
                     <h2 className="text-dark">Your private area</h2>
