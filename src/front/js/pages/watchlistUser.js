@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/home.css";
+import "../../styles/watchlistUser.css"
 
 
 
@@ -27,36 +27,30 @@ export const WatchlistUser = () => {
     };
 
 	return (
-		<div className="text-center mt-5">
+        <div className="container">
+		    <div className="title text-center m-4">
 			
-			      <h1> WATCHLIST USER</h1>
+			      <h1> My Watchlist</h1>
+                  <br></br>
 
-                  { store.User_watchlist.map ((myWatchlist) => 
+                    <div className="row">
+                    { store.User_watchlist.map ((myWatchlist) => 
 
-        <div key={myWatchlist.id} className="container border">
-            <p> 
-                {myWatchlist.title }
-            </p>
-   
-            <img style={{ width: "120px" }} src={`https://image.tmdb.org/t/p/w500${myWatchlist.poster_path}`} alt={myWatchlist.title} />
-    
-
-   
-
-    <button  className="btn btn-primary"
-    onClick={()=>handleDeleteMovieWatchlist(theId, myWatchlist.id )}>DELETE Watchlist</button>
-
-
-    
-</div>
-)}
-
-
-           
-
+                <div key={myWatchlist.id} className="col-md-4 mb-3">
+                    <p> 
+                        {myWatchlist.title }
+                    </p>
+        
+                    <img className="rounded-image" style={{ width: "100%" }} src={`https://image.tmdb.org/t/p/w500${myWatchlist.poster_path}`} alt={myWatchlist.title} />
             
+                    <button  className="button mt-5"
+                    onClick={()=>handleDeleteMovieWatchlist(theId, myWatchlist.id )}>Borrar película</button>
+                    
+                </div>
+                        )}
 
-			
+        </div>	
 		</div>
+        </div>
 	);
 };
