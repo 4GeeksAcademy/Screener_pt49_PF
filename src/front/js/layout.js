@@ -46,6 +46,7 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
+                        <Route element={<Footer />} path="/" />
                         <Route element={<User />} path="/users" />
                         <Route element={< EditUser />} path="/editForm/:theid" />
                         <Route element={<Demo />} path="/demo" />
@@ -70,7 +71,6 @@ const Layout = () => {
                         <Route element={<MovieByName />} path="/movieByName" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
-                    <Footer />
                 </ScrollToTop>
             </BrowserRouter>
         </div>

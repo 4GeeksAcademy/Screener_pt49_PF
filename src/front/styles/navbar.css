@@ -3,7 +3,7 @@ nav {
     display: flex;
     justify-content: center; /* Centra los elementos horizontalmente */
     align-items: center; /* Centra los elementos verticalmente */
-    height: 90px; /* Ajusta la altura según tus necesidades */
+    height: 60px; /* Ajusta la altura según tus necesidades */
     background-color:#183D3D; /* Ajusta el color de fondo según tus necesidades */
 
     /* font-family: 'BankGothic'; */

@@ -16,7 +16,7 @@ const Login = () => {
         <div className="row body-row w-100">
             <div className="col-lg-8 d-none d-sm-block">
                 <div className="">
-                    <img className="m-none" src={bgLogin} alt="Logo img" style={{
+                    <img className="bgLogin" src={bgLogin} alt="Logo img" style={{
                         resizeMode: 'cover',
                         height: 600,
                         width: 1400,
