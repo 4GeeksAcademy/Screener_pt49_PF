@@ -46,7 +46,7 @@ export const Movies = () => {
         "Comedy", "Couple", "Party", "Solitary", "Action", "Drama", "Family", "Kids",
         "Animation", "Violence", "Crime", "Historical", "Science_Fiction", "Marathon", "Happy", "Hard_to_Watch",
         "Light_Film", "Motivating", "War", "Disney", "suspence", "Sunday_Movie", "Terror", "Christmas",
-        "Halloween", "White_Noise", "plot_twits"
+        "Halloween", "White_Noise", "plot_twits", "romantic", "disney_live", "new", "classic", "children", "cry", "live_action"
     ];
 
     const renderPropertyInputs = () => {

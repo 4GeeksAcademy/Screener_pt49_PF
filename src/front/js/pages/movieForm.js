@@ -44,6 +44,15 @@ export const MovieForm = ({ actions, store }) => {
     war: false,
     violence: false,
     white_noise: false,
+    romantic: false,
+    disney_live: false,
+    new: false,
+    classic: false,
+    children: false,
+    cry: false,
+    live_action: false
+
+
 
   });
 
@@ -90,7 +99,15 @@ export const MovieForm = ({ actions, store }) => {
       terror: store.moviePreApi.terror || false,
       war: store.moviePreApi.war || false,
       white_noise: store.moviePreApi.white_noise || false,
-      // Otros campos...
+
+      romantic: store.moviePreApi.romantic || false,
+      disney_live: store.moviePreApi.disney_live || false,
+      new: store.moviePreApi.new || false,
+      classic: store.moviePreApi.classic || false,
+      children: store.moviePreApi.children || false,
+      cry: store.moviePreApi.cry || false,
+      live_action: store.moviePreApi.live_action || false,
+
     });
   }, [store.moviePreApi]);
 
@@ -510,6 +527,76 @@ export const MovieForm = ({ actions, store }) => {
           />
         </label>
         <br />
+
+        <label>
+        romantic: 
+          <input
+            type="checkbox"
+            name="romantic"
+            checked={formValues.romantic}
+            onChange={handleCheckboxChange}
+          />
+        </label>
+
+        <label>
+        disney_live: 
+          <input
+            type="checkbox"
+            name="disney_live"
+            checked={formValues.disney_live}
+            onChange={handleCheckboxChange}
+          />
+        </label>
+
+        <label>
+        new: 
+          <input
+            type="checkbox"
+            name="new"
+            checked={formValues.new}
+            onChange={handleCheckboxChange}
+          />
+        </label>
+
+        <label>
+        classic: 
+          <input
+            type="checkbox"
+            name="classic"
+            checked={formValues.classic}
+            onChange={handleCheckboxChange}
+          />
+        </label>
+
+        <label>
+        children: 
+          <input
+            type="checkbox"
+            name="children"
+            checked={formValues.children}
+            onChange={handleCheckboxChange}
+          />
+        </label>
+
+        <label>
+        cry: 
+          <input
+            type="checkbox"
+            name="cry"
+            checked={formValues.cry}
+            onChange={handleCheckboxChange}
+          />
+        </label>
+
+        <label>
+          War: 
+          <input
+            type="checkbox"
+            name="live_action"
+            checked={formValues.live_action}
+            onChange={handleCheckboxChange}
+          />
+        </label>
         
         <button type="submit">Guardar Película</button>
       </form>
