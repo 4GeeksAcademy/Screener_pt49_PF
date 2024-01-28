@@ -2,60 +2,52 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/recomendation.css";
-
-
 export const Recomendacion = () => {
   const { store, actions } = useContext(Context);
   useEffect(() => {
     actions.getMoviesFromApi();
   }, []);
-
   const [currentStep, setCurrentStep] = useState(0);
   const handleInicioClick = () => {
     setCurrentStep(1);
   };
-
   const getRandomMovies = () => {
-  
-    const randomMovies = store.movies.slice(0, 12); 
+    const moviesCopy = [...store.movies];
+    const compareRandom = () => Math.random() - 0.5;
+    moviesCopy.sort(compareRandom);
+    const randomMovies = moviesCopy.slice(0, 12);
     return randomMovies.map(movie => (
       <img key={movie.id} style={{ width: "120px", margin: "2px" }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
     ));
   };
-
   const [recommendationKey, setRecommendationKey] = useState(0);
-
   const regenerateRecommendations = () => {
     setRecommendationKey((prevKey) => prevKey + 1);
   };
-
-  const renderMovies = (filterFunction) => (
-    <TransitionGroup key={recommendationKey} className="row justify-content-center">
-      {store.movies
-        .filter(filterFunction)
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 4)
-        .map((movie, index) => (
-          <CSSTransition key={index} timeout={500} classNames="fade">
-            <div className={index === 0 ? "col-12 text-center" : "col-4 text-center mt-2"}>
-              <div className="movie-container">
-                {index === 0 ? (
-                  <>
-                    <h2 className="mb-4">{movie.title}</h2>
-                  </>
-                ) : (
-                  <h5>{movie.title}</h5>
-                )}
-                <Link to={`/moviedetails/${movie.id}`} key={movie.id} className="ms-1 mb-3">
-                  <img style={{ width: index === 0 ? "50%" : "50%" }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-                </Link>
-              </div>
-            </div>
-          </CSSTransition>
-        ))}
-    </TransitionGroup>
-  );
-
+const renderMovies = (filterFunction) => (
+  <div className="row justify-content-center">
+    {store.movies
+      .filter(filterFunction)
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 4)
+      .map((movie, index) => (
+        <div key={index} className={index === 0 ? "col-12 text-center" : "col-4 text-center mt-2"}>
+          <div className="movie-container">
+            {index === 0 ? (
+              <>
+                <h2 className="mb-4">{movie.title}</h2>
+              </>
+            ) : (
+              <h5>{movie.title}</h5>
+            )}
+            <Link to={`/moviedetails/${movie.id}`} key={movie.id} className="ms-1 mb-3">
+              <img style={{ width: index === 0 ? "50%" : "50%" }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+            </Link>
+          </div>
+        </div>
+      ))}
+  </div>
+);
   const fieldsets = [
     {
       display: currentStep === 1, 
@@ -767,7 +759,7 @@ export const Recomendacion = () => {
       <div className="container-fluid" id="grad1">
         <div className="row justify-content-center mt-0">
           <div className="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
-            <div className="card px-0 pt-4 pb-0 mt-3 mb-3 c">
+            <div className="card px-0 pt-4 pb-0 mt-3 mb-3 c" style={{boxShadow: "1px 3px 67px #473E3E"}}>
               <h2 className="movieRecomendationH2">
                 <strong>{currentStep === 0 ? 'Recomiendame una pelicula!' : 'ScreeneR'}</strong>
               </h2>
@@ -780,11 +772,9 @@ export const Recomendacion = () => {
                 <div className="col-md-12 mx-0">
                   <form id="msform">
                     {fieldsets.map((fieldset, index) => (
-                      <CSSTransition key={index} timeout={500} classNames="fade">
                         <fieldset key={index} style={{ display: fieldset.display ? 'block' : 'none' }}>
                           {fieldset.content}
                         </fieldset>
-                      </CSSTransition>
                     ))}
                   </form>
                   {currentStep === 0 && (
