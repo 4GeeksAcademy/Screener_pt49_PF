@@ -12,10 +12,12 @@ export const Recomendacion = () => {
     setCurrentStep(1);
   };
   const getRandomMovies = () => {
+
     const moviesCopy = [...store.movies];
     const compareRandom = () => Math.random() - 0.5;
     moviesCopy.sort(compareRandom);
     const randomMovies = moviesCopy.slice(0, 12);
+
     return randomMovies.map(movie => (
       <img key={movie.id} style={{ width: "120px", margin: "2px" }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
     ));
@@ -24,6 +26,9 @@ export const Recomendacion = () => {
   const regenerateRecommendations = () => {
     setRecommendationKey((prevKey) => prevKey + 1);
   };
+
+
+
 const renderMovies = (filterFunction) => (
   <div className="row justify-content-center">
     {store.movies
@@ -90,7 +95,7 @@ const renderMovies = (filterFunction) => (
           {/* Solo 1.2 */}
 
           <div className="form-card">
-            <h2 className="fs-title text-center mb-3">Y una cosa más...</h2>
+            <h2 className="fs-title text-center mb-3 infoMovie">Y una cosa más...</h2>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(6)}>De Disney o animada</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(7)}>Unas buenas risas</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(8)}>Una dominguera</button>
@@ -106,7 +111,7 @@ const renderMovies = (filterFunction) => (
           {/* Solo 1.3 */}
 
           <div className="form-card">
-            <h2 className="fs-title text-center mb-3">Emociones fuertes? Dinos un poco más</h2>
+            <h2 className="fs-title text-center mb-3 infoMovie">Emociones fuertes? Dinos un poco más</h2>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(10)}>Algo de acción!</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(11)}>Una histórica</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(12)}>Dame terror o suspenso</button>
@@ -124,7 +129,7 @@ const renderMovies = (filterFunction) => (
           {/* Solo 1.4 */}
 
           <div className="form-card">
-            <h2 className="fs-title text-center mb-3">A llorar se á dicho</h2>
+            <h2 className="fs-title text-center mb-3 infoMovie">A llorar se á dicho</h2>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(15)}>Drama, drama y más drama</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(16)}>Películas difíciles de ver</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(17)}>Una buena motivadora</button>
@@ -141,7 +146,7 @@ const renderMovies = (filterFunction) => (
           {/* Primera pregunta */}
 
           <div className="form-card">
-            <h2 className="fs-title text-center mb-3">Para parejas:</h2>
+            <h2 className="fs-title text-center mb-3 infoMovie">Para parejas:</h2>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(19)}>Para crear ambiente</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(23)}>Pelculas emotivas</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(25)}>Domingueras</button>
@@ -161,7 +166,7 @@ const renderMovies = (filterFunction) => (
           {/* Primera pregunta */}
 
           <div className="form-card">
-            <h2 className="fs-title text-center mb-3">Perfecto! Ahora una cosita más...</h2>
+            <h2 className="fs-title text-center mb-3 infoMovie">Perfecto! Ahora una cosita más...</h2>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(20)}>Algo romántico</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(21)}>Algo divertido</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(22)}>Algo para hacer maratón</button>
@@ -179,7 +184,7 @@ const renderMovies = (filterFunction) => (
           {/* Primera pregunta */}
 
           <div className="form-card">
-            <h2 className="fs-title text-center mb-3">Perfecto! Ahora una cosita más...</h2>
+            <h2 className="fs-title text-center mb-3 infoMovie">Perfecto! Ahora una cosita más...</h2>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(10)}>Un poco de acción</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(15)}>Mejor algo más sentimental</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(24)}>Algo más como un thriller</button>
@@ -197,7 +202,7 @@ const renderMovies = (filterFunction) => (
           {/* Primera pregunta */}
 
           <div className="form-card">
-            <h2 className="fs-title text-center mb-3">Cuéntanos un poco más...</h2>
+            <h2 className="fs-title text-center mb-3 infoMovie">Cuéntanos un poco más...</h2>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(28)}>Para toda la familia</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(32)}>Solo la van a ver los niños</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(36)}>Soy un adulto con corazón de niño</button>
@@ -215,7 +220,7 @@ const renderMovies = (filterFunction) => (
           {/* Primera pregunta */}
 
           <div className="form-card">
-            <h2 className="fs-title text-center mb-3">Cuéntanos un poco más...</h2>
+            <h2 className="fs-title text-center mb-3 infoMovie">Cuéntanos un poco más...</h2>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(29)}>Una aventura fantástica</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(30)}>Una buena película animada</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(31)}>Películas divertidas y alegres</button>
@@ -233,7 +238,7 @@ const renderMovies = (filterFunction) => (
           {/* Primera pregunta */}
 
           <div className="form-card">
-            <h2 className="fs-title text-center mb-3">Cuéntanos un poco más...</h2>
+            <h2 className="fs-title text-center mb-3 infoMovie">Cuéntanos un poco más...</h2>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(33)}>Puro Disney!</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(34)}>Son niños pequeños</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(35)}>Las mejores películas para niños</button>
@@ -251,7 +256,7 @@ const renderMovies = (filterFunction) => (
           {/* Primera pregunta */}
 
           <div className="form-card">
-            <h2 className="fs-title text-center mb-3">Cuéntanos un poco más...</h2>
+            <h2 className="fs-title text-center mb-3 infoMovie">Cuéntanos un poco más...</h2>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(42)}>Una fiesta en casa!</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(38)}>Somos varios y no nos ponemos de acuerdo</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(22)}>Queremos hacer maratón!</button>
@@ -269,7 +274,7 @@ const renderMovies = (filterFunction) => (
           {/* Primera pregunta */}
 
           <div className="form-card">
-            <h2 className="fs-title text-center mb-3">Cuéntanos un poco más...</h2>
+            <h2 className="fs-title text-center mb-3 infoMovie">Cuéntanos un poco más...</h2>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(43)}>Yo digo un Thriller!</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(44)}>Yo digo ciencia ficción</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(45)}>Yo digo comedia</button>
@@ -287,7 +292,7 @@ const renderMovies = (filterFunction) => (
           {/* Primera pregunta */}
 
           <div className="form-card">
-            <h2 className="fs-title text-center mb-3">Cuéntanos un poco más...</h2>
+            <h2 className="fs-title text-center mb-3 infoMovie">Cuéntanos un poco más...</h2>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(39)}>Una épica para poner de fondo</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(40)}>Un clásico!</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(41)}>Noche de terror con amigos</button>
@@ -308,7 +313,7 @@ const renderMovies = (filterFunction) => (
       content: (
         <>
           <div className="form-card">
-            <h2 className="fs-title text-center">La película que no vas a ver:</h2>
+            <h2 className="fs-title text-center infoMovie">La película que no vas a ver:</h2>
             {renderMovies((movie) => movie.white_noise)}
           </div> 
           <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -323,7 +328,7 @@ const renderMovies = (filterFunction) => (
       content: (
         <>
           <div className="form-card">
-            <h2 className="fs-title text-center">Conecta con tu niño interior</h2>
+            <h2 className="fs-title text-center infoMovie">Conecta con tu niño interior</h2>
             {renderMovies((movie) => movie.disney || movie.animation && !movie.drama)}
           </div>
           <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -338,7 +343,7 @@ const renderMovies = (filterFunction) => (
       content: (
         <>
           <div className="form-card">
-            <h2 className="fs-title text-center">Unas risas seguras con:</h2>
+            <h2 className="fs-title text-center infoMovie">Unas risas seguras con:</h2>
             {renderMovies((movie) => movie.comedy && !movie.disney && !movie.animation)}
           </div>
           <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -352,7 +357,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">Domingo de mantita y...</h2>
+                <h2 className="fs-title text-center infoMovie">Domingo de mantita y...</h2>
                 {renderMovies((movie) => movie.comedy || movie.sunday_movie || movie.solitary)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -367,7 +372,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">Acción?, para eso esta:</h2>
+                <h2 className="fs-title text-center infoMovie">Acción?, para eso esta:</h2>
                 {renderMovies((movie) => !movie.animation || movie.action || movie.violence )}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -382,7 +387,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">Historias reales, gente real:</h2>
+                <h2 className="fs-title text-center infoMovie">Historias reales, gente real:</h2>
                 {renderMovies((movie) => movie.historical)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -395,7 +400,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">¿Viendo películas de terror solo? Pues a ver como te va con:</h2>
+                <h2 className="fs-title text-center infoMovie">¿Viendo películas de terror solo? Pues a ver como te va con:</h2>
                 {renderMovies((movie) => movie.terror || movie.suspence)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -411,7 +416,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">Hoy te recomendamos</h2>
+                <h2 className="fs-title text-center infoMovie">Hoy te recomendamos</h2>
                 {renderMovies((movie) => movie.plot_twits)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -426,7 +431,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">Vamos a llorar un rato con</h2>
+                <h2 className="fs-title text-center infoMovie">Vamos a llorar un rato con</h2>
                 {renderMovies((movie) => movie.drama || movie.cry)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -441,7 +446,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">Una difícil y cruda:</h2>
+                <h2 className="fs-title text-center infoMovie">Una difícil y cruda:</h2>
                 {renderMovies((movie) => movie.hard_to_watch)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -456,7 +461,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">Emotiva y motivadora como:</h2>
+                <h2 className="fs-title text-center infoMovie">Emotiva y motivadora como:</h2>
                 {renderMovies((movie) => movie.motivating)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -471,7 +476,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">Romaticas:</h2>
+                <h2 className="fs-title text-center infoMovie">Romaticas:</h2>
                 {renderMovies((movie) => movie.romantic)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -486,7 +491,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">Alegría y risas:</h2>
+                <h2 className="fs-title text-center infoMovie">Alegría y risas:</h2>
                 {renderMovies((movie) => movie.couple && movie.comedy || movie.happy)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -501,7 +506,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">Para hacer maratón:</h2>
+                <h2 className="fs-title text-center infoMovie">Para hacer maratón:</h2>
                 {renderMovies((movie) => movie.marathon)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -516,7 +521,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">Thrillers para parejas:</h2>
+                <h2 className="fs-title text-center infoMovie">Thrillers para parejas:</h2>
                 {renderMovies((movie) => movie.action && movie.violence)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -531,7 +536,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">Dominguera para dos:</h2>
+                <h2 className="fs-title text-center infoMovie">Dominguera para dos:</h2>
                 {renderMovies((movie) => movie.sunday_movie)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -546,7 +551,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">Las películas mas recientes:</h2>
+                <h2 className="fs-title text-center infoMovie">Las películas mas recientes:</h2>
                 {renderMovies((movie) => movie.new)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -561,7 +566,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">Aventuras fantásticas para toda la familia:</h2>
+                <h2 className="fs-title text-center infoMovie">Aventuras fantásticas para toda la familia:</h2>
                 {renderMovies((movie) => movie.family && movie.action)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -576,7 +581,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">Una animada para todas las edades:</h2>
+                <h2 className="fs-title text-center infoMovie">Una animada para todas las edades:</h2>
                 {renderMovies((movie) => movie.kids && movie.animation)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -591,7 +596,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">Películas alegres para toda la familia:</h2>
+                <h2 className="fs-title text-center infoMovie">Películas alegres para toda la familia:</h2>
                 {renderMovies((movie) => movie.family && movie.live_action)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -606,7 +611,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">¡Disney siempre es un acierto para los peques!</h2>
+                <h2 className="fs-title text-center infoMovie">¡Disney siempre es un acierto para los peques!</h2>
                 {renderMovies((movie) => movie.disney)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -621,7 +626,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">Para los más peques de la casa:</h2>
+                <h2 className="fs-title text-center infoMovie">Para los más peques de la casa:</h2>
                 {renderMovies((movie) => movie.children)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -636,7 +641,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">¡Las mejores Películas para que disfruten los niños!:</h2>
+                <h2 className="fs-title text-center infoMovie">¡Las mejores Películas para que disfruten los niños!:</h2>
                 {renderMovies((movie) => movie.happy && movie.kids)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -651,7 +656,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">No te preocupes para ti tenemos:</h2>
+                <h2 className="fs-title text-center infoMovie">No te preocupes para ti tenemos:</h2>
                 {renderMovies((movie) => movie.happy && movie.animation)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -666,7 +671,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">Para que siga la fiesta:</h2>
+                <h2 className="fs-title text-center infoMovie">Para que siga la fiesta:</h2>
                 {renderMovies((movie) => movie.party)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -681,7 +686,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">Clásicos para la fiesta:</h2>
+                <h2 className="fs-title text-center infoMovie">Clásicos para la fiesta:</h2>
                 {renderMovies((movie) => movie.classic)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -696,7 +701,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">Terror entre amigos:</h2>
+                <h2 className="fs-title text-center infoMovie">Terror entre amigos:</h2>
                 {renderMovies((movie) => movie.terror)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -711,7 +716,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">Pues Thriller será:</h2>
+                <h2 className="fs-title text-center infoMovie">Pues Thriller será:</h2>
                 {renderMovies((movie) => movie.crime)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -726,7 +731,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">Pues ciencia ficción será:</h2>
+                <h2 className="fs-title text-center infoMovie">Pues ciencia ficción será:</h2>
                 {renderMovies((movie) => movie.science_fiction)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -741,7 +746,7 @@ const renderMovies = (filterFunction) => (
           content: (
             <>
               <div className="form-card">
-                <h2 className="fs-title text-center">Pues comedia será:</h2>
+                <h2 className="fs-title text-center infoMovie">Pues comedia será:</h2>
                 {renderMovies((movie) => movie.comedy && !movie.animation)}
               </div>
               <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
@@ -759,11 +764,11 @@ const renderMovies = (filterFunction) => (
       <div className="container-fluid" id="grad1">
         <div className="row justify-content-center mt-0">
           <div className="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
-            <div className="card px-0 pt-4 pb-0 mt-3 mb-3 c" style={{boxShadow: "1px 3px 67px #473E3E"}}>
-              <h2 className="movieRecomendationH2">
+            <div className="card movieCard px-0 pt-4 pb-0 mt-3 mb-3 c" style={{boxShadow: "1px 3px 67px #473e3e"}}>
+              <h2 className="movieRecomendationH2 infoMovie">
                 <strong>{currentStep === 0 ? 'Recomiendame una pelicula!' : 'ScreeneR'}</strong>
               </h2>
-              <p style={{ color: "black" }}>
+              <p className="presentation">
                 {currentStep === 0
                   ? 'Descubre la película perfecta para cada ocasión con nuestro recomendador personalizado. Solo dinos cómo te sientes, con quién estás y qué te provoca, ¡y te sugeriremos la elección ideal para tu momento.'
                   : ''}
@@ -772,7 +777,7 @@ const renderMovies = (filterFunction) => (
                 <div className="col-md-12 mx-0">
                   <form id="msform">
                     {fieldsets.map((fieldset, index) => (
-                        <fieldset key={index} style={{ display: fieldset.display ? 'block' : 'none' }}>
+                        <fieldset className="fieldsetMovie" key={index} style={{ display: fieldset.display ? 'block' : 'none' }}>
                           {fieldset.content}
                         </fieldset>
                     ))}

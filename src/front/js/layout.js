@@ -28,6 +28,7 @@ import { Footer } from "./component/footer";
 import { RandomMovie } from "./pages/ramdommovie";
 import { MovieByName } from "./pages/movieByName";
 import { Recomendacion } from "./pages/recomendacion";
+import { ChatGpt } from "./component/chatGpt";
 
 
 
@@ -66,6 +67,7 @@ const Layout = () => {
                         <Route element={<Recomendacion />} path="/recomendacion" />
                         <Route element={<AdminPanel />} path="/adminPanel" />
                         <Route element={<Private />} path="/private" />
+                        <Route element={<ChatGpt />} path="/chatgpt" />
                         <Route element={<WatchlistAdmin />} path="/WatchlistAdmin" />
                         <Route element={<WatchlistUser />} path="/watchlistUser" />
                         <Route element={<MovieByName />} path="/movieByName" />
