@@ -23,6 +23,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			auth: false,
 			userId: null,
 			userToken:"",
+			username:"",
 			adminLogin: false,
 			moviesByName:[],
 			imdbRating: []
@@ -435,15 +436,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-			postComment: async (comment, userID, movieID) => {
-				console.log("Datos a enviar:", { "comment_body": comment, "user_id": userID, "movie_id": movieID });
+			postComment: async (comment, userID, movieID, name) => {
+				console.log("Datos a enviar:", { "comment_body": comment, "user_id": userID, "movie_id": movieID, "name": name});
 				try {
 					const response = await fetch(process.env.BACKEND_URL + "/api/movies/comment", {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
 						},
-						body: JSON.stringify({ "comment_body": comment, "user_id": userID, "movie_id": movieID }),
+						body: JSON.stringify({ "comment_body": comment, "user_id": userID, "movie_id": movieID, "name": name }),
 					});
 			
 					if (response.ok) {

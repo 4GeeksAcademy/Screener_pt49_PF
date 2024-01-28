@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: b2bf0a9c8bdb
+Revision ID: 9a3f55c593bb
 Revises: 
-Create Date: 2024-01-28 08:26:34.162185
+Create Date: 2024-01-28 22:11:08.411769
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'b2bf0a9c8bdb'
+revision = '9a3f55c593bb'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -79,11 +79,6 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('title')
     )
-    op.create_table('prompt_model',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('prompt', sa.String(length=2500), nullable=False),
-    sa.PrimaryKeyConstraint('id')
-    )
     op.create_table('user',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('email', sa.String(length=120), nullable=False),
@@ -99,6 +94,7 @@ def upgrade():
     sa.Column('comment_body', sa.String(length=1000), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('movie_id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=1000), nullable=False),
     sa.ForeignKeyConstraint(['movie_id'], ['movie.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -119,7 +115,6 @@ def downgrade():
     op.drop_table('watchlist')
     op.drop_table('comment')
     op.drop_table('user')
-    op.drop_table('prompt_model')
     op.drop_table('movie')
     op.drop_table('local_admin')
     # ### end Alembic commands ###

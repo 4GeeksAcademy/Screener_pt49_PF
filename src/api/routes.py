@@ -286,6 +286,7 @@ def addComment():
         comment_body = request.get_json()['comment_body']
         user_id = request.get_json()['user_id'] 
         movie_id = request.get_json()['movie_id']
+        name = request.get_json()['name']
 
         user = User.query.get(user_id)
         movie = Movie.query.get(movie_id)
@@ -293,7 +294,7 @@ def addComment():
         if user is None or movie is None:
             return {'error': 'User or movie not found'}, 404
 
-        new_comment = Comment(comment_body=comment_body, user=user, movie=movie)
+        new_comment = Comment(comment_body=comment_body, user=user, movie=movie, name=name)
         db.session.add(new_comment)
         db.session.commit()
 

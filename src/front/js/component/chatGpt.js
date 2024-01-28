@@ -14,12 +14,12 @@ export const ChatGpt = () => {
                     model: "gpt-3.5-turbo",
                     messages: [
                     { role: 'system', content: 'Eres un asistente útil para ayudar a las personas a encontrar la película perfecta preguntando quién está mirando y cómo se sienten. Tu nombre es ScreenerChat.' },
-                    { role: 'user', content: '' }],
+                    { role: 'user', content: 'recomiendame una pelicula' }],
                 },
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer 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`,
+                        'Authorization': `Bearer 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`,
                     },
                 }
             );

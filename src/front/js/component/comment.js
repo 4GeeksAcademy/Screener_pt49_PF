@@ -7,7 +7,7 @@ export const Comment = ({ movieID, UserID }) => {
     const [comment, setComment] = useState('');
     const handlePostComment = async () => {
         try {
-            await actions.postComment(comment, store.userId, movieID);
+            await actions.postComment(comment, store.userId, movieID, store.username);
             setComment('');
             await actions.getComments();
         } catch (error) {
@@ -29,6 +29,7 @@ export const Comment = ({ movieID, UserID }) => {
                             id="commentArea"
                         ></textarea>
                         <input value={store.userId} className="d-none form-control" placeholder="User ID"></input>
+                        <input value={store.username} className="d-none form-control" placeholder="username"></input>
                         <input value={movieID} className="d-none form-control" placeholder="Movie ID" id="movieID"></input>
                         <label htmlFor="commentArea">Comment</label>
                     </div>
