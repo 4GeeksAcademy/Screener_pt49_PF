@@ -1,11 +1,17 @@
 import { Link } from "react-router-dom";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Navigate } from "react-router-dom";
 import "../../styles/navbar.css"
 import LogoNavbar from "../../img/logoNavbar.png";
 
+
 export const Navbar = () => {
+
+    useEffect(() => {
+        actions.getUserWatchlist(store.userId);
+    }, []);
+
 	const { store, actions } = useContext(Context);
 	return (
 		<nav className="navbar fixed-top navbar-expand-lg">
