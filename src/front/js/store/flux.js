@@ -26,7 +26,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			username:"",
 			adminLogin: false,
 			moviesByName:[],
-			imdbRating: []
+			imdbRating: [],
+			rottenRating: []
 
 		},
 		
@@ -46,7 +47,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					try {
 						const response = await fetch(url, options);
 						const result = await response.json();
-						setStore({ imdbRating: result.ratings.imdb.score })
+						
+						setStore({ imdbRating: result.ratings.imdb.score, rottenRating: result.ratings.rotten_tomatoes})
+						console.log(result)
 					} catch (error) {
 						console.error(error);
 					}
