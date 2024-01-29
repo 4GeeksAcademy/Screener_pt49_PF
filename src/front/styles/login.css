@@ -1,4 +1,8 @@
 
+body {
+  padding-top: 60px;
+}
+
 button{
     border-radius: 3px;
     background-color:#183D3D;
@@ -14,8 +18,5 @@ button{
   margin: 100px;
   }
 
- .Login{
-    margin: 200px;
- }
 
    

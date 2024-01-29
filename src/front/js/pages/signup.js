@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/signup.css";
 
+
 export const Signup = () => {
 
 	 // dar memoria  a las variables 

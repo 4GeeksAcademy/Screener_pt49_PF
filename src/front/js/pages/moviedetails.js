@@ -99,7 +99,7 @@ export const MovieDetails = () => {
                             {relevantComments.reverse().map((comment, index) => (
                                 <li className="list-group-item d-flex justify-content-between align-items-start bg-secondary text-light mb-2" key={index}>
                                     <div className="ms-2 me-auto">
-                                        <div className="fw-bold">Usuario id: {comment.user_id}</div>
+                                        <div className="fw-bold">{comment.name} dice:</div>
                                         {comment.comment_body}
                                     </div>
                                 </li>

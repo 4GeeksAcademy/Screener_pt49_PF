@@ -28,6 +28,7 @@ import { Footer } from "./component/footer";
 import { RandomMovie } from "./pages/ramdommovie";
 import { MovieByName } from "./pages/movieByName";
 import { Recomendacion } from "./pages/recomendacion";
+import { ChatGpt } from "./component/chatGpt";
 
 
 
@@ -46,6 +47,7 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
+                        <Route element={<Footer />} path="/" />
                         <Route element={<User />} path="/users" />
                         <Route element={< EditUser />} path="/editForm/:theid" />
                         <Route element={<Demo />} path="/demo" />
@@ -65,12 +67,12 @@ const Layout = () => {
                         <Route element={<Recomendacion />} path="/recomendacion" />
                         <Route element={<AdminPanel />} path="/adminPanel" />
                         <Route element={<Private />} path="/private" />
+                        <Route element={<ChatGpt />} path="/chatgpt" />
                         <Route element={<WatchlistAdmin />} path="/WatchlistAdmin" />
                         <Route element={<WatchlistUser />} path="/watchlistUser" />
                         <Route element={<MovieByName />} path="/movieByName" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
-                    <Footer />
                 </ScrollToTop>
             </BrowserRouter>
         </div>

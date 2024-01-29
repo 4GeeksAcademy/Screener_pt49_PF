@@ -7,14 +7,10 @@ html {
     height: 100%;
 }
 
-/*Background color*/
 #grad1 {
     background-color: #000000;
 };
 
-
-
-/*Fit image in bootstrap div*/
 .fit-image{
     width: 100%;
     object-fit: cover;
@@ -63,7 +59,7 @@ html {
     height: 100%;
     width: 0;
     border-radius: 15px;
-    background-color: #70c37f;
+    background-color: #52925d;
     z-index: -1;
     -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
     box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
@@ -78,34 +74,20 @@ html {
     width: 100%;
    }
 
-   .contenedor {
-    background-color: #0958ea;
-   }
-
-
-   fieldset {
+   .fieldsetMovie {
     background-color: #232D3F !important;
    }
 
-   h2 {
+   .infoMovie {
     color: rgb(227, 227, 227) !important;   }
 
-    p {
+    .presentation {
         color: white !important;
         margin-left: 20%;
         margin-right: 20%;
     }
 
-    .fade-enter {
-        opacity: 0;
-      }
-      
-      /* Estilo cuando está ocurriendo la transición */
-      .fade-enter-active {
-        opacity: 1;
-        transition: opacity 500ms;
-      }
-    .card {
+    .movieCard {
         background-color: #232D3F !important;
     }
 

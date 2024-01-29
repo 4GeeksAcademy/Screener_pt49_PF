@@ -136,6 +136,7 @@ class Comment(db.Model):
     comment_body = db.Column(db.String(1000), unique=False, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     movie_id = db.Column(db.Integer, db.ForeignKey('movie.id'), nullable=False)
+    name = db.Column(db.String(1000), unique=False, nullable=False)
 
     user = db.relationship('User', backref=db.backref('comments', lazy=True))
     movie = db.relationship('Movie', backref=db.backref('comments', lazy=True))
@@ -151,7 +152,8 @@ class Comment(db.Model):
             "id": self.id,
             "comment_body": self.comment_body,
             "user_id": self.user_id,
-            "movie_id": self.movie_id
+            "movie_id": self.movie_id,
+            "name": self.name
         }
 
 class Watchlist(db.Model):

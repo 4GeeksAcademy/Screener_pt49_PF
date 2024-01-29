@@ -23,6 +23,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			auth: false,
 			userId: null,
 			userToken:"",
+			username:"",
 			adminLogin: false,
 			moviesByName:[],
 			imdbRating: []
@@ -184,22 +185,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				)},
 
 			   //[GET] Traer  Watchlist de un User
-				getUserWatchlist: (user_id) => {
-					
+				getUserWatchlist: (user_id) => {					
 					const requestOptions = {
 						method: 'GET',
-						headers: {"content-type": "application/json"},
-						
-					};
-					
+						headers: {"content-type": "application/json"},						
+					};					
 					fetch(process.env.BACKEND_URL + `/api/watchlist/${user_id}`, requestOptions)
 					.then(response => response.json())
-					.then(data => 
-							{
-							console.log(data);
-							setStore({ User_watchlist: data })
-							}
-				)},
+					.then(data => {console.log(data); setStore({ User_watchlist: data })})
+				},
 
 				 //[POST]  watchlist movie (for users)
 
@@ -351,7 +345,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 			
 				try {
-					const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=es-ES&page=10', options);
+					const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=es-ES&page=12', options);
 					const data = await response.json();
 			
 					if (data.results) {
@@ -442,15 +436,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-			postComment: async (comment, userID, movieID) => {
-				console.log("Datos a enviar:", { "comment_body": comment, "user_id": userID, "movie_id": movieID });
+			postComment: async (comment, userID, movieID, name) => {
+				console.log("Datos a enviar:", { "comment_body": comment, "user_id": userID, "movie_id": movieID, "name": name});
 				try {
 					const response = await fetch(process.env.BACKEND_URL + "/api/movies/comment", {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
 						},
-						body: JSON.stringify({ "comment_body": comment, "user_id": userID, "movie_id": movieID }),
+						body: JSON.stringify({ "comment_body": comment, "user_id": userID, "movie_id": movieID, "name": name }),
 					});
 			
 					if (response.ok) {

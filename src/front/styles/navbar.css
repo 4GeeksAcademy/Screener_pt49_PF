@@ -1,11 +1,19 @@
+
 nav {
     display: flex;
     justify-content: center; /* Centra los elementos horizontalmente */
     align-items: center; /* Centra los elementos verticalmente */
-    height: 90px; /* Ajusta la altura según tus necesidades */
+    height: 60px; /* Ajusta la altura según tus necesidades */
     background-color:#183D3D; /* Ajusta el color de fondo según tus necesidades */
-    
+
+    /* font-family: 'BankGothic'; */
   }
+  /* @font-face {
+    font-family: 'BankGothic';
+    src: url('../src/front/styles/Fonts/BankGothicBT-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  } */
 
 button{
     border-radius: 3px;

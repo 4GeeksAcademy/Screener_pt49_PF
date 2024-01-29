@@ -18,17 +18,6 @@ CORS(api)
 
 # Create a JWTManager instance
 
-
-
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
-
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
-
-    return jsonify(response_body), 200
-
 #[GET] Listar los users
 
 @api.route('/user', methods=['GET'])
@@ -75,10 +64,10 @@ def add_new_user():
         age=request_body_user["age"]       
             )
 
-    db.session.add( new_user)
+    db.session.add(new_user)
     db.session.commit()
 
-    return jsonify( request_body_user), 200
+    return jsonify(request_body_user), 200
 
 #[PUT] Editar un user
 
@@ -208,6 +197,7 @@ def add_movie_from_api():
     return jsonify(response_body)
 
 @api.route('/movies/<int:movie_id>', methods=['DELETE'])
+# @jwt_required()
 def delete_movie(movie_id):
     movie = Movie.query.get(movie_id)
     print(movie)
@@ -222,6 +212,7 @@ def delete_movie(movie_id):
     
 
 @api.route('/movies/<int:movie_id>', methods=['PUT'])
+# @jwt_required()
 def edit_movie(movie_id):
     movie = Movie.query.get(movie_id)
 
@@ -289,11 +280,13 @@ def edit_movie(movie_id):
 
 
 @api.route('/movies/comment', methods=['POST'])
+# @jwt_required()
 def addComment():
     try:
         comment_body = request.get_json()['comment_body']
         user_id = request.get_json()['user_id'] 
         movie_id = request.get_json()['movie_id']
+        name = request.get_json()['name']
 
         user = User.query.get(user_id)
         movie = Movie.query.get(movie_id)
@@ -301,7 +294,7 @@ def addComment():
         if user is None or movie is None:
             return {'error': 'User or movie not found'}, 404
 
-        new_comment = Comment(comment_body=comment_body, user=user, movie=movie)
+        new_comment = Comment(comment_body=comment_body, user=user, movie=movie, name=name)
         db.session.add(new_comment)
         db.session.commit()
 
@@ -346,7 +339,6 @@ def deleteSpecificComment(comment_id):
 #[GET] Listar los LocalAdmin
 
 @api.route('/localadmin', methods=['GET'])
-# @jwt_required()
 def get_local_admin():
 
     all_LocalAdmin=LocalAdmin.query.all()
@@ -433,7 +425,7 @@ def login_admin():
 #[GET watchlist de todos los users ] 
 
 @api.route('/watchlist', methods=['GET'])
-
+# @jwt_required()
 def get_watchlist():
 
     watchlist=Watchlist.query.all()
@@ -444,6 +436,7 @@ def get_watchlist():
 #[GET watchlist de un  user en particular ] 
 
 @api.route('/watchlist/<int:user_id>', methods=['GET'])
+# @jwt_required()
 def get_an_user_watchlist(user_id):
     user_watchlist_entries = Watchlist.query.filter_by(user_id=user_id).all()
 
@@ -460,14 +453,16 @@ def get_an_user_watchlist(user_id):
     
 
 @api.route('/watchlist/<int:user_id>/new', methods=['POST'])
+# @jwt_required()
 def add_to_watchlist(user_id):
     data = request.get_json()
-
+    existing_movie = Watchlist.query.filter_by(movie_id=data['movie_id']).first()
+    if existing_movie:
+        response = {'message': 'Film already added','status': 400}
+        return jsonify(response), 400
     movie_id = data['movie_id']
-
     user = User.query.get(user_id)
     movie = Movie.query.get(movie_id)
-
     user.watchlist_entries.append(Watchlist(movie_id=movie.id))
     db.session.commit()
 
@@ -476,6 +471,7 @@ def add_to_watchlist(user_id):
 #[DELETE movie from watchlist] 
 
 @api.route('/watchlist/<int:user_id>/delete/<int:movie_id>', methods=['DELETE'])
+# @jwt_required()
 def remove_from_watchlist(user_id, movie_id):
     user = User.query.get(user_id)
     watchlist_entry = Watchlist.query.filter_by(user_id=user_id, movie_id=movie_id).first()
