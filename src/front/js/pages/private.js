@@ -7,129 +7,123 @@ const Private = () => {
 
     const { store, actions } = useContext(Context);
 
- 
-        return (
 
-            <div class="container">
-            <div class="row gutters mt-5">
-            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-            <div class="card h-100">
-                <div class="card-body">
-                    <div class="account-settings">
-                        <div class="user-profile">
-                            <div class="user-avatar">
-                            <img src="https://picsum.photos/270/200" alt="user img" className="rounded mr-3" />
+    return (
+
+        <div className="container">
+            <div className="row gutters mt-5">
+                <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                    <div className="card h-100">
+                        <div className="card-body">
+                            <div className="row gutters-1">
+                                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h2 className="mb-2 mt-2 text-center ">Mi perfil de usuario</h2>
+                                </div>
+                                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div className="form-group">
+                                        <label for="fullName">Nombre</label>
+                                        <input type="text" className="form-control" id="fullName" placeholder="introduce tu nombre" />
+                                    </div>
+                                </div>
+                                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div className="form-group">
+                                        <label for="eMail">E-mail</label>
+                                        <input type="email" className="form-control" id="eMail" placeholder="nombre@.com" />
+                                    </div>
+                                </div>
+                                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div className="form-group">
+                                        <label for="surname">Apellido</label>
+                                        <input type="text" className="form-control" id="surname" placeholder="introduce tu apellido" />
+                                    </div>
+                                </div>
+                                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div className="form-group">
+                                        <label for="website">Password</label>
+                                        <input type="password" className="form-control" id="website" placeholder="password" />
+                                    </div>
+                                </div>
                             </div>
-                            <h5 class="user-name mt-5">Nombre:</h5>
-                            <h6 class="user-email">E-mail:</h6>
-                        </div>
-                        <div class="about">
-                            <h5>Sobre mi</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vestibulum semper mauris, nec pretium lorem ullamcorper ut. Etiam egestas lorem in elit sodales convallis. </p>
+                            <div className="row gutters-2">
+                                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 ml-5 mt-5">
+                                    <div><h4>Mis preferencias</h4></div>
+                                    <div className="custom-control custom-checkbox">
+                                        <div className="form-check">
+                                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault1" />
+                                            <label className="form-check-label" for="flexCheckDefault1">
+                                                Drama
+                                            </label>
+                                        </div>
+                                        <div className="form-check">
+                                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault2" />
+                                            <label className="form-check-label" for="flexCheckDefault2">
+                                                Acción
+                                            </label>
+                                        </div>
+                                        <div className="form-check">
+                                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault2" />
+                                            <label className="form-check-label" for="flexCheckDefault2">
+                                                Comedia
+                                            </label>
+                                        </div>
+                                        <div className="form-check">
+                                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault2" />
+                                            <label className="form-check-label" for="flexCheckDefault2">
+                                                Románticas
+                                            </label>
+                                        </div>
+                                        <div className="form-check">
+                                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault2" />
+                                            <label className="form-check-label" for="flexCheckDefault2">
+                                                Infantil
+                                            </label>
+                                        </div>
+                                        <div className="form-check">
+                                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault2" />
+                                            <label className="form-check-label" for="flexCheckDefault2">
+                                                Terror
+                                            </label>
+                                        </div>
+                                     </div>
+                                </div>
+                                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 ml-5 mt-5">
+                                    <div><h4>Mis subscripciones</h4></div>
+                                    <div className="custom-control custom-checkbox">
+                                        <div className="form-check">
+                                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault4" />
+                                            <label className="form-check-label" for="flexCheckDefault4">
+                                                Notificaciones por email
+                                            </label>
+                                        </div>
+                                        <div className="form-check">
+                                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault3" />
+                                            <label className="form-check-label" for="flexCheckDefault3">
+                                                Newsletter
+                                            </label>
+                                        </div>
+                                        <div className="form-check">
+                                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault4" />
+                                            <label className="form-check-label" for="flexCheckDefault4">
+                                                Novedades
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row gutters mt-5">
+                                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div className="text-right">
+                                        <button type="button" id="submit" name="submit" className="btn btn-success">Guardar</button>
+                                        <button type="button" id="submit" name="submit" className="btn btn-secondary">Actualizar</button>
+                                        <button type="button" id="submit" name="submit" className="btn btn-danger">Eliminar</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
-            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-            <div class="card h-100">
-                <div class="card-body">
-                    <div class="row gutters-1">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <h2 class="mb-2 ">Mi perfil de usuario</h2>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label for="fullName">Nombre</label>
-                                <input type="text" class="form-control" id="fullName" placeholder="Nombre"/>
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label for="eMail">E-mail</label>
-                                <input type="email" class="form-control" id="eMail" placeholder="Email"/>
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label for="surname">Apellido</label>
-                                <input type="text" class="form-control" id="surname" placeholder="Apellido"/>
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label for="website">Password</label>
-                                <input type="password" class="form-control" id="website" placeholder="password"/>
-                            </div>
-                        </div>
-                    </div>
-                    
-                <div class="row gutters-2">
-                         <div class="col mb-3">
-                            <div class="form-group">
-                              <label>Sobre mi</label>
-                              <textarea class="form-control" rows="5" placeholder=""></textarea>
-                            </div>
-                          </div>
-                        
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="form-group">
-                            <label for="website">New Password</label>
-                                <input type="password" class="form-control" id="website" placeholder="password"/>
-                            </div>
-                        </div>
-                <div class="row gutters-3">
-                        <div class="col mb-3">
-                            <div class="form-group">
-                                <label>Preferencias</label>
-                                <textarea class="form-control" rows="5" placeholder=""></textarea>
-                         </div>
-                    </div>
-                  
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 ml-5 ">
-                        <div><h4>Mis subscripciones</h4></div>
-                             
-                        <div class="row">
-                          <div class="col">
-                          <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="notifications-blog" checked=""/>
-                                <label class="custom-control-label" for="notifications-blog"> Notificaciones Email</label>
-                              </div>
-                            
-                            
-                              <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="notifications-blog" checked=""/>
-                                <label class="custom-control-label" for="notifications-blog">Blog </label>
-                              </div>
-                              <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="notifications-news" checked=""/>
-                                <label class="custom-control-label" for="notifications-news">Newsletter</label>
-                              </div>
-                              <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="notifications-offers" checked=""/>
-                                <label class="custom-control-label" for="notifications-offers">Preferencias</label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    
-                 <div class="row gutters mt-5">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="text-right">
-                                <button type="button" id="submit" name="submit" class="btn btn-success">Guardar</button>
-                                <button type="button" id="submit" name="submit" class="btn btn-secondary">Actualizar</button>
-                                <button type="button" id="submit" name="submit" class="btn btn-danger">Eliminar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-            </div>
-            </div>
-            </div>
-            
+        </div>
     );
 }
 
