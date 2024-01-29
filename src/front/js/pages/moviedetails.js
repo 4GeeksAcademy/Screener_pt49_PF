@@ -44,6 +44,7 @@ export const MovieDetails = () => {
                 }
                 actions.getMoviesFromApi();
                 actions.getComments();
+                //actions.getRating(theid);
                 actions.getUserWatchlist();
                 // actions.getRating(theid);
             } catch (error) {
@@ -54,7 +55,9 @@ export const MovieDetails = () => {
     }, []);
 
     const tuUserID = store.userId
-    const movieRating = store.imdbRating
+    const imdbRating = store.imdbRating
+    const rottenRating = store.rottenRating
+
 
     const movie = store.movies.find(movie => movie.id === parseInt(theid));
     const relevantComments = store.allComments.filter(comment => comment.movie_id === parseInt(theid));
@@ -64,7 +67,7 @@ export const MovieDetails = () => {
             {movie ? (
                 <div>
                     <div className="container">
-                        {store.auth === true ? 
+                        {store.auth === true ?
                             <div className="container comment">
                                 <div>
                                     <button onClick={()=>handleAddMovieToUserWatchlist()} type="button" className="addToWatchList">
@@ -78,7 +81,7 @@ export const MovieDetails = () => {
                                     </button>
                                 </div>
                             </div>
-                                : null
+                            : null
                         }
                         <div className="row mt-5 ">
                             <div className="d-flex col-md-4">
@@ -91,25 +94,25 @@ export const MovieDetails = () => {
                                 <div className="d-flex">
                                     {cast.map((actor, index) => (
                                         <div key={index} className="me-3">
-                                            <img style={{ width: "60px", borderRadius: "15px"}} src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={movie.title} />
+                                            <img style={{ width: "60px", borderRadius: "15px" }} src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={movie.title} />
                                             <p className="text-center mt-2">{actor.name} - {actor.character}</p>
                                         </div>
                                     ))}
                                 </div>
                             </div>
                             <div className="col-md-4">
-                                <div className="card bg-secondary">
-                                    <p>IMDB Score: {"movieRating"}</p>
+                                <div className="card bg-dark">
+                                    <div className="card-body">
+                                        <p className="movie-specs">IMDB Score: {imdbRating === null ? "Unknown" : imdbRating}</p>
+                                        <p className="movie-specs">Rotten Tomatoes Score: {rottenRating === null ? "Unknown" : rottenRating}</p>
+                                        <p className="movie-specs">Director: {movie.director === null ? "Unknown" : movie.director}</p>
+                                        <p className="movie-specs">Fecha de lanzamiento: {movie.release_date === null ? "Unknown" : movie.release_date}</p>
+                                    </div>
+                                    <button onClick={() => console.log(movie)} >CLICK ME</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {store.auth === true ? 
-                        <div className="container-fluid col-8">
-                            <Comment movieID={theid} userID={tuUserID} />
-                        </div>
-                            : <p className="container-fluid col-8 my-3">Debes <Link to="/login">iniciar sesión</Link> para dejar un comentario.</p>
-                    }
                     <div className="container-fluid col-8 list-group">
                         <h2>Comentarios:</h2>
                         <ul className="list-group">
@@ -123,6 +126,12 @@ export const MovieDetails = () => {
                             ))}
                         </ul>
                     </div>
+                    {store.auth === true ?
+                        <div className="container-fluid col-8">
+                            <Comment movieID={theid} userID={tuUserID} />
+                        </div>
+                        : <p className="container-fluid col-8 my-3">Debes <Link to="/login">iniciar sesión</Link> para dejar un comentario.</p>
+                    }
                 </div>
             ) : (
                 <p>Cargando...</p>
