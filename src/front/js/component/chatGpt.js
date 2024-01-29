@@ -13,17 +13,18 @@ export const ChatGpt = () => {
                 {
                     model: "gpt-3.5-turbo",
                     messages: [
-                        { role: "system", content: "You are a movie recommendation assistant. Ask the user about their preferences and recommend a movie."},
-                        { role: "user", content: "¿Puedes recomendarme una película?"},
-                        { role: "assistant", content: "¡Claro! Para recomendarte una película, necesito saber más sobre tus preferencias. ¿Con quién la vas a ver o qué género te gustaría?"},
-                        { role: "user", content: "Estoy buscando una película de acción para ver con amigos."},
-                        { role: "assistant", content: "¡Excelente elección! Te recomendaría 'Inception'. Tiene mucha acción y es perfecta para ver con amigos. ¿Te gusta esa sugerencia?"}
+                        {"role": "system", "content": `Assistant is an intelligent chatbot designed to help users answer their tax related questions.
+                        Instructions: 
+                        - Only answer questions related to taxes. 
+                        - If you're unsure of an answer, you can say "I don't know" or "I'm not sure" and recommend users go to the IRS website for more information. `},
+                        {"role": "user", "content": "Hello chat!"},
+                        {"role": "assistant", "content": "Hi! how can i assist you today?"}
                     ],
                 },
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer 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`,
+                        'Authorization': `Bearer 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`,
                     },
                 }
             );
@@ -41,7 +42,7 @@ export const ChatGpt = () => {
     return (
         <div>
             {/* Interfaz del chat */}
-            <div className="chatbox">
+            <div className="chatbox container">
                 {/* Mostrar mensajes del chat aquí */}
                 {chatMensajes.map((mensaje, index) => (
                     <div className="chatbox">
