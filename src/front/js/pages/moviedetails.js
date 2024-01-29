@@ -11,6 +11,7 @@ export const MovieDetails = () => {
     const { theid } = useParams();
     const [cast, setCast] = useState([]);
 
+
     const options = {
         method: 'GET',
         headers: {
@@ -18,6 +19,21 @@ export const MovieDetails = () => {
             Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5M2ZhNzNkZjUyZTYyNWQ5NGQ1NzMyNGI1YTFlNDgzYSIsInN1YiI6IjY1OTQwNzAwY2U0ZGRjNmQzODdmMDIzMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DNQabtAWxQcVNGg9_oMH8JWkdoAHIrOkmlBiwpj1oG8'
         }
     };
+
+    const handleAddMovieToUserWatchlist = () => {
+        actions.addMovieToWatchlist(tuUserID, theid)
+        const userWatchlist = store.User_watchlist;
+        console.log(userWatchlist);
+        console.log(theid);
+
+        if (userWatchlist.some(movie => movie.id === parseInt(theid))) {
+            alert("Esta película ya está en la watchlist.");
+        } else {
+            console.log("No está.");
+        }
+    };
+
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -28,6 +44,7 @@ export const MovieDetails = () => {
                 }
                 actions.getMoviesFromApi();
                 actions.getComments();
+                actions.getUserWatchlist();
                 // actions.getRating(theid);
             } catch (error) {
                 console.error(error);
@@ -50,7 +67,7 @@ export const MovieDetails = () => {
                         {store.auth === true ? 
                             <div className="container comment">
                                 <div>
-                                    <button onClick={()=>actions.addMovieToWatchlist(tuUserID, theid)} type="button" className="addToWatchList">
+                                    <button onClick={()=>handleAddMovieToUserWatchlist()} type="button" className="addToWatchList">
                                         <span className="button__text">Add to watchlist</span>
                                         <span className="button__icon">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" stroke="currentColor" height="24" fill="none" className="svg">
