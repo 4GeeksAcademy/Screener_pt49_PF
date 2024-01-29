@@ -9,3 +9,14 @@ button{
     margin-right: 10px;
     
 }
+.btn{
+    background-color:#183D3D;
+    color: white;
+    font-size: 30px;
+    margin-left:20px;
+}
+.btn-row {
+    margin-top: 60px; /* Ajusta el espacio entre las filas según tus necesidades */
+    display: flex;
+    justify-content: center;
+  }
