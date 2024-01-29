@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import "../../styles/movies.css";
 export const MovieForm = ({ actions, store }) => {
   const [formValues, setFormValues] = useState({
     id: '',
@@ -135,6 +135,7 @@ export const MovieForm = ({ actions, store }) => {
     <div className='container mt-2'>
       <h2>Formulario de Película</h2>
       <form onSubmit={handleSubmit}>
+      <button className='movieChangeButton mb-1' type="submit">Guardar Película</button>
         <div className='container'>
           <label>id: <input type="text" name="id" value={formValues.id} onChange={handleChange} /></label>
           <label className='ms-1'>Título: <input type="text" name="title" value={formValues.title} onChange={handleChange} /></label>
@@ -598,7 +599,7 @@ export const MovieForm = ({ actions, store }) => {
           />
         </label>
         
-        <button type="submit">Guardar Película</button>
+
       </form>
     </div>
 
