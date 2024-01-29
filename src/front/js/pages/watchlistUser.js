@@ -27,8 +27,9 @@ export const WatchlistUser = () => {
         <div className="text-center mt-5">
             {/* {store.auth === false ? <Navigate to="/Login"/> : null} */}
             <h2> Todas las películas que tienes pendientes por ver </h2>
-            <div className="row">
+            <div className="row container mx-auto">
                 {store.User_watchlist.map((myWatchlist) => (
+                    
                     <div key={myWatchlist.id} className="col-md-3 position-relative">
                         <div className="position-relative">
                         <Link to={`/moviedetails/${myWatchlist.id}`} key={myWatchlist.id} className="ms-1 mt-1">

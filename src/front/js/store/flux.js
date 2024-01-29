@@ -212,7 +212,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							return response.json();
 						})
 						.then(data => {
-							// Puedes manejar la respuesta de la API aquí
+							setStore({ watchlist: data });
 							console.log("Add to watchlist response:", data);
 						})
 						.catch(error => {

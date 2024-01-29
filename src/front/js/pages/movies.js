@@ -95,7 +95,7 @@ export const Movies = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-3">
-                            <h2>{store.popularMovies[currentMovieIndex].title}</h2>
+                            <h2>{store.popularMovies[currentMovieIndex].title}</h2> <h2>{store.popularMovies[currentMovieIndex].original_title}</h2>
                             <img style={{ width: "180px" }} src={`https://image.tmdb.org/t/p/w500${store.popularMovies[currentMovieIndex].poster_path}`} />
                             <p>{store.popularMovies[currentMovieIndex].id}</p>
                         </div>
