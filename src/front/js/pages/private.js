@@ -14,7 +14,7 @@ const Private = () => {
         <div className="container">
             <div className="row gutters mt-5">
                 <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-                    <div className="card h-100">
+                    <div className="card h-100 bg-dark">
                         <div className="card-body">
                             <div className="row gutters-1">
                                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
