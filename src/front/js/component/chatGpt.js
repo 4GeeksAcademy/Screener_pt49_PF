@@ -13,12 +13,8 @@ export const ChatGpt = () => {
                 {
                     model: "gpt-3.5-turbo",
                     messages: [
-                        {"role": "system", "content": `Assistant is an intelligent chatbot designed to help users answer their tax related questions.
-                        Instructions: 
-                        - Only answer questions related to taxes. 
-                        - If you're unsure of an answer, you can say "I don't know" or "I'm not sure" and recommend users go to the IRS website for more information. `},
-                        {"role": "user", "content": "Hello chat!"},
-                        {"role": "assistant", "content": "Hi! how can i assist you today?"}
+                        {"role": "system", "content": ""},
+                        {"role": "user", "content": "The users messages goes here"}
                     ],
                 },
                 {
