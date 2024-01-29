@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { MovieForm } from "../pages/movieForm";
+import "../../styles/movies.css";
 
 export const MovieByName = () => {
     const { store, actions } = useContext(Context);
@@ -77,17 +78,18 @@ export const MovieByName = () => {
     };
 
     return (
-        <>
+        <div className="MovieApiContainer">
             <h1 className="ms-5">Buscar películas por nombre y agregarlas a la Api</h1>
             <div>
                 <input className="ms-5 mt-4" style={{width:"50rem", height:"2rem", }} type="text" value={inputValue} onChange={handleInputChange} placeholder="Ingrese el nombre de la película" />
             </div>
             <div>
-                <button style={{width:"17rem"}} className="ms-5 mt-1" onClick={handleSearch}>Buscar</button>
+                <button style={{width:"17rem"}} className="ms-5 mt-1 movieChangeButton" onClick={handleSearch}>Buscar</button>
             </div>
+
+            <button className="movieChangeButton ms-5" onClick={handleMapBackward}>Película anterior</button>
+            <button className="mt-1 movieChangeButton" onClick={handleMapForward}>Siguiente película</button>
             
-            <button className=" ms-5 mt-1" onClick={handleMapForward}>Siguiente película</button>
-            <button className="ms-1" onClick={handleMapBackward}>Película anterior</button>
             
 
             {store.moviesByName.results && store.moviesByName.results.length > 0 && (
@@ -115,10 +117,10 @@ export const MovieByName = () => {
                         </div>
                     </div>
 
-                    <button className="mt-4" onClick={handleSaveMovie}>Agregarle propiedades a la película</button>
+                    <button className="mt-4 movieChangeButton" onClick={handleSaveMovie}>Agregarle propiedades a la película</button>
                     <MovieForm actions={actions} store={store} />
                 </div>
             )}
-        </>
+        </div>
     );
 };
