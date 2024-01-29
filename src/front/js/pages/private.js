@@ -12,6 +12,7 @@ const Private = () => {
     return (
 
         <div className="container">
+            {store.auth === false ? <Navigate to="/Login"/> : null}
             <div className="row gutters mt-5">
                 <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                     <div className="card h-100 bg-dark">

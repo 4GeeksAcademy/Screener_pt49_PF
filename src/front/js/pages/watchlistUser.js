@@ -24,7 +24,7 @@ export const WatchlistUser = () => {
     
 	return (
 		<div className="text-center mt-5">
-            {/* {store.auth === false ? <Navigate to="/Login"/> : null} */}
+            {store.auth === false ? <Navigate to="/Login"/> : null}
             <h1> WATCHLIST USER</h1>
             { store.User_watchlist.map ((myWatchlist) => 
                 <div key={myWatchlist.id} className="container border">

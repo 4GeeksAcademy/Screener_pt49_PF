@@ -1,10 +1,10 @@
 
 nav {
-    display: flex;
-    justify-content: center; /* Centra los elementos horizontalmente */
+    /* display: flex; */
     align-items: center; /* Centra los elementos verticalmente */
     height: 60px; /* Ajusta la altura según tus necesidades */
     background-color:#183D3D; /* Ajusta el color de fondo según tus necesidades */
+    padding-left: 64px;
 
     /* font-family: 'BankGothic'; */
   }
@@ -15,21 +15,10 @@ nav {
     font-style: normal;
   } */
 
-button{
-    border-radius: 3px;
-    background-color:#183D3D;
-    color: white;
-    border: 2px solid #183D3D;
-    padding: 10px ;
-    text-align: center;
-    font-size: 16px;
-    margin-right: 10px;
-    
-}
-span{
-    color:white
-    
-}
+ .logButtons {
+  background-color: darkslategray;
+  padding: none;
+ }
 
 
  
