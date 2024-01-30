@@ -20,6 +20,7 @@ export const Home = () => {
 						<button className="borderRecomendation"><span className="btn2"><span className="getRecomendationButton">Recomiendame una película!</span></span></button>
 					</Link>
 				</div>
+				<Link to="/chatgpt"><button>AAAAAAAAAAAAA</button></Link>
 				<h1>Hi this is where you choose your film</h1>
 			</div >
 			<Footer />

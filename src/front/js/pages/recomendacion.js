@@ -100,7 +100,7 @@ const renderMovies = (filterFunction) => (
 
           <div className="form-card">
             <h2 className="fs-title text-center mb-3">¿Qué estás buscando hoy?</h2>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(5);}, 2500);}}>Necesito algo de fondo para trabajar o limpiar</button>            <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(3)}>Algo suave, una comedia o de esas light</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(5);}, 2000);}}>Necesito algo de fondo para trabajar o limpiar</button>            <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(3)}>Algo suave, una comedia o de esas light</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(9)}>Quiero algo emocionante</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(14)}>Venga vamos a llorar un rato</button>
           </div>
@@ -116,9 +116,9 @@ const renderMovies = (filterFunction) => (
 
           <div className="form-card">
             <h2 className="fs-title text-center mb-3 infoMovie">Y una cosa más...</h2>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(6);}, 2500);}}>De Disney o animada</button>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(7);}, 2500);}}>Unas buenas risas</button>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(8);}, 2500);}}>Una dominguera</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(6);}, 2000);}}>De Disney o animada</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(7);}, 2000);}}>Unas buenas risas</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(8);}, 2000);}}>Una dominguera</button>
           </div>
           <input type="button" name="Volver" className="previous action-button-previous" onClick={()=>setCurrentStep(2)} value="Volver" />
         </>
@@ -132,10 +132,10 @@ const renderMovies = (filterFunction) => (
 
           <div className="form-card">
             <h2 className="fs-title text-center mb-3 infoMovie">Emociones fuertes? Dinos un poco más</h2>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(10);}, 2500);}}>Algo de acción!</button>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(11);}, 2500);}}>Una histórica</button>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(12);}, 2500);}}>Dame terror o suspenso</button>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(13);}, 2500);}}>De esas que te dejan pensando todo el día</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(10);}, 2000);}}>Algo de acción!</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(11);}, 2000);}}>Una histórica</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(12);}, 2000);}}>Dame terror o suspenso</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(13);}, 2000);}}>De esas que te dejan pensando todo el día</button>
           </div>
           <input type="button" name="Volver" className="previous action-button-previous" onClick={()=>setCurrentStep(2)} value="Volver" />
         </>
@@ -150,9 +150,9 @@ const renderMovies = (filterFunction) => (
 
           <div className="form-card">
             <h2 className="fs-title text-center mb-3 infoMovie">A llorar se á dicho</h2>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(15);}, 2500);}}>Drama, drama y más drama</button>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(16);}, 2500);}}>Películas difíciles de ver</button>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(17);}, 2500);}}>Una buena motivadora</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(15);}, 2000);}}>Drama, drama y más drama</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(16);}, 2000);}}>Películas difíciles de ver</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(17);}, 2000);}}>Una buena motivadora</button>
           </div>
           <input type="button" name="Volver" className="previous action-button-previous" onClick={()=>setCurrentStep(2)} value="Volver" />
         </>
@@ -169,8 +169,8 @@ const renderMovies = (filterFunction) => (
             <h2 className="fs-title text-center mb-3 infoMovie">Para parejas:</h2>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(19)}>Para crear ambiente</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(23)}>Pelculas emotivas</button>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(25);}, 2500);}}>Domingueras</button>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(26);}, 2500);}}>Películas nuevas</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(25);}, 2000);}}>Domingueras</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(26);}, 2000);}}>Películas nuevas</button>
 
           </div>
           <input type="button" name="Volver" className="previous action-button-previous" onClick={()=>setCurrentStep(1)} value="Volver" />
@@ -187,9 +187,9 @@ const renderMovies = (filterFunction) => (
 
           <div className="form-card">
             <h2 className="fs-title text-center mb-3 infoMovie">Perfecto! Ahora una cosita más...</h2>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(20);}, 2500);}}>Algo romántico</button>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(21);}, 2500);}}>Algo divertido</button>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(22);}, 2500);}}>Algo para hacer maratón</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(20);}, 2000);}}>Algo romántico</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(21);}, 2000);}}>Algo divertido</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(22);}, 2000);}}>Algo para hacer maratón</button>
 
           </div>
           <input type="button" name="Volver" className="previous action-button-previous" onClick={()=>setCurrentStep(18)} value="Volver" />
@@ -205,9 +205,9 @@ const renderMovies = (filterFunction) => (
 
           <div className="form-card">
             <h2 className="fs-title text-center mb-3 infoMovie">Perfecto! Ahora una cosita más...</h2>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(10);}, 2500);}}>Un poco de acción</button>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(15);}, 2500);}}>Mejor algo más sentimental</button>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(24);}, 2500);}}>Algo más como un thriller</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(10);}, 2000);}}>Un poco de acción</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(15);}, 2000);}}>Mejor algo más sentimental</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(24);}, 2000);}}>Algo más como un thriller</button>
 
           </div>
           <input type="button" name="Volver" className="previous action-button-previous" onClick={()=>setCurrentStep(18)} value="Volver" />
@@ -225,7 +225,7 @@ const renderMovies = (filterFunction) => (
             <h2 className="fs-title text-center mb-3 infoMovie">Cuéntanos un poco más...</h2>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(28)}>Para toda la familia</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(32)}>Solo la van a ver los niños</button>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(36);}, 2500);}}>Soy un adulto con corazón de niño</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(36);}, 2000);}}>Soy un adulto con corazón de niño</button>
 
           </div>
           <input type="button" name="Volver" className="previous action-button-previous" onClick={()=>setCurrentStep(1)} value="Volver" />
@@ -241,9 +241,9 @@ const renderMovies = (filterFunction) => (
 
           <div className="form-card">
             <h2 className="fs-title text-center mb-3 infoMovie">Cuéntanos un poco más...</h2>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(29);}, 2500);}}>Una aventura fantástica</button>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(30);}, 2500);}}>Una buena película animada</button>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(31);}, 2500);}}>Películas divertidas y alegres</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(29);}, 2000);}}>Una aventura fantástica</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(30);}, 2000);}}>Una buena película animada</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(31);}, 2000);}}>Películas divertidas y alegres</button>
 
           </div>
           <input type="button" name="Volver" className="previous action-button-previous" onClick={()=>setCurrentStep(27)} value="Volver" />
@@ -259,9 +259,9 @@ const renderMovies = (filterFunction) => (
 
           <div className="form-card">
             <h2 className="fs-title text-center mb-3 infoMovie">Cuéntanos un poco más...</h2>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(33);}, 2500);}}>Puro Disney!</button>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(34);}, 2500);}}>Son niños pequeños</button>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(35);}, 2500);}}>Las mejores películas para niños</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(33);}, 2000);}}>Puro Disney!</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(34);}, 2000);}}>Son niños pequeños</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(35);}, 2000);}}>Las mejores películas para niños</button>
 
           </div>
           <input type="button" name="Volver" className="previous action-button-previous" onClick={()=>setCurrentStep(27)} value="Volver" />
@@ -279,7 +279,7 @@ const renderMovies = (filterFunction) => (
             <h2 className="fs-title text-center mb-3 infoMovie">Cuéntanos un poco más...</h2>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(42)}>Una fiesta en casa!</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(38)}>Somos varios y no nos ponemos de acuerdo</button>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(22);}, 2500);}}>Queremos hacer maratón!</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(22);}, 2000);}}>Queremos hacer maratón!</button>
 
           </div>
           <input type="button" name="Volver" className="previous action-button-previous" onClick={()=>setCurrentStep(1)} value="Volver" />
@@ -295,9 +295,9 @@ const renderMovies = (filterFunction) => (
 
           <div className="form-card">
             <h2 className="fs-title text-center mb-3 infoMovie">Cuéntanos un poco más...</h2>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(43);}, 2500);}}>Yo digo un Thriller!</button>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(44);}, 2500);}}>Yo digo ciencia ficción</button>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(45);}, 2500);}}>Yo digo comedia</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(43);}, 2000);}}>Yo digo un Thriller!</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(44);}, 2000);}}>Yo digo ciencia ficción</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(45);}, 2000);}}>Yo digo comedia</button>
 
           </div>
           <input type="button" name="Volver" className="previous action-button-previous" onClick={()=>setCurrentStep(37)} value="Volver" />
@@ -313,9 +313,9 @@ const renderMovies = (filterFunction) => (
 
           <div className="form-card">
             <h2 className="fs-title text-center mb-3 infoMovie">Cuéntanos un poco más...</h2>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(39);}, 2500);}}>Una épica para poner de fondo</button>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(40);}, 2500);}}>Un clásico!</button>
-            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(41);}, 2500);}}>Noche de terror con amigos</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(39);}, 2000);}}>Una épica para poner de fondo</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(40);}, 2000);}}>Un clásico!</button>
+            <button className="onBoardingButton" type="button" onClick={() => {setCurrentStep(66); setTimeout(() => { setCurrentStep(41);}, 2000);}}>Noche de terror con amigos</button>
 
           </div>
           <input type="button" name="Volver" className="previous action-button-previous" onClick={()=>setCurrentStep(37)} value="Volver" />

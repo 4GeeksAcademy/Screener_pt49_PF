@@ -1,26 +1,33 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from 'axios';
+import { Context } from "../store/appContext";
 import "../../styles/ChatGpt.css";
 
 export const ChatGpt = () => {
-    const [userMensaje, setUserMensaje] = useState("");
     const [chatMensajes, setChatMensajes] = useState([]);
+    const { store } = useContext(Context);
 
-    const enviarMensajeAOpenAI = async () => {
+    const obtenerRecomendaciones = async () => {
+
+        const movieNames = store.User_watchlist.map(item => item.title);
+
+ 
+        const mensajes = [
+            {"role": "system", "content": "You are a helpful assistant. You put movie names in bold font"},
+            {"role": "user", "content": `Mis películas que guardé porque me interesan son: ${movieNames.join(', ')}. ¿Puedes darme recomendaciones similares? damelas en formato de lista y dame poca informacion de ellas con unas 6 recomendaciones me basta, si no te digo ningun titulo dime que mi watchlist esta vacía`},
+        ];
+
         try {
             const respuesta = await axios.post(
                 'https://api.openai.com/v1/chat/completions',
                 {
-                    model: "gpt-3.5-turbo",
-                    messages: [
-                        {"role": "system", "content": ""},
-                        {"role": "user", "content": "The users messages goes here"}
-                    ],
+                    model: "gpt-4-0125-preview",
+                    messages: mensajes,
                 },
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer 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`,
+                        'Authorization': `Bearer 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`,
                     },
                 }
             );
@@ -30,9 +37,6 @@ export const ChatGpt = () => {
         } catch (error) {
             console.error('Error al llamar a la API de OpenAI', error.response.data);
         }
-
-        // Limpiar el área de entrada después de enviar el mensaje
-        setUserMensaje("");
     };
 
     return (
@@ -41,19 +45,17 @@ export const ChatGpt = () => {
             <div className="chatbox container">
                 {/* Mostrar mensajes del chat aquí */}
                 {chatMensajes.map((mensaje, index) => (
-                    <div className="chatbox">
-                    <p className="chatMessege" key={index}><b>ScreenerChat dice:</b> {mensaje}</p>
+                    <div className="chatbox" key={index}>
+                        <p className="chatMessege"><b>screenerChat dice:</b> {mensaje}</p>
                     </div>
                 ))}
             </div>
-            {/* Área de entrada de mensajes */}
+            {/* Botón para obtener recomendaciones */}
             <div className="container inboxContainer">
-                <div className="position-relative">
-                <input className="inputUser" type="text" value={userMensaje} onChange={(e) => setUserMensaje(e.target.value)} />
-                </div>
                 <div>
-                <button onClick={enviarMensajeAOpenAI} className="borderRecomendation"><span className="btn2"><span className="getRecomendationButton">Enviar</span></span></button>
-
+                    <button onClick={obtenerRecomendaciones} className="borderRecomendation">
+                        <span className="btn2"><span className="getRecomendationButton">Obtener Recomendaciones</span></span>
+                    </button>
                 </div>
             </div>
         </div>
