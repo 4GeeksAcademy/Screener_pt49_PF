@@ -1,22 +1,18 @@
-button{
+.adminButtonsContainer{
     border-radius: 3px;
     background-color:#183D3D;
-    color: white;
-    border: 2px solid #183D3D;
+    border: 2px solid white;
     padding: 10px ;
     text-align: center;
-    font-size: 16px;
-    margin-right: 10px;
-    
-}
-.btn{
-    background-color:#183D3D;
-    color: white;
     font-size: 30px;
-    margin-left:20px;
+    margin: auto;
+    width: 400px
 }
-.btn-row {
-    margin-top: 60px; /* Ajusta el espacio entre las filas según tus necesidades */
-    display: flex;
-    justify-content: center;
-  }
+.adminButtons{
+    margin:20px;
+    background-color:#414747;
+    color:white
+
+}
+
+
