@@ -1,22 +1,20 @@
 
-nav {
-    /* display: flex; */
+.navbar {
     align-items: center; /* Centra los elementos verticalmente */
     height: 60px; /* Ajusta la altura según tus necesidades */
     background-color:#2D3250; /* Ajusta el color de fondo según tus necesidades */
     padding-left: 64px;
     padding-right: 64px;
+    margin-bottom: 20px;
     font-size: x-large;
     color: white;
-    /* font-family: 'BankGothic'; */
+    transition: all 0.5s;
   }
-  /* @font-face {
-    font-family: 'BankGothic';
-    src: url('../src/front/styles/Fonts/BankGothicBT-Medium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  } */
 
  .navButton:hover{
   color: #F6B17A;
  }
+
+ .navbar.sticky {
+  background-color: rgba(143, 143, 143, 0);
+  }
