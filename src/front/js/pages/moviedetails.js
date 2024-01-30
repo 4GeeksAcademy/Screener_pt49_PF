@@ -10,6 +10,7 @@ export const MovieDetails = () => {
     const { store, actions } = useContext(Context);
     const { theid } = useParams();
     const [cast, setCast] = useState([]);
+    const [isOnTheWatchlist, setisOnTheWatchlist] = useState(false)
 
 
     const options = {
@@ -20,16 +21,33 @@ export const MovieDetails = () => {
         }
     };
 
-    const handleAddMovieToUserWatchlist = () => {
-        actions.addMovieToWatchlist(tuUserID, theid)
-        const userWatchlist = store.User_watchlist;
-        console.log(userWatchlist);
-        console.log(theid);
+    const handleAddMovieToUserWatchlist = async () => {
+        try {
+            await actions.addMovieToWatchlist(tuUserID, theid);
+            await actions.getUserWatchlist(tuUserID);  // Espera a que se actualice la watchlist
+    
+            const userWatchlist = store.User_watchlist;
+            if (userWatchlist.some(movie => movie.id === parseInt(theid))) {
+                setisOnTheWatchlist(true);
+            } else {
+                console.log("No está.");
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
-        if (userWatchlist.some(movie => movie.id === parseInt(theid))) {
-            alert("Esta película ya está en la watchlist.");
-        } else {
-            console.log("No está.");
+    const handleDeleteMovieWatchlist = async (user_id, movie_id) => {
+        try {
+            await actions.deleteMovieFromWatchlist(user_id, movie_id);
+            await actions.getUserWatchlist(user_id);  // Espera a que se actualice la watchlist
+    
+            const userWatchlist = store.User_watchlist;
+            if (!userWatchlist.some(movie => movie.id === parseInt(movie_id))) {
+                setisOnTheWatchlist(false);
+            }
+        } catch (error) {
+            console.error(error);
         }
     };
 
@@ -44,9 +62,9 @@ export const MovieDetails = () => {
                 }
                 actions.getMoviesFromApi();
                 actions.getComments();
-                //actions.getRating(theid);
-                actions.getUserWatchlist();
-                // actions.getRating(theid);
+                actions.getUserWatchlist(theid);
+                handleAddMovieToUserWatchlist()
+
             } catch (error) {
                 console.error(error);
             }
@@ -67,22 +85,23 @@ export const MovieDetails = () => {
             {movie ? (
                 <div>
                     <div className="container">
-                        {store.auth === true ?
-                            <div className="container comment">
-                                <div>
-                                    <button onClick={()=>handleAddMovieToUserWatchlist()} type="button" className="addToWatchList">
-                                        <span className="button__text">Add to watchlist</span>
-                                        <span className="button__icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" stroke="currentColor" height="24" fill="none" className="svg">
-                                                <line y2="19" y1="5" x2="12" x1="12"></line>
-                                                <line y2="12" y1="12" x2="19" x1="5"></line>
-                                            </svg>
-                                        </span>
-                                    </button>
-                                </div>
-                            </div>
-                            : null
-                        }
+                    {store.auth === true && (
+    <div className="container comment">
+        <div>
+            {isOnTheWatchlist ? (
+                <button onClick={() => handleDeleteMovieWatchlist(tuUserID, theid)} type="button" className="removeFromWatchlist">
+                    <span className="button__text">Remove from watchlist</span>
+                    {/* Otro ícono o contenido si es necesario */}
+                </button>
+            ) : (
+                <button onClick={handleAddMovieToUserWatchlist} type="button" className="addToWatchList">
+                    <span className="button__text">Add to watchlist</span>
+                    {/* Otro ícono o contenido si es necesario */}
+                </button>
+            )}
+        </div>
+    </div>
+)}
                         <div className="row mt-5 ">
                             <div className="d-flex col-md-4">
                                 <img style={{ width: "350px", borderRadius: "15px" }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />

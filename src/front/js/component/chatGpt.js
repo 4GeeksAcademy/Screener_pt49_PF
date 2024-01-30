@@ -27,7 +27,7 @@ export const ChatGpt = () => {
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer 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`,
+                        'Authorization': `Bearer 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`,
                     },
                 }
             );
