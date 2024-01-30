@@ -1,16 +1,14 @@
   footer {
-    margin-top:30%;
+    margin-top: 30%;
     background-color:#424769; 
     color: white;
     text-align: center;
     padding-top: 10px;
-  
   }
   ul {
     margin: 0;
     padding: 0;
     list-style: none;
-    
   }
   .social-icons {
     display: flex;
@@ -20,7 +18,6 @@
   .social-icons div {
     margin-right: 20px; /* Ajusta el margen entre los iconos según tus necesidades */
   }
-  
   .fa-facebook:hover {
     color: rgb(0, 110, 255);
   }

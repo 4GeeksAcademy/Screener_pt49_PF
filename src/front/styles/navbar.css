@@ -6,8 +6,8 @@ nav {
     background-color:#2D3250; /* Ajusta el color de fondo según tus necesidades */
     padding-left: 64px;
     padding-right: 64px;
-    font-size: larger;
-
+    font-size: x-large;
+    color: white;
     /* font-family: 'BankGothic'; */
   }
   /* @font-face {
@@ -17,7 +17,6 @@ nav {
     font-style: normal;
   } */
 
- .logButtons {
-  background-color: darkslategray;
-  padding: none;
+ .navButton:hover{
+  color: #F6B17A;
  }
