@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Navigate } from "react-router-dom";
 import "../../styles/login.css"
-import bgLogin from "../../img/LoginPosterComplet.png";
+import bgLogin from "../../img/loginBgResized.png";
 import { Link } from "react-router-dom";
 
 const Login = () => {
@@ -13,17 +13,17 @@ const Login = () => {
     const [password, setPassword] = useState('');
 
     return (
-        <div className="row body-row w-100">
-            <div className="col-lg-4 d-none d-sm-block">
+        <div className="mainContainerLogin row w-100">
+            <div className="col-5 d-none d-md-block">
                 <div className="">
                     <img className="bgLogin" src={bgLogin} alt="Logo img" />
                 </div>
             </div>
-            <div className="loginContainer col-sm-12 col-md-5 col-lg-8 text-center">
-                <div className="card bg-dark" style={{ width: 400, marginTop: 100, height: 400 }}>
+            <div className="loginContainer col-sm-12 col-md-10 col-lg-7 text-center">
+                <div className="card loginCard bg-dark">
                     {store.auth === true ? <Navigate to="/private" /> : null}
-                    <div className="card-header bg-dark border-light rounded">
-                        <h2>Iniciar sesion</h2>
+                    <div className="cardTitle card-header bg-dark border-light rounded">
+                        <h2>Iniciar sesión</h2>
                     </div>
                     <form className="w-80 mx-auto p-4" onSubmit={(e) => actions.loginData(e, email, password)}>
                         <div className="col-auto mb-4 px-4">
@@ -35,12 +35,12 @@ const Login = () => {
                             <input type="password" onChange={(e) => setPassword(e.target.value)} className="form-control" id="inputPassword2" placeholder="Contraseña" />
                         </div>
                         <div className="col-auto mb-3">
-                            <button type="submit " >Entrar</button>
+                            <button className="loginButton" type="submit " >Entrar</button>
                         </div>
                         <a className="text-center">¿Has olvidado la contraseña?</a>
                     </form>
                     <div>
-                        <Link to="/signup"><button type="button">Crear cuenta nueva</button></Link>
+                        <Link className="loginButton" to="/signup"><button type="button">Crear cuenta nueva</button></Link>
                     </div>
                 </div>
             </div>

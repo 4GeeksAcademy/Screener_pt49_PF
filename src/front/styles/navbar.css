@@ -3,9 +3,10 @@ nav {
     /* display: flex; */
     align-items: center; /* Centra los elementos verticalmente */
     height: 60px; /* Ajusta la altura según tus necesidades */
-    background-color:#183D3D; /* Ajusta el color de fondo según tus necesidades */
+    background-color:#2D3250; /* Ajusta el color de fondo según tus necesidades */
     padding-left: 64px;
     padding-right: 64px;
+    font-size: larger;
 
     /* font-family: 'BankGothic'; */
   }
