@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/signup.css";
+import bgLogin from "../../img/loginBgResized.png";
+
 
 
 export const Signup = () => {
@@ -19,42 +21,51 @@ export const Signup = () => {
 		 actions.postUser(email,password,username,age)
 	}
 	return (
-        <div className="text-center">
-            <h1>Signup</h1>         
-            <form className="w-50 mx-auto " onSubmit={sendData} > 
-                    <div className="mb-3">
-                        <label htmlFor="exampleInputEmail1" className="form-label">Email</label>
-                        <input 
-                        value={email}
-                        onChange={(e)=> setEmail(e.target.value)}
-                        type="email"
-                        className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"required/>
-                
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                        <input 
-                        value={password}
-                        onChange={(e)=> setPassword(e.target.value)}
-                        type="password" className="form-control" id="exampleInputPassword1"required/>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="exampleInputUsername1" className="form-label">Username</label>
-                        <input 
-                        value={username}
-                        onChange={(e)=> setUsername(e.target.value)}
-                        type="username" className="form-control" id="exampleInputPassword1"required/>
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="exampleInputUsername1" className="form-label">Age</label>
-                        <input 
-                        value={age}
-                        onChange={(e)=> setAge(e.target.value)}
-                        type="number" className="form-control" id="exampleInputPassword1"required/>
-                    </div>
-                    <button 
-                    type="submit" >Save</button>				
-            </form>
+        <div className="mainContainerSignup row w-100">
+             <div className="col-5 d-none d-md-block">
+                <div className="">
+                    <img className="bgLogin" src={bgLogin} alt="Logo img" />
+                </div>
+            </div>
+            <div className="signupContainer col-sm-12 col-md-10 col-lg-7 text-center">
+                <div className="card signupCard bg-dark">
+
+                    <h1>Crear cuenta</h1>         
+                    <form className="w-80 mx-auto p-4 " onSubmit={sendData} > 
+                            <div className="mb-3">
+                                <label htmlFor="exampleInputEmail1" className="form-label">Correo electronico</label>
+                                <input 
+                                value={email}
+                                onChange={(e)=> setEmail(e.target.value)}
+                                type="email"
+                                className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"required/>
+                        
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="exampleInputPassword1" className="form-label">Contraseña</label>
+                                <input 
+                                value={password}
+                                onChange={(e)=> setPassword(e.target.value)}
+                                type="password" className="form-control" id="exampleInputPassword1"required/>
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="exampleInputUsername1" className="form-label">Username</label>
+                                <input 
+                                value={username}
+                                onChange={(e)=> setUsername(e.target.value)}
+                                type="username" className="form-control" id="exampleInputPassword1"required/>
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="exampleInputUsername1" className="form-label">Edad</label>
+                                <input 
+                                value={age}
+                                onChange={(e)=> setAge(e.target.value)}
+                                type="number" className="form-control" id="exampleInputPassword1"required/>
+                            </div>
+                            <button className="signupButton" type="submit" >Registrarse</button>				
+                    </form>
+                </div>
+            </div>
         </div>
 	);
 };

@@ -11,6 +11,7 @@ import { Footer } from "../component/footer";
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 
+
 	return (
 		<>
 			<div className="text-center mt-5">
@@ -20,7 +21,7 @@ export const Home = () => {
 						<button className="borderRecomendation"><span className="btn2"><span className="getRecomendationButton">Recomiendame una película!</span></span></button>
 					</Link>
 				</div>
-				<h1>Hi this is where you choose your film</h1>
+				<h1>Hi this is where you choose your film</h1>				
 			</div >
 			<Footer />
 		</>

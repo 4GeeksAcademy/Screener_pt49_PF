@@ -528,6 +528,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(data => {
 				  if (data) {
 					localStorage.setItem("token", data.access_token);
+					localStorage.setItem("userAuth", true);
 					setStore({
 					  auth: true,
 					  userToken: data,
@@ -570,6 +571,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			logOut(){
 				setStore({ auth: false, userToken:"", userId:null })
 				localStorage.removeItem("token");
+				localStorage.setItem("userAuth", false);
 			},
 			adminLogOut(){
 				setStore({ adminLogin: false })

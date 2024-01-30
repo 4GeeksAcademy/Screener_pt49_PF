@@ -21,7 +21,7 @@ export const WatchlistUser = () => {
     };
     return (
         <div className="text-center mt-5">
-            {/* {store.auth === false ? <Navigate to="/Login"/> : null} */}
+            {localStorage.userAuth === false ? <Navigate to="/Login"/> : null}
             <h2> Todas las películas que tienes pendientes por ver </h2>
             <div className="row container mx-auto">
                 {store.User_watchlist.map((myWatchlist) => (
