@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Navigate } from "react-router-dom";
 import "../../styles/login.css"
-import bgLogin from "../../img/bg-login.png";
+import bgLogin from "../../img/LoginPosterComplet.png";
 import { Link } from "react-router-dom";
 
 const Login = () => {
@@ -14,16 +14,12 @@ const Login = () => {
 
     return (
         <div className="row body-row w-100">
-            <div className="col-lg-8 d-none d-sm-block">
+            <div className="col-lg-4 d-none d-sm-block">
                 <div className="">
-                    <img className="bgLogin" src={bgLogin} alt="Logo img" style={{
-                        resizeMode: 'cover',
-                        height: 600,
-                        width: 1400,
-                    }} />
+                    <img className="bgLogin" src={bgLogin} alt="Logo img" />
                 </div>
             </div>
-            <div className="login.card.colum col-sm-12 col-md-5 col-lg-4 text-center">
+            <div className="loginContainer col-sm-12 col-md-5 col-lg-8 text-center">
                 <div className="card bg-dark" style={{ width: 400, marginTop: 100, height: 400 }}>
                     {store.auth === true ? <Navigate to="/private" /> : null}
                     <div className="card-header bg-dark border-light rounded">

@@ -14,9 +14,19 @@ button{
     margin-right: 10px;
     
 }
-.Logo200 {
+/* .Logo200 {
   margin: 100px;
-  }
+  } */
 
+.bgLogin {
+  height: 851PX;
+  width:630px;
+}
 
+.loginContainer{
+  background: rgb(59,57,57);
+  background: linear-gradient(126deg, rgba(59,57,57,1) 4%, rgba(0,0,0,1) 73%);
+}
+
+/* style={{resizeMode: 'cover', height: 670, width: 500,}} */
    

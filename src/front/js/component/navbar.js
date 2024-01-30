@@ -8,21 +8,21 @@ import LogoNavbar from "../../img/logoNavbar.png";
 
 export const Navbar = () => {
 
-    useEffect(() => {
-        actions.getUserWatchlist(store.userId);
-    }, []);
+	useEffect(() => {
+		actions.getUserWatchlist(store.userId);
+	}, []);
 
 	const { store, actions } = useContext(Context);
 	return (
 		<>
 			<nav className="navbar fixed-top navbar-expand-lg">
 				<div className="container-fluid main">
-					<div className="logoButton col-1 text-start">
+					<div className="logoButton col-sm-2 col-md-3 col-lg-1 text-start">
 						<Link to="/">
-							<img src={LogoNavbar} alt="Client img" className="rounded mr-3" style={{ height: 50, width: 120 }} />
+							<img src={LogoNavbar} alt="Client img" className="rounded" style={{ height: 50, width: 120 }} />
 						</Link>
 					</div>
-					<div className="generalButtons col-9 text-start">
+					<div className="generalButtons col-lg-8 d-none d-md-block text-start">
 						<Link to={"/moviesUser"} ><button >Peliculas</button></Link>
 						<Link to={"/randomMovie"} ><button >Pelicula aleatoria</button></Link>
 						<Link to={"/watchlistUser"} >
@@ -30,7 +30,7 @@ export const Navbar = () => {
 							</button> : null}
 						</Link>
 					</div>
-					<div className="logButton btn-group col-2">
+					<div className="logButton btn-group col-lg-3 col-sm-5 col-md-4">
 						<div className="">
 							{store.auth === true ? <Link to={"/private"} ><button >Perfil</button></Link> : null}
 							{store.adminLogin === true ? <button onClick={() => actions.adminLogOut()} >ADMIN Logout</button> : null}
