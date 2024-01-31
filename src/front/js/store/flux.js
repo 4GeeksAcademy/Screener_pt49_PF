@@ -27,7 +27,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			adminLogin: false,
 			moviesByName:[],
 			imdbRating: [],
-			rottenRating: []
+			rottenRating: [],
+			moviePlataforms: []
 
 		},
 		
@@ -54,6 +55,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.error(error);
 					}
 				},
+
+				getPlataforms: async (TMDB_ID) => {
+					const url = `https://streaming-availability.p.rapidapi.com/get`;
+					const options = {
+						method: 'GET',
+						params: {
+							output_language: 'es',
+							tmdb_id: `movie/${TMDB_ID}`
+						},
+						headers: {
+							'X-RapidAPI-Key': '2d63679966msh6ab2eb399151c6ap1f2472jsn6819f340dd0d',
+							'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
+						}
+					};
+					try {
+						const response = await fetch(url, options);
+						const result = await response.json();
+						
+						setStore({ moviePlataforms: result})
+						console.log(result)
+					} catch (error) {
+						console.error(error);
+					}
+				},
+
+
 
 		
 			//[POST] CREAR nuevo user
@@ -348,7 +375,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 			
 				try {
-					const response = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', options);
+					const response = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=es-ES&page=1', options);
 					const data = await response.json();
 			
 					if (data.results) {

@@ -6,11 +6,15 @@ import { Link } from "react-router-dom";
 import "../../styles/movieDetails.css";
 
 
+
 export const MovieDetails = () => {
     const { store, actions } = useContext(Context);
     const { theid } = useParams();
     const [cast, setCast] = useState([]);
+    const [director, setDirector] = useState("");
     const [isOnTheWatchlist, setisOnTheWatchlist] = useState(false)
+    const [streamingInfo, setStreamingInfo] = useState([]);
+
 
 
     const options = {
@@ -29,8 +33,6 @@ export const MovieDetails = () => {
             const userWatchlist = store.User_watchlist;
             if (userWatchlist.some(movie => movie.id === parseInt(theid))) {
                 setisOnTheWatchlist(true);
-            } else {
-                console.log("No está.");
             }
         } catch (error) {
             console.error(error);
@@ -53,6 +55,8 @@ export const MovieDetails = () => {
 
 
     useEffect(() => {
+
+        console.log(parseInt(theid))
         const fetchData = async () => {
             try {
                 if (cast.length === 0) {
@@ -77,31 +81,61 @@ export const MovieDetails = () => {
     const rottenRating = store.rottenRating
 
 
+
+
     const movie = store.movies.find(movie => movie.id === parseInt(theid));
     const relevantComments = store.allComments.filter(comment => comment.movie_id === parseInt(theid));
+
+    useEffect(() => {
+        const optionsForDirector = {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5M2ZhNzNkZjUyZTYyNWQ5NGQ1NzMyNGI1YTFlNDgzYSIsInN1YiI6IjY1OTQwNzAwY2U0ZGRjNmQzODdmMDIzMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DNQabtAWxQcVNGg9_oMH8JWkdoAHIrOkmlBiwpj1oG8'
+            }
+        };
+    
+        fetch(`https://api.themoviedb.org/3/movie/${theid}/credits?language=es-ES`, optionsForDirector)
+            .then(response => response.json())
+            .then((jsonData) => jsonData.crew.find(({ job }) => job === 'Director'))
+            .then(directorData => {
+                if (directorData) {
+                    setDirector(directorData.name);
+                } else {
+                    setDirector("Información no disponible");
+                }
+            })
+            .catch(err => console.error(err));
+    }, []);
+
+
+
+
+
+
 
     return (
         <div className="fullMovieDetail">
             {movie ? (
                 <div>
                     <div className="container">
-                        {store.auth === true && (
-                            <div className="container comment">
-                                <div>
-                                    {isOnTheWatchlist ? (
-                                        <button onClick={() => handleDeleteMovieWatchlist(tuUserID, theid)} type="button" className="removeFromWatchlist">
-                                            <span className="button__text">Remove from watchlist</span>
-                                            {/* Otro ícono o contenido si es necesario */}
-                                        </button>
-                                    ) : (
-                                        <button onClick={handleAddMovieToUserWatchlist} type="button" className="addToWatchList">
-                                            <span className="button__text">Add to watchlist</span>
-                                            {/* Otro ícono o contenido si es necesario */}
-                                        </button>
-                                    )}
-                                </div>
-                            </div>
-                        )}
+                    {store.auth === true && (
+    <div className="container comment">
+        <div>
+            {isOnTheWatchlist ? (
+                <button onClick={() => handleDeleteMovieWatchlist(tuUserID, theid)} type="button" className="removeFromWatchlist">
+                    <span className="button__text">Remove from watchlist</span>
+
+                </button>
+            ) : (
+                <button onClick={handleAddMovieToUserWatchlist} type="button" className="addToWatchList">
+                    <span className="button__text">Add to watchlist</span>
+
+                </button>
+            )}
+        </div>
+    </div>
+)}
                         <div className="row mt-5 ">
                             <div className="d-flex col-md-4">
                                 <img style={{ width: "350px", borderRadius: "15px" }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
@@ -113,7 +147,7 @@ export const MovieDetails = () => {
                                 <div className="d-flex">
                                     {cast.map((actor, index) => (
                                         <div key={index} className="me-3">
-                                            <img style={{ width: "60px", borderRadius: "15px" }} src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={movie.title} />
+                                            <img style={{ width: "80px", borderRadius: "15px" }} src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={movie.title} />
                                             <p className="text-center mt-2">{actor.name} - {actor.character}</p>
                                         </div>
                                     ))}
@@ -124,10 +158,10 @@ export const MovieDetails = () => {
                                     <div className="card-body">
                                         <p className="movie-specs">IMDB Score: {imdbRating === null ? "Unknown" : imdbRating}</p>
                                         <p className="movie-specs">Rotten Tomatoes Score: {rottenRating === null ? "Unknown" : rottenRating}</p>
-                                        <p className="movie-specs">Director: {movie.director === null ? "Unknown" : movie.director}</p>
+                                        <p className="movie-specs">Director: <b>{director}</b></p>
                                         <p className="movie-specs">Fecha de lanzamiento: {movie.release_date === null ? "Unknown" : movie.release_date}</p>
                                     </div>
-                                    <button onClick={() => console.log(movie)} >CLICK ME</button>
+                                    <button onClick={() => console.log(movie)} >CLICK ME</button>  
                                 </div>
                             </div>
                         </div>

@@ -66,7 +66,7 @@ const renderMovies = (filterFunction) => (
     <>
        {/* Primera pregunta */}
           <div className="form-card text-center">
-            <h2 className="fs-title mb-3">Estamos preparando la película perfecta</h2>
+            <h2 className="fs-title mb-3 h2ChatGptLoading">Estamos preparando la película perfecta</h2>
            <div className="loaderBars mx-auto"></div>
           </div>
     </>
