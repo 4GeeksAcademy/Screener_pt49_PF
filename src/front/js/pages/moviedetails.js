@@ -25,7 +25,7 @@ export const MovieDetails = () => {
         try {
             await actions.addMovieToWatchlist(tuUserID, theid);
             await actions.getUserWatchlist(tuUserID);  // Espera a que se actualice la watchlist
-    
+
             const userWatchlist = store.User_watchlist;
             if (userWatchlist.some(movie => movie.id === parseInt(theid))) {
                 setisOnTheWatchlist(true);
@@ -41,7 +41,7 @@ export const MovieDetails = () => {
         try {
             await actions.deleteMovieFromWatchlist(user_id, movie_id);
             await actions.getUserWatchlist(user_id);  // Espera a que se actualice la watchlist
-    
+
             const userWatchlist = store.User_watchlist;
             if (!userWatchlist.some(movie => movie.id === parseInt(movie_id))) {
                 setisOnTheWatchlist(false);
@@ -85,23 +85,23 @@ export const MovieDetails = () => {
             {movie ? (
                 <div>
                     <div className="container">
-                    {store.auth === true && (
-    <div className="container comment">
-        <div>
-            {isOnTheWatchlist ? (
-                <button onClick={() => handleDeleteMovieWatchlist(tuUserID, theid)} type="button" className="removeFromWatchlist">
-                    <span className="button__text">Remove from watchlist</span>
-                    {/* Otro ícono o contenido si es necesario */}
-                </button>
-            ) : (
-                <button onClick={handleAddMovieToUserWatchlist} type="button" className="addToWatchList">
-                    <span className="button__text">Add to watchlist</span>
-                    {/* Otro ícono o contenido si es necesario */}
-                </button>
-            )}
-        </div>
-    </div>
-)}
+                        {store.auth === true && (
+                            <div className="container comment">
+                                <div>
+                                    {isOnTheWatchlist ? (
+                                        <button onClick={() => handleDeleteMovieWatchlist(tuUserID, theid)} type="button" className="removeFromWatchlist">
+                                            <span className="button__text">Remove from watchlist</span>
+                                            {/* Otro ícono o contenido si es necesario */}
+                                        </button>
+                                    ) : (
+                                        <button onClick={handleAddMovieToUserWatchlist} type="button" className="addToWatchList">
+                                            <span className="button__text">Add to watchlist</span>
+                                            {/* Otro ícono o contenido si es necesario */}
+                                        </button>
+                                    )}
+                                </div>
+                            </div>
+                        )}
                         <div className="row mt-5 ">
                             <div className="d-flex col-md-4">
                                 <img style={{ width: "350px", borderRadius: "15px" }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
@@ -132,6 +132,12 @@ export const MovieDetails = () => {
                             </div>
                         </div>
                     </div>
+                    {store.auth === true ?
+                        <div className="container-fluid col-8">
+                            <Comment movieID={theid} userID={tuUserID} />
+                        </div>
+                        : <p className="container-fluid col-8 my-3">Debes <Link to="/login">iniciar sesión</Link> para dejar un comentario.</p>
+                    }
                     <div className="container-fluid col-8 list-group">
                         <h2>Comentarios:</h2>
                         <ul className="list-group">
@@ -145,12 +151,6 @@ export const MovieDetails = () => {
                             ))}
                         </ul>
                     </div>
-                    {store.auth === true ?
-                        <div className="container-fluid col-8">
-                            <Comment movieID={theid} userID={tuUserID} />
-                        </div>
-                        : <p className="container-fluid col-8 my-3">Debes <Link to="/login">iniciar sesión</Link> para dejar un comentario.</p>
-                    }
                 </div>
             ) : (
                 <p>Cargando...</p>

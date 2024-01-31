@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "../../styles/home.css";
 import Logo from "../../img/Logo150x150.png";
 import { Footer } from "../component/footer";
+import { MoviesUser } from "../pages/moviesUser";
 
 
 
@@ -14,15 +15,30 @@ export const Home = () => {
 
 	return (
 		<>
-			<div className="text-center mt-5">
-				<img src={Logo} alt="Client img" className="rounded mr-3" />
-				<div>
-					<Link to={"/recomendacion"}>
-						<button className="borderRecomendation"><span className="btn2"><span className="getRecomendationButton">Recomiendame una película!</span></span></button>
-					</Link>
+			<div className="homeBody text-center mt-5">
+				<div className="firstLanding">
+					<h1 className="firstLandingH1">
+						Joyas cinematográficas diseñadas solo para ti
+					</h1>
+					<h5 className="firstLandingH5">
+						Si eres como nosotros que nunca sabe que ver, y con ello puedes pasar horas, ¡estas en el lugar correcto!
+					</h5>
+					<div className="row">
+						<div className="col-6 toolContainer">
+							<Link to="/chatgpt">
+								<button className="borderRecomendation"><span className="toolButton"><span className="getRecomendationButton">¡Que la IA me sorprenda!</span></span></button>
+							</Link>
+						</div>
+						<div className="col-6 toolContainer">
+							<Link to={"/recomendacion"}>
+								<button className="borderRecomendation"><span className="toolButton"><span className="getRecomendationButton">Quiero elegir yo</span></span></button>
+							</Link>
+						</div>
+					</div>
 				</div>
-				<Link to="/chatgpt"><button>ChatGpt</button></Link>
-				<h1>Hi this is where you choose your film</h1>				
+				<div className="secondLanding row">
+					<MoviesUser />
+				</div>
 			</div >
 			<Footer />
 		</>

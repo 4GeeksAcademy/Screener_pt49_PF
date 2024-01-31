@@ -11,7 +11,7 @@ const AdminLogin = () => {
     const [password, setPassword] = useState('')
 
         return (
-        <div className="text-center bg-dark">
+        <div className="adminLoginMain text-center bg-dark">
             {store.adminLogin === true ? <Navigate to="/adminPanel"/> : null}
             <h1 className="text-center">Login</h1>
             <form className="w-50 mx-auto" onSubmit={(e)=>actions.loginAdmin(e,email,password)}>

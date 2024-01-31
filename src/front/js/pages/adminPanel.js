@@ -11,29 +11,33 @@ import Login from "./login";
 export const AdminPanel = () => {
   const { store, actions } = useContext(Context);
   return (
-    <div className="adminButtonsContainer mt-5">
-      {store.adminLogin === false ? <Navigate to="/adminLogin" /> : null}
-      <div className="btn-row">
-        <Link to={"/movies"}>
-          <button className="adminButtons btn btn-light btn-lg">Crear una película de la lista</button>
-        </Link>
-        <Link to={"/movieByName"}>
-          <button className="adminButtons btn btn-light btn-lg">Crear una película por nombre</button>
-        </Link>
-        <Link to={"/moviesApi"}>
-          <button className="adminButtons btn btn-light btn-lg">Administrador de peliculas</button>
-        </Link>
-        <Link to="/users">
-          <button className="adminButtons btn btn-light btn-lg">Administrador de usuarios</button>
-        </Link>
-        <Link to={"/movies/comment_list"}>
-          <button className="adminButtons btn btn-light btn-lg">Administrador de comentarios</button>
-        </Link>
-        <Link to={"/watchlist"}>
-          <button className="adminButtons btn btn-light btn-lg">Watchlist</button>
-        </Link>
-      </div>
+    <>
+    <div className="adminPanelMainCont">
+        <div className="adminButtonsContainer mt-5">
+          {store.adminLogin === false ? <Navigate to="/adminLogin" /> : null}
+          <div className="btn-row">
+            <Link to={"/movies"}>
+              <button className="adminButtons btn btn-light btn-lg">Crear una película de la lista</button>
+            </Link>
+            <Link to={"/movieByName"}>
+              <button className="adminButtons btn btn-light btn-lg">Crear una película por nombre</button>
+            </Link>
+            <Link to={"/moviesApi"}>
+              <button className="adminButtons btn btn-light btn-lg">Administrador de peliculas</button>
+            </Link>
+            <Link to="/users">
+              <button className="adminButtons btn btn-light btn-lg">Administrador de usuarios</button>
+            </Link>
+            <Link to={"/movies/comment_list"}>
+              <button className="adminButtons btn btn-light btn-lg">Administrador de comentarios</button>
+            </Link>
+            <Link to={"/watchlist"}>
+              <button className="adminButtons btn btn-light btn-lg">Watchlist</button>
+            </Link>
+          </div>
+        </div>
     </div>
+    </>
   );
 };
 

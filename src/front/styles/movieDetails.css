@@ -1,11 +1,6 @@
-body{ 
-    background-color: black;
-    color: white;
-    height: -webkit-fill-available;
 
-}
 .fullMovieDetail {
-    color: white
+  padding-top: 80px;
 }
 .addToWatchList {
     position: relative;
