@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { Navigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { ChatGpt } from "../component/chatGpt";
 import "../../styles/watchlistUser.css";
 export const WatchlistUser = () => {
     const [deletionCompleted, setDeletionCompleted] = useState(false);
@@ -45,6 +46,7 @@ export const WatchlistUser = () => {
                     </div>
                 ))}
             </div>
+                    <ChatGpt/>
         </div>
     );
 };

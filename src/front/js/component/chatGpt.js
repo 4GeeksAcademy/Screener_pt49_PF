@@ -33,7 +33,7 @@ export const ChatGpt = () => {
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer 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`,
+                        'Authorization': `Bearer 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`,
                     },
                 }
             );
@@ -49,7 +49,7 @@ export const ChatGpt = () => {
 
 
     return (
-        <div>
+        <div className="mt-5">
             {loading &&           
                 <div className="form-card text-center">
                     <h2 className="fs-title ">ScreeneRChat está leyendo tus 
@@ -71,7 +71,7 @@ export const ChatGpt = () => {
                 <div>
                 <button onClick={handleObtenerRecomendaciones} className="borderRecomendation">
     <span className="btn2">
-        <span className="getRecomendationButton">Obtener Recomendaciones</span>
+        <span className="getRecomendationButton">Obten recomendaciones de Screener en base a tu watchlist.</span>
     </span>
 </button>
                 </div>

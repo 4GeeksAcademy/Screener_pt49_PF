@@ -6,12 +6,15 @@ import { Link } from "react-router-dom";
 import "../../styles/movieDetails.css";
 
 
+
 export const MovieDetails = () => {
     const { store, actions } = useContext(Context);
     const { theid } = useParams();
     const [cast, setCast] = useState([]);
     const [director, setDirector] = useState("");
     const [isOnTheWatchlist, setisOnTheWatchlist] = useState(false)
+    const [streamingInfo, setStreamingInfo] = useState([]);
+
 
 
     const options = {
@@ -30,8 +33,6 @@ export const MovieDetails = () => {
             const userWatchlist = store.User_watchlist;
             if (userWatchlist.some(movie => movie.id === parseInt(theid))) {
                 setisOnTheWatchlist(true);
-            } else {
-                console.log("No está.");
             }
         } catch (error) {
             console.error(error);
@@ -54,6 +55,8 @@ export const MovieDetails = () => {
 
 
     useEffect(() => {
+
+        console.log(parseInt(theid))
         const fetchData = async () => {
             try {
                 if (cast.length === 0) {
@@ -78,6 +81,8 @@ export const MovieDetails = () => {
     const rottenRating = store.rottenRating
 
 
+
+
     const movie = store.movies.find(movie => movie.id === parseInt(theid));
     const relevantComments = store.allComments.filter(comment => comment.movie_id === parseInt(theid));
 
@@ -94,16 +99,20 @@ export const MovieDetails = () => {
             .then(response => response.json())
             .then((jsonData) => jsonData.crew.find(({ job }) => job === 'Director'))
             .then(directorData => {
-                console.log(directorData);
                 if (directorData) {
                     setDirector(directorData.name);
-                    console.log(directorData.name);
                 } else {
                     setDirector("Información no disponible");
                 }
             })
             .catch(err => console.error(err));
     }, []);
+
+
+
+
+
+
 
     return (
         <div className="fullMovieDetail">
