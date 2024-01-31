@@ -67,6 +67,7 @@ export const MovieDetails = () => {
                 actions.getMoviesFromApi();
                 actions.getComments();
                 actions.getUserWatchlist(theid);
+                actions.getRating(theid);
                 handleAddMovieToUserWatchlist()
 
             } catch (error) {
@@ -77,8 +78,8 @@ export const MovieDetails = () => {
     }, []);
 
     const tuUserID = store.userId
-    const imdbRating = store.imdbRating
     const rottenRating = store.rottenRating
+    const imdbRating = store.imdbRating
 
 
 

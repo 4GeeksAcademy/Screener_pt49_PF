@@ -1,15 +1,19 @@
-* {
+.mainContainerRecom {
+  padding-top: 60px;
+}
+
+/* * {
   margin: 0;
   padding: 0;
-}
+} */
 
 html {
     height: 100%;
 }
 
-#grad1 {
+/* #grad1 {
     background-color: #000000;
-};
+}; */
 
 .fit-image{
     width: 100%;
