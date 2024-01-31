@@ -7,9 +7,11 @@ export const ChatGpt = () => {
     const [chatMensajes, setChatMensajes] = useState([]);
     const { store } = useContext(Context);
     const [loading, setLoading] = useState(false);
+    const [showMessage, setShowMessage] = useState(true);
 
     const handleObtenerRecomendaciones = async () => {
         setLoading(true);
+        setShowMessage(false);
         const movieNames = store.User_watchlist.map(item => item.title);
         const mensajes = [
             {"role": "system", "content": "You are a helpful assistant for movie recomendations, use a list for recomendations, do not repeat any movie name, use code in the response like you are doing a unordered list"},
@@ -49,14 +51,23 @@ export const ChatGpt = () => {
 
 
     return (
+        <>
+        <div class="container border-top border-white my-5"></div>
         <div className="mt-5">
             {loading &&           
                 <div className="form-card text-center">
-                    <h2 className="fs-title ">Estamos leyendo los datos de tus
-                    películas guardadas<br/> para buscar las mejores recomendaciones para ti. </h2>
+                    <h2 className="fs-title ">Estamos leyendo los datos de tus películas guardadas<br/> para buscar las mejores recomendaciones para ti. </h2>
                     <div className="loaderBars mx-auto"></div>
                 </div>  
             }
+            
+            {/* Mensaje fijo */}
+            {showMessage && (
+                <div className="fixed-message">
+                    <p><b>Puedes usar la inteligencia artificial para descubrir más películas parecidas a tu watchlist, solo da click abajo.</b></p>
+                </div>
+            )}
+
             {/* Interfaz del chat */}
             <div className="chatbox container">
                 {/* Mostrar mensajes del chat aquí */}
@@ -66,16 +77,19 @@ export const ChatGpt = () => {
                     </div>
                 ))}
             </div>
+            
+
             {/* Botón para obtener recomendaciones */}
             <div className="container inboxContainer">
                 <div>
-                <button onClick={handleObtenerRecomendaciones} className="borderRecomendation">
-    <span className="btn2">
-        <span className="getRecomendationButton">Obten recomendaciones de ScreenerAI en base a tu watchlist.</span>
-    </span>
-</button>
+                    <button onClick={handleObtenerRecomendaciones} className="cti">
+                        <div className="CTI">
+                            Recomendaciones de la IA
+                        </div>
+                    </button>
                 </div>
             </div>
         </div>
+        </>
     );
 };

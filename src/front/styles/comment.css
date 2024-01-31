@@ -1,0 +1,14 @@
+.commentCommentBox{
+    padding: 1% !important;
+}
+
+.commentPostComment{
+    background-color: rgb(52, 52, 52);
+    border: solid rgba(255, 255, 255, 0.249) 1px;
+    margin-top: 5%;
+    text-align: center !important;
+
+    width: 40%;
+    padding: 0%;
+    height: 60px;
+}

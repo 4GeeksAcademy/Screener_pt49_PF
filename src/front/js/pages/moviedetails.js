@@ -122,22 +122,12 @@ return (
             <div className="container">
     {store.auth === true && (
             <div className="container comment">
-                <div>
-                {isOnTheWatchlist ? (
-                    <button onClick={() => handleDeleteMovieWatchlist(tuUserID, theid)} type="button" className="removeFromWatchlist">
-                        <span className="button__text">Remove from watchlist</span>
-                    </button>
-        ) : (
-                    <button onClick={handleAddMovieToUserWatchlist} type="button" className="addToWatchList">
-                    <span className="button__text">Add to watchlist</span>
-                    </button>
-        )}
-                 </div>
+                
              </div>
         )}
             <div className="row mt-5 ">
                 <div className="d-flex col-md-4">
-                    <img style={{ maxWidth: "100%", borderRadius: "15px", maxHeight:"90%" }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+                    <img className="movieDetailsPoster" style={{ maxWidth: "100%", borderRadius: "15px", maxHeight:"90%" }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
                 </div>
                     <div className="col-md-4">
                         <h1>{movie.title}</h1>
@@ -153,31 +143,43 @@ return (
                                 </div>
                             </div>
                             <div className="col-md-4">
-                                <div className="card bg-dark">
+                                <div className="card infoMovieCard">
                                     <div className="card-body">
                                         <p className="movie-specs">IMDB Score: {imdbRating === null ? "Unknown" : imdbRating}</p>
                                         <p className="movie-specs">Rotten Tomatoes Score: {rottenRating === null ? "Unknown" : rottenRating}</p>
                                         <p className="movie-specs">Director: <b>{director}</b></p>
-                                        <p className="movie-specs">Fecha de lanzamiento: {movie.release_date === null ? "Unknown" : movie.release_date}</p>
-                                    </div>
-                                    <button onClick={() => console.log(movie)} >CLICK ME</button>  
+                                        <p className="movie-specs">Fecha de lanzamiento: {movie.release_date === null ? "Unknown" : <b>{movie.release_date}</b>}</p>
+                                    </div> 
                                 </div>
+                                {store.auth === true && (
+                                <div>
+
+                                    {isOnTheWatchlist ? (
+                                        <button  onClick={() => handleDeleteMovieWatchlist(tuUserID, theid)} type="button" className="removeFromWatchlistButton">Eliminar de la watchlist</button>
+                            ) : (
+                                        <button onClick={handleAddMovieToUserWatchlist} type="button" className="addToWatchListButton text-center">Agregar a la watchlist</button>
+                            )}
+                                </div>
+                                 )}
                             </div>
+            
                         </div>
+                        <div className="container border-top border-white mt-4 my-3 mb-5"></div>
                     </div>
                     {store.auth === true ?
                         <div className="container-fluid col-8">
                             <Comment movieID={theid} userID={tuUserID} />
                         </div>
-                        : <p className="container-fluid col-8 my-3">Debes <Link to="/login">iniciar sesión</Link> para dejar un comentario.</p>
+                        : <p className="text-center container-fluid col-8 my-3">Debes <Link to="/login">iniciar sesión</Link> para dejar un comentario.</p>
                     }
-                    <div className="container-fluid col-8 list-group">
-                        <h2>Comentarios:</h2>
+                    <div className="container-fluid col-8 list-group movieDetailsContainer">
+                        <h2 className="mb-3">Comentarios:</h2>
                         <ul className="list-group">
                             {relevantComments.reverse().map((comment, index) => (
-                                <li className="list-group-item d-flex justify-content-between align-items-start bg-secondary text-light mb-2" key={index}>
+                                <li className="list-group-item d-flex justify-content-between align-items-start bg-secondary text-light mb-3 movieDetailsCommentBox" key={index}>
                                     <div className="ms-2 me-auto">
-                                        <div className="fw-bold">{comment.name} dice:</div>
+                                        <div className="fw-bold">{comment.name}:</div>
+                                        <div className="container border-top border-white mb-2"></div>
                                         {comment.comment_body}
                                     </div>
                                 </li>

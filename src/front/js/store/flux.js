@@ -466,7 +466,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			
 					if (response.ok) {
-						alert("Your comment has been added");
 					} else {
 						console.error("Error posting comment:", response.status, response.statusText);
 						// Obtén y muestra el mensaje de error del servidor si está disponible
