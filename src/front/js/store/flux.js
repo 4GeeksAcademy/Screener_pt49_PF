@@ -27,6 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			adminLogin: false,
 			moviesByName:[],
 			imdbRating: [],
+			imdbPreviewRating: [],
 			rottenRating: []
 
 		},
@@ -348,7 +349,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 			
 				try {
-					const response = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', options);
+					const response = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=es-ES&page=1', options);
 					const data = await response.json();
 			
 					if (data.results) {
@@ -423,18 +424,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.error('Error al intentar eliminar la película:', error.message);
 					console.error('Detalles del error:', error);
-				}
-			},
-			getMessage: async () => {
-				try{
-
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-					const data = await resp.json()
-					setStore({ message: data.message })
-					// don't forget to return something, that is how the async resolves
-					return data;
-				}catch(error){
-					console.log("Error loading message from backend", error)
 				}
 			},
 

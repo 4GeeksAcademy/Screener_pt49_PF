@@ -2,10 +2,9 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/home.css";
-import Logo from "../../img/Logo150x150.png";
 import { Footer } from "../component/footer";
 import { MoviesUser } from "../pages/moviesUser";
-
+import apNow from "../../img/apNow.png";
 
 
 
@@ -16,7 +15,7 @@ export const Home = () => {
 	return (
 		<>
 			<div className="homeBody text-center mt-5">
-				<div className="firstLanding">
+				<div  className="firstLanding" src={apNow} style={{backgroundImage: `url(${apNow})`}}>
 					<h1 className="firstLandingH1">
 						Joyas cinematográficas diseñadas solo para ti
 					</h1>
@@ -37,6 +36,9 @@ export const Home = () => {
 					</div>
 				</div>
 				<div className="secondLanding row">
+					<MoviesUser />
+				</div>
+				<div className="thirdLanding row">
 					<MoviesUser />
 				</div>
 			</div >
