@@ -115,43 +115,41 @@ export const MovieDetails = () => {
 
 
 
-    return (
-        <div className="fullMovieDetail">
-            {movie ? (
-                <div>
-                    <div className="container">
-                    {store.auth === true && (
-    <div className="container comment">
+return (
+    <div className="fullMovieDetail">
+    {movie ? (
         <div>
-            {isOnTheWatchlist ? (
-                <button onClick={() => handleDeleteMovieWatchlist(tuUserID, theid)} type="button" className="removeFromWatchlist">
-                    <span className="button__text">Remove from watchlist</span>
-
-                </button>
-            ) : (
-                <button onClick={handleAddMovieToUserWatchlist} type="button" className="addToWatchList">
+            <div className="container">
+    {store.auth === true && (
+            <div className="container comment">
+                <div>
+                {isOnTheWatchlist ? (
+                    <button onClick={() => handleDeleteMovieWatchlist(tuUserID, theid)} type="button" className="removeFromWatchlist">
+                        <span className="button__text">Remove from watchlist</span>
+                    </button>
+        ) : (
+                    <button onClick={handleAddMovieToUserWatchlist} type="button" className="addToWatchList">
                     <span className="button__text">Add to watchlist</span>
-
-                </button>
-            )}
-        </div>
-    </div>
-)}
-                        <div className="row mt-5 ">
-                            <div className="d-flex col-md-4">
-                                <img style={{ width: "350px", borderRadius: "15px" }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-                            </div>
-                            <div className="col-md-4">
-                                <h1>{movie.title}</h1>
-                                <p>{movie.overview}</p>
-                                <p>Título original: <b>{movie.original_title}</b></p>
-                                <div className="d-flex">
-                                    {cast.map((actor, index) => (
-                                        <div key={index} className="me-3">
-                                            <img style={{ width: "80px", borderRadius: "15px" }} src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={movie.title} />
-                                            <p className="text-center mt-2">{actor.name} - {actor.character}</p>
-                                        </div>
-                                    ))}
+                    </button>
+        )}
+                 </div>
+             </div>
+        )}
+            <div className="row mt-5 ">
+                <div className="d-flex col-md-4">
+                    <img style={{ maxWidth: "100%", borderRadius: "15px", maxHeight:"90%" }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+                </div>
+                    <div className="col-md-4">
+                        <h1>{movie.title}</h1>
+                        <p>{movie.overview}</p>
+                        <p>Título original: <b>{movie.original_title}</b></p>
+                        <div className="d-flex">
+                            {cast.map((actor, index) => (
+                                 <div key={index} className="me-3">
+                                    <img style={{ width: "80px", borderRadius: "15px" }} src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={movie.title} />
+                                    <p className="text-center mt-2">{actor.name} - {actor.character}</p>
+                                </div>
+                            ))}
                                 </div>
                             </div>
                             <div className="col-md-4">
@@ -183,13 +181,13 @@ export const MovieDetails = () => {
                                         {comment.comment_body}
                                     </div>
                                 </li>
-                            ))}
+                    ))}
                         </ul>
                     </div>
-                </div>
-            ) : (
-                <p>Cargando...</p>
-            )}
         </div>
+                    ) : (
+        <p>Cargando...</p>
+                    )}
+    </div>
     );
 };

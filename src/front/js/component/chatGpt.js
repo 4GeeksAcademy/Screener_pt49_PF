@@ -52,7 +52,7 @@ export const ChatGpt = () => {
         <div className="mt-5">
             {loading &&           
                 <div className="form-card text-center">
-                    <h2 className="fs-title ">ScreeneRChat está leyendo tus 
+                    <h2 className="fs-title ">Estamos leyendo los datos de tus
                     películas guardadas<br/> para buscar las mejores recomendaciones para ti. </h2>
                     <div className="loaderBars mx-auto"></div>
                 </div>  
@@ -71,7 +71,7 @@ export const ChatGpt = () => {
                 <div>
                 <button onClick={handleObtenerRecomendaciones} className="borderRecomendation">
     <span className="btn2">
-        <span className="getRecomendationButton">Obten recomendaciones de Screener en base a tu watchlist.</span>
+        <span className="getRecomendationButton">Obten recomendaciones de ScreenerAI en base a tu watchlist.</span>
     </span>
 </button>
                 </div>

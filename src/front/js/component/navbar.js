@@ -48,7 +48,7 @@ export const Navbar = () => {
 						{/* <Link to={"/moviesUser"} ><button className="navButton" >Peliculas</button></Link> */}
 						<Link to={"/randomMovie"} ><button className="navButton" >Pelicula aleatoria</button></Link>
 						<Link to={"/watchlistUser"} >
-							{store.auth === true ? <button className="navButton btn text-light">Mi lista<span className="badge bg-secondary rounded-pill ms-2">{store.watchlist.length}</span>
+							{store.auth === true ? <button className="navButton btn text-light">Mi Watchlist<span className="badge bg-light text-dark rounded-pill ms-2">{store.User_watchlist.length}</span>
 							</button> : null}
 						</Link>
 					</div>
