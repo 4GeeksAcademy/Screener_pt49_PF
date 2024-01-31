@@ -199,3 +199,7 @@ html {
   75%  {background-size:25px 50% ,25px 50% ,25px 100%}
   100% {background-size:25px 50% ,25px 50% ,25px 50%}
 }
+
+.h2ChatGptLoading{
+  color: white;
+}
