@@ -38,9 +38,6 @@ export const Home = () => {
 				<div className="secondLanding row">
 					<MoviesUser />
 				</div>
-				{/* <div className="thirdLanding row">
-					<MoviesUser />
-				</div> */}
 			</div >
 			<Footer />
 		</>
