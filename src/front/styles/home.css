@@ -45,11 +45,13 @@ body {
     border-radius: 30px;
     color: white;
     transition: all 0.3s ease-in-out;
+    font-size: large;
   }
   
   .toolButton:hover {
     box-shadow: 1px 1px 200px #252525;
-    background-color: #2D3250;
+    background-color: #F6B17A;
+    color: black;
     border: none;
   }
   

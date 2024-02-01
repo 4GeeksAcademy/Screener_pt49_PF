@@ -25,10 +25,7 @@ export const Home = () => {
 						Si eres de los que pueden pasar horas buscando buen cine ¡estas en el lugar correcto!					
 					</h5>
 					<div className="row">
-						<div className="col-lg-12 col-md-12 toolContainer">
-							<Link to="/chatgpt">
-								<button className="toolButton type1">¡Que la IA me sorprenda!</button>
-							</Link>
+						<div className="col-12 toolContainer">
 							<Link to={"/randomMovie"}>
 								<button className="toolButton type1"><span className="btn-text">Recomendación aleatoria</span></button>
 							</Link>
@@ -41,9 +38,9 @@ export const Home = () => {
 				<div className="secondLanding row">
 					<MoviesUser />
 				</div>
-				<div className="thirdLanding row">
+				{/* <div className="thirdLanding row">
 					<MoviesUser />
-				</div>
+				</div> */}
 			</div >
 			<Footer />
 		</>
