@@ -105,14 +105,17 @@ export const MovieByName = () => {
 
                     <div className="container">
                         <div className="row">
-                            <div className="col-md-4">
+                            <div className="col-md-3">
                                 {renderInputsForColumn(propertyLabels.slice(0, 9))}
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-md-3">
                                 {renderInputsForColumn(propertyLabels.slice(9, 18))}
                             </div>
-                            <div className="col-md-4">
-                                {renderInputsForColumn(propertyLabels.slice(18))}
+                            <div className="col-md-3">
+                                {renderInputsForColumn(propertyLabels.slice(18, 27))}
+                            </div>
+                            <div className="col-md-3">
+                                {renderInputsForColumn(propertyLabels.slice(27))}
                             </div>
                         </div>
                     </div>
