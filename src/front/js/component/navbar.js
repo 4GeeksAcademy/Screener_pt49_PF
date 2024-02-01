@@ -49,7 +49,7 @@ export const Navbar = () => {
 						<button className="navButton" >Series</button>
 						<button className="navButton" >Colecciones</button>
 						<button className="navButton" >Festivales</button>
-						<Link to={"/randomMovie"} ><button className="navButton" >Pelicula aleatoria</button></Link>
+						<button className="navButton" >Smart Favorites</button>
 						<Link to={"/watchlistUser"} >
 							{store.auth === true ? <button className="navButton btn text-light">Mi lista<span className="badge bg-secondary rounded-pill ms-2">{store.watchlist.length}</span>
 							</button> : null}

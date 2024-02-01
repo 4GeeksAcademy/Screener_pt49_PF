@@ -1,8 +1,8 @@
 
 .navbar {
-    align-items: center; /* Centra los elementos verticalmente */
-    height: 60px; /* Ajusta la altura según tus necesidades */
-    background-color:#2D3250; /* Ajusta el color de fondo según tus necesidades */
+    align-items: center; 
+    height: 60px; 
+    background-color:#2D3250; 
     padding-left: 64px;
     padding-right: 64px;
     margin-bottom: 20px;

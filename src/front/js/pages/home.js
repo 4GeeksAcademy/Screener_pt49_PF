@@ -17,20 +17,23 @@ export const Home = () => {
 			<div className="homeBody text-center mt-5">
 				<div  className="firstLanding" src={apNow} style={{backgroundImage: `url(${apNow})`}}>
 					<h1 className="firstLandingH1">
-						Joyas cinematográficas diseñadas solo para ti
+						Selección de joyas cinematográficas 
+						<br></br>
+						basada en tus gustos
 					</h1>
 					<h5 className="firstLandingH5">
-						Si eres como nosotros que nunca sabe que ver, y con ello puedes pasar horas, ¡estas en el lugar correcto!
+						Si eres de los que pueden pasar horas buscando buen cine ¡estas en el lugar correcto!					
 					</h5>
 					<div className="row">
-						<div className="col-6 toolContainer">
+						<div className="col-lg-12 col-md-12 toolContainer">
 							<Link to="/chatgpt">
-								<button className="borderRecomendation"><span className="toolButton"><span className="getRecomendationButton">¡Que la IA me sorprenda!</span></span></button>
+								<button className="toolButton type1">¡Que la IA me sorprenda!</button>
 							</Link>
-						</div>
-						<div className="col-6 toolContainer">
+							<Link to={"/randomMovie"}>
+								<button className="toolButton type1"><span className="btn-text">Recomendación aleatoria</span></button>
+							</Link>
 							<Link to={"/recomendacion"}>
-								<button className="borderRecomendation"><span className="toolButton"><span className="getRecomendationButton">Quiero elegir yo</span></span></button>
+								<button className="toolButton type1"><span className="btn-text">Quiero elegir yo</span></button>
 							</Link>
 						</div>
 					</div>
