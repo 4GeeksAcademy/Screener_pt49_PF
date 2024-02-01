@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/randomMovie.css";
+import { Navigate } from "react-router-dom";
+
 
 export const RandomMovie = () => {
   const { store, actions } = useContext(Context);
@@ -42,7 +44,7 @@ export const RandomMovie = () => {
         </>
       ) : (
         <div className="container text-center mt-5 pt-4">
-          <p><b>Aqui puedes obtener una pelicula al azar pero debes iniciar sesión primero. <Link to="/">¡Haz clic aquí para iniciar sesión!</Link></b></p>
+          <p><b>Aqui puedes obtener una pelicula al azar pero debes iniciar sesión primero. <Link to="/login">¡Haz clic aquí para iniciar sesión!</Link></b></p>
         </div>
       )}
     </>

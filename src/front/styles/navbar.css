@@ -11,6 +11,18 @@
     transition: all 0.5s;
   }
 
+ .dropdownButton{
+  color: white;
+  }
+ .dropdownButton:hover{
+  color: #F6B17A;
+  background-color: black;
+ }
+
+ .navButton{
+  color: white
+ }
+
  .navButton:hover{
   color: #F6B17A;
  }
