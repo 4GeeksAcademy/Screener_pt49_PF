@@ -10,6 +10,7 @@ import apNow from "../../img/apNow.png";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
+	const isAuthenticated = store.auth;
 
 
 	return (
@@ -26,12 +27,21 @@ export const Home = () => {
 					</h5>
 					<div className="row">
 						<div className="col-12 toolContainer">
+						{isAuthenticated && (
 							<Link to={"/randomMovie"}>
-								<button className="toolButton type1"><span className="btn-text">Recomendación aleatoria</span></button>
+								<button className="toolButton type1"><span className="btn-text">Ruleta de películas</span></button>
 							</Link>
+						)}
 							<Link to={"/recomendacion"}>
-								<button className="toolButton type1"><span className="btn-text">Quiero elegir yo</span></button>
+								<button className="toolButton type1"><span className="btn-text">Recomiendame una pelicula</span></button>
 							</Link>
+                            {isAuthenticated && (
+                                <Link to={"/watchlistUser"}>
+                                    <button className="toolButton type1">
+                                        <span className="btn-text">AI en tu watchlist</span>
+                                    </button>
+                                </Link>
+                            )}
 						</div>
 					</div>
 				</div>

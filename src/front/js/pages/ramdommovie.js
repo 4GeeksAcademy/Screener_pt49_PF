@@ -27,7 +27,8 @@ export const RandomMovie = () => {
       {store.auth ? (
         <>
           <div className="mainCont container text-center">
-            <button onClick={() => getRandomMovie()}>Get a random Movie!</button>
+
+            <button onClick={() => getRandomMovie()} className="toolButton type1 mt-5 mb-2"><span className="btn-text">Una película al azar</span></button>
           </div>
           {randomMovie ? (
             <>
@@ -39,7 +40,7 @@ export const RandomMovie = () => {
               </div>
             </>
           ) : (
-            <p className="text-center">No hay pelicula seleccionada!</p>
+            <p className="text-center">Haz click para obtener una película al azar</p>
           )}
         </>
       ) : (
