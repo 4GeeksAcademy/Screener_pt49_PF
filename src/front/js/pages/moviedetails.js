@@ -148,7 +148,7 @@ return (
                                 <div className="card infoMovieCard">
                                     <div className="card-body">
                                         <p className="movie-specs"><img style={{width: "20%"}} src={IMDbLogo} />{imdbRating === null ? "Unknown" : imdbRating}</p>
-                                        <p className="movie-specs"><img style={{width: "25%"}} src={RottenLogo} /> {rottenRating === null ? "Unknown" : rottenRating}</p>
+                                        <p className="movie-specs"><img style={{width: "24%"}} src={RottenLogo} /> {rottenRating === null ? "Unknown" : rottenRating}</p>
                                         <p className="movie-specs">Director: <b>{director}</b></p>
                                         <p className="movie-specs">Fecha de lanzamiento: {movie.release_date === null ? "Unknown" : <b>{movie.release_date}</b>}</p>
                                     </div> 
