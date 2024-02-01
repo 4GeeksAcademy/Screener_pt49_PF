@@ -1,3 +1,35 @@
+.privateCard {
+    width: 800px;
+    height: 400px;
+    margin-top: 60px;
+    margin-left: 60px;
+  }
 
-.mainContainerPrivate{
+  .privateTitle {
+    
+    text-align: center;
+  }
+
+  
+.PrivateButton{
+    border-radius: 3px;
+    background-color:#424769;
+    color: white;
+    border: 2px solid #a2a2a2;
+    padding: 10px ;
+    text-align: center;
+    font-size: 16px;
+    margin-left:350px;
+    margin-bottom: 10px;
+    
 }
+
+.privateButton:hover{
+  background-color: #7077A1;
+}
+
+.privateCard {
+    background: rgb(59,57,57);
+   
+  }
+  

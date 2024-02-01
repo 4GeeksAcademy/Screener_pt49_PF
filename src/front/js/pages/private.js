@@ -5,50 +5,72 @@ import "../../styles/private.css"
 
 
 const Private = () => {
+     // dar memoria  a las variables 
+     const [name, setName]= useState("");
+     const [surname, setSurname]= useState("");
+     const [email, setEmail] = useState("");
+     const [password, setPassword] = useState("");
+    
+     
 
-    const { store, actions } = useContext(Context);
+     const{ store, actions}=useContext(Context)
+
+     
+        function EditPrivateData(e){
+        e.preventDefault()
+         actions.editprivateUser(name,surname, email, password)
+    }
+
+   
 
 
     return (
 
-        <div className="mainContainerPrivate container">
-            {localStorage.userAuth === false ? <Navigate to="/Login"/> : null}
-            <div className="row gutters mt-5">
-                <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-                    <div className="card h-100 bg-dark">
+        
+                    <div className="privateContainer">
+                    {localStorage.userAuth === false ? <Navigate to="/Login" /> : null}
+                    <div className=" card privateCard h-100 bg-dark">
                         <div className="card-body">
                             <div className="row gutters-1">
                                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <h2 className="mb-2 mt-2 text-center ">Mi perfil de usuario</h2>
+                                    <h1 className=" privateTitle mb-3">Mi perfil de usuario</h1>
                                 </div>
                                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div className="form-group">
-                                        <label for="fullName">Nombre</label>
-                                        <input type="text" className="form-control" id="fullName" placeholder="introduce tu nombre" />
+                                    <div className="form-group nombre mb-3">
+                                        <label for="fullName"  className="mb-2">Nombre</label>
+                                        <input type="text" className="form-control" id="fullName" placeholder="" 
+                                        value={name}
+                                        onChange={(e)=> setName(e.target.value)}/>
                                     </div>
                                 </div>
                                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div className="form-group">
-                                        <label for="eMail">E-mail</label>
-                                        <input type="email" className="form-control" id="eMail" placeholder="nombre@.com" />
+                                        <label for="eMail"  className="mb-2">E-mail</label>
+                                        <input type="email" className="form-control" id="eMail" placeholder="" 
+                                        value={email}
+                                        onChange={(e)=> setEmail(e.target.value)}/>
                                     </div>
                                 </div>
                                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div className="form-group">
-                                        <label for="surname">Apellido</label>
-                                        <input type="text" className="form-control" id="surname" placeholder="introduce tu apellido" />
+                                        <label for="surname" className="mb-2">Apellido</label>
+                                        <input type="text" className="form-control" id="surname" placeholder=""
+                                        value={surname}
+                                        onChange={(e)=> setSurname(e.target.value)}/> 
                                     </div>
                                 </div>
                                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div className="form-group">
-                                        <label for="website">Password</label>
-                                        <input type="password" className="form-control" id="website" placeholder="password" />
+                                        <label for="website" className="mb-2">Password</label>
+                                        <input type="password" className="form-control" id="website" placeholder=""
+                                        value={password}
+                                        onChange={(e)=> setPassword(e.target.value)} />
                                     </div>
                                 </div>
                             </div>
                             <div className="row gutters-2">
                                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 ml-5 mt-5">
-                                    <div><h4>Mis preferencias</h4></div>
+                                    <div className="preferencias mb-3"><h5>Mis preferencias</h5></div>
                                     <div className="custom-control custom-checkbox">
                                         <div className="form-check">
                                             <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault1" />
@@ -86,10 +108,10 @@ const Private = () => {
                                                 Terror
                                             </label>
                                         </div>
-                                     </div>
+                                    </div>
                                 </div>
                                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 ml-5 mt-5">
-                                    <div><h4>Mis subscripciones</h4></div>
+                                    <div className="subscripciones mb-3"><h5>Mis subscripciones</h5></div>
                                     <div className="custom-control custom-checkbox">
                                         <div className="form-check">
                                             <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault4" />
@@ -115,17 +137,15 @@ const Private = () => {
                             <div className="row gutters mt-5">
                                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div className="text-right">
-                                        <button type="button" id="submit" name="submit" className="btn btn-success">Guardar</button>
-                                        <button type="button" id="submit" name="submit" className="btn btn-secondary">Actualizar</button>
-                                        <button type="button" id="submit" name="submit" className="btn btn-danger">Eliminar</button>
+                                        <button type="button" id="submit" name="submit" className=" PrivateButton ">Guardar</button>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+        
     );
 }
 
