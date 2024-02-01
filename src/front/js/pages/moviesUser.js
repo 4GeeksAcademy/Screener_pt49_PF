@@ -23,7 +23,6 @@ export const MoviesUser = () => {
     <div className="container moviesUserContainer">
       <div className="pageTitle title text-start m-4">
         <h2>Nuestras recomendaciones </h2>
-      <button onClick={()=>console.log(store.movies)}>Click me!</button>
       </div>
       <div className="row">
         {store.movies.length > 0 &&

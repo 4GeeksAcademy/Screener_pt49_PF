@@ -33,8 +33,9 @@ export const Signup = () => {
             {store.isRegistered === true ? <Navigate to="/login" /> : null}
 
                 <div className="card signupCard bg-dark">
-
-                    <h1>Crear cuenta</h1>
+                    <div className="cardTitle card-header bg-dark border-light rounded">
+                        <h1>Crear cuenta</h1>
+                    </div>
                     <form className="w-80 mx-auto p-4 " onSubmit={sendData} >
                         <div className="mb-3">
                             <label htmlFor="exampleInputEmail1" className="form-label">Correo electronico</label>

@@ -26,7 +26,7 @@ const Login = () => {
                     <div className="cardTitle card-header bg-dark border-light rounded">
                         <h2>Iniciar sesión</h2>
                     </div>
-                    <form className="w-80 mx-auto p-4" onSubmit={(e) => actions.loginData(e, email, password)}>
+                    <form className="loginForm" onSubmit={(e) => actions.loginData(e, email, password)}>
                         <div className="col-auto mb-4 px-4">
                             <label htmlFor="staticEmail2" className="visually-hidden">Email</label>
                             <input type="text" onChange={(e) => setEmail(e.target.value)} className="form-control" id="staticEmail2" placeholder="usuario@gmail.com" />
@@ -40,8 +40,9 @@ const Login = () => {
                         </div>
                         <a className="text-center">¿Has olvidado la contraseña?</a>
                     </form>
-                    <div>
-                        <Link className="" to="/signup"><a className="text-center">Crear cuenta nueva</a></Link>
+                    <p className="preguntaCuenta">¿No tienes cuenta?</p>
+                    <div className="crearCuenta">
+                        <Link to="/signup"><a>Crear cuenta</a></Link>
                     </div>
                 </div>
             </div>

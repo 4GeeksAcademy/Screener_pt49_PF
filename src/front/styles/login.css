@@ -1,12 +1,26 @@
 .loginCard {
   width: 400px;
-  height: 400px;
+  height: 430px;
   margin-top: 100px;
 }
 .cardTitle {
   color: #a2a2a2;
+  padding-top: 25px;
 }
 
+.loginForm{
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 12px;
+}
+
+.preguntaCuenta{
+border-color: aliceblue;
+  margin-bottom: 7px;
+}
+.crearCuenta{
+  padding-left: 230px;
+}
 
 .loginButton{
     border-radius: 3px;
