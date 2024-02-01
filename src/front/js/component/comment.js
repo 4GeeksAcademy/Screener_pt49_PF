@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import "../../styles/comment.css";
 
 export const Comment = ({ movieID, UserID }) => {
     const { store, actions } = useContext(Context);
@@ -18,13 +19,13 @@ export const Comment = ({ movieID, UserID }) => {
         <>
             <div className="text-center mx-5">
                 <div className="container-fluid">
-                    <h5 className="m-3">Enter your comment here</h5>
+                    <h5 className="m-3">Escribe un comentario</h5>
                     <div className="form-floating">
                         <textarea
                             key={store.userId}
                             onChange={(e) => setComment(e.target.value)}
                             value={comment}
-                            className="form-control"
+                            className="form-control commentCommentBox"
                             placeholder="Leave a comment here"
                             id="commentArea"
                         ></textarea>
@@ -33,8 +34,8 @@ export const Comment = ({ movieID, UserID }) => {
                         <input value={movieID} className="d-none form-control" placeholder="Movie ID" id="movieID"></input>
                         <label htmlFor="commentArea">Comment</label>
                     </div>
-                        <button onClick={() => handlePostComment()} className="btn btn-secondary m-3">
-                            Post
+                        <button onClick={() => handlePostComment()} className="btn btn-secondary m-3 commentPostComment">
+                        Publicar
                         </button>
                     </div>
                     {store.auth === false ? <p>Debes <Link to="/">iniciar sesión</Link> para dejar un comentario.</p> : null}

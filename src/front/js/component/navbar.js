@@ -51,7 +51,7 @@ export const Navbar = () => {
 						<button className="navButton" >Festivales</button>
 						<button className="navButton" >Smart Favorites</button>
 						<Link to={"/watchlistUser"} >
-							{store.auth === true ? <button className="navButton btn text-light">Mi lista<span className="badge bg-secondary rounded-pill ms-2">{store.watchlist.length}</span>
+							{store.auth === true ? <button className="navButton btn text-light">Mi Watchlist<span className="badge bg-light text-dark rounded-pill ms-2 navbarMyWatchlistButton">{store.User_watchlist.length}</span>
 							</button> : null}
 						</Link>
 						<button className="navDropdown nav-item dropdown">

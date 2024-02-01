@@ -27,8 +27,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			adminLogin: false,
 			moviesByName:[],
 			imdbRating: [],
-			imdbPreviewRating: [],
-			rottenRating: []
+			rottenRating: [],
+			moviePlataforms: []
 
 		},
 		
@@ -55,6 +55,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.error(error);
 					}
 				},
+
+				getPlataforms: async (TMDB_ID) => {
+					const url = `https://streaming-availability.p.rapidapi.com/get`;
+					const options = {
+						method: 'GET',
+						params: {
+							output_language: 'es',
+							tmdb_id: `movie/${TMDB_ID}`
+						},
+						headers: {
+							'X-RapidAPI-Key': '2d63679966msh6ab2eb399151c6ap1f2472jsn6819f340dd0d',
+							'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
+						}
+					};
+					try {
+						const response = await fetch(url, options);
+						const result = await response.json();
+						
+						setStore({ moviePlataforms: result})
+						console.log(result)
+					} catch (error) {
+						console.error(error);
+					}
+				},
+
+
 
 		
 			//[POST] CREAR nuevo user
@@ -440,7 +466,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			
 					if (response.ok) {
-						alert("Your comment has been added");
 					} else {
 						console.error("Error posting comment:", response.status, response.statusText);
 						// Obtén y muestra el mensaje de error del servidor si está disponible

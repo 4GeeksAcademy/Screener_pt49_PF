@@ -50,14 +50,14 @@ export const Movies = () => {
     ];
 
     const renderPropertyInputs = () => {
-        const firstColumnLabels = propertyLabels.slice(0, 8);
-        const secondColumnLabels = propertyLabels.slice(8, 17);
-        const thirdColumnLabels = propertyLabels.slice(17, 26);
-        const fourthColumnLabels = propertyLabels.slice(26);
+        const columnLabels = [];
+        for (let i = 0; i < 6; i++) {
+            columnLabels.push(propertyLabels.slice(i * 6, (i + 1) * 6));
+        }
 
         const renderInputsForColumn = (labels) => {
             return labels.map((label, index) => (
-                <div key={index}>
+                <div key={index} className="mb-3">
                     <label>
                         {label}:
                         <input
@@ -71,47 +71,53 @@ export const Movies = () => {
         };
 
         return (
-            <div className="container" style={{marginTop: "2%"}}>
-            <div className="row">
-                <div className="col-md-3">
-                    {renderInputsForColumn(firstColumnLabels)}
+            <div className="container" style={{ marginTop: "1%" }}>
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="container">
+                            <div className="row">
+                                {columnLabels.map((column, columnIndex) => (
+                                    <div key={columnIndex} className="col-md-2">
+                                        {renderInputsForColumn(column)}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="col-md-3">
-                    {renderInputsForColumn(secondColumnLabels)}
-                </div>
-                <div className="col-md-3">
-                    {renderInputsForColumn(thirdColumnLabels)}
-                </div>
-                <div className="col-md-3">
-                    {renderInputsForColumn(fourthColumnLabels)}
-                </div>
-            </div>
             </div>
         );
     };
 
     return (
-        <div className="MovieApiContainer">  
+        <div className="MovieApiContainer">
             <div className="container">
-                <h1>Películas listadas para agregar a la Api</h1>
+                <h1 style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                    {store.popularMovies.length > 0 && `${store.popularMovies[currentMovieIndex].title} // ${store.popularMovies[currentMovieIndex].original_title}`}
+                </h1>
             </div>
             {store.popularMovies.length > 0 && (
                 <div className="container">
                     <div className="row">
-                        {/* Columna izquierda con póster y detalles de la película */}
-                        <div className="col-md-4">
-                            <div>
-                                <button className="me-2 movieChangeButton" onClick={handleNextMovie}>Siguiente pelicula</button>
-                                <h2>{store.popularMovies[currentMovieIndex].title} // {store.popularMovies[currentMovieIndex].original_title}</h2>
-                                <img style={{ width: "180px" }} src={`https://image.tmdb.org/t/p/w500${store.popularMovies[currentMovieIndex].poster_path}`} />
-                                <p>Id de esta película: {store.popularMovies[currentMovieIndex].id}</p>
+                        {/* Columna única con póster y detalles de la película */}
+                        <div className="col-md-12">
+                            <div className="row">
+                                <div className="col-md-4">
+                                    <img style={{ width: "300px" }} src={`https://image.tmdb.org/t/p/w500${store.popularMovies[currentMovieIndex].poster_path}`} />
+                                </div>
+                                <div className="col-md-8">
+                                    <p>Id de esta película: {store.popularMovies[currentMovieIndex].id}</p>
+                                    <p>{store.popularMovies[currentMovieIndex].overview}</p>
+                                    {renderPropertyInputs()}
+                                </div>
                             </div>
                         </div>
-                        {/* Columna derecha con inputs */}
-                        <div className="col-md-8">
-                            {renderPropertyInputs()}
-                            <p>{store.popularMovies[currentMovieIndex].overview}</p>
-                            <div className="container">
+                    </div>
+                    {/* Fila para los botones */}
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="container mt-4">
+                                <button className="me-2 movieChangeButton" onClick={handleNextMovie}>Siguiente película</button>
                                 <button className="me-2 movieChangeButton" onClick={handleSaveMovie}>Agregarle propiedades a la pelicula</button>
                                 <button className="me-2" onClick={handlePreMovie}>Volver</button>
                             </div>

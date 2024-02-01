@@ -30,3 +30,7 @@
  .navbar.sticky {
   background-color: rgba(143, 143, 143, 0);
   }
+
+  .navbarMyWatchlistButton:hover{
+    color: #F6B17A !important;
+  }

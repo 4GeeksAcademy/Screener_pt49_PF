@@ -21,7 +21,7 @@ const Login = () => {
             </div>
             <div className="loginContainer col-sm-12 col-md-10 col-lg-7 text-center">
                 <div className="card loginCard bg-dark">
-                    {store.auth === true ? <Navigate to="/private" /> : null}
+                    {store.auth === true ? <Navigate to="/" /> : null}
                     <div className="cardTitle card-header bg-dark border-light rounded">
                         <h2>Iniciar sesión</h2>
                     </div>
