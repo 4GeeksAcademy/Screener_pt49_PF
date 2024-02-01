@@ -5,6 +5,7 @@ import "../../styles/login.css"
 import bgLogin from "../../img/loginBgResized.png";
 import { Link } from "react-router-dom";
 
+
 const Login = () => {
 
     const { store, actions } = useContext(Context);
@@ -40,7 +41,7 @@ const Login = () => {
                         <a className="text-center">¿Has olvidado la contraseña?</a>
                     </form>
                     <div>
-                        <Link className="loginButton" to="/signup"><button type="button">Crear cuenta nueva</button></Link>
+                        <Link className="" to="/signup"><a className="text-center">Crear cuenta nueva</a></Link>
                     </div>
                 </div>
             </div>

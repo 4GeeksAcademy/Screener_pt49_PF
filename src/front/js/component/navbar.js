@@ -49,9 +49,9 @@ export const Navbar = () => {
 						<button className="navButton" >Series</button>
 						<button className="navButton" >Colecciones</button>
 						<button className="navButton" >Festivales</button>
-						<button className="navButton" >Smart Favorites</button>
+						{store.auth === true ? <button className="navButton" >Smart Favorites</button> : null}
 						<Link to={"/watchlistUser"} >
-							{store.auth === true ? <button className="navButton btn text-light">Mi Watchlist<span className="badge bg-light text-dark rounded-pill ms-2 navbarMyWatchlistButton">{store.User_watchlist.length}</span>
+							{store.auth === true ? <button className="navButton btn text-light">Mi lista<span className="badge bg-light text-dark rounded-pill ms-2 navbarMyWatchlistButton">{store.User_watchlist.length}</span>
 							</button> : null}
 						</Link>
 						<button className="navDropdown nav-item dropdown">
@@ -66,13 +66,13 @@ export const Navbar = () => {
 							</ul>
 						</button>
 					</div>
-					<div className="logButton btn-group col-lg-3 col-sm-5 col-md-4">
+					<div className="btn-group col-lg-3 col-sm-5 col-md-4">
 						<div className="">
 							{store.auth === true ? <Link to={"/private"} ><button className="navButton">Perfil</button></Link> : null}
 							{store.adminLogin === true ? <button className="navButton" onClick={() => actions.adminLogOut()} >ADMIN Logout</button> : null}
-							{store.auth === true ? <Link to="/"><button className="navButton" onClick={() => actions.logOut()} >Cerrar sesion</button></Link> :
+							{store.auth === true ? <Link to="/"><button className="logButton" onClick={() => actions.logOut()} >Cerrar sesion</button></Link> :
 								<div className="btn-group" role="group" aria-label="Basic example">
-									<Link to="/login"><button className="navButton" type="button" >Iniciar sesion</button></Link>
+									<Link to="/login"><button className="logButton" type="button" >Iniciar sesion</button></Link>
 								</div>
 							}
 						</div>

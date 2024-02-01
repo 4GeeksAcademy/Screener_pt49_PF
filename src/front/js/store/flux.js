@@ -28,7 +28,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			moviesByName:[],
 			imdbRating: [],
 			rottenRating: [],
-			moviePlataforms: []
+			moviePlataforms: [],
+			isRegistered: false
 
 		},
 		
@@ -104,6 +105,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(process.env.BACKEND_URL + "/api/user", requestOptions)
 				.then(response => {
 					if (response.ok) {
+						setStore({ isRegistered: true })
 						alert("Registro exitoso");
 					}else if (response['status'] === 400){
                         alert("El nombre de usuario o el correo ya esta en uso");
@@ -583,7 +585,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			logOut(){
-				setStore({ auth: false, userToken:"", userId:null })
+				setStore({isRegistered: false, auth: false, userToken:"", userId:null })
 				localStorage.removeItem("token");
 				localStorage.setItem("userAuth", false);
 			},

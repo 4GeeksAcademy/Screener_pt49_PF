@@ -11,6 +11,10 @@
     transition: all 0.5s;
   }
 
+ .logButton{
+  border: white;
+  border-width: 1px;
+ } 
  .dropdownButton{
   color: white;
   }
