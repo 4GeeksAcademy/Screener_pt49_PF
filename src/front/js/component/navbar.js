@@ -49,7 +49,6 @@ export const Navbar = () => {
 						<button className="navButton" >Series</button>
 						<button className="navButton" >Colecciones</button>
 						<button className="navButton" >Festivales</button>
-						{store.auth === true ? <button className="navButton" >Smart Favorites</button> : null}
 						<Link to={"/watchlistUser"} >
 							{store.auth === true ? <button className="navButton btn text-light">Mi lista<span className="badge bg-light text-dark rounded-pill ms-2 navbarMyWatchlistButton">{store.User_watchlist.length}</span>
 							</button> : null}

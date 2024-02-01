@@ -80,9 +80,11 @@
 
 .iconIMDB{
   font-size: 40px;
-
 }
-
+.ratingNumber{
+  position: absolute;
+  padding: 10px;
+}
 
 
 

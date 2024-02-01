@@ -31,12 +31,15 @@ export const MoviesUser = () => {
               <div key={movie.id} className="mainPoster col-xs-6 col-sm-4 col-md-2 col-lg-1 ">
                 <div className="cardPoster">
                   <Link to={`/moviedetails/${movie.id}`} className="text-decoration-none">
-                    <img onMouseOver={()=>actions.getRating(movie.id)} className="posterImage" style={{ width: "100%" }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+                    <img className="posterImage" style={{ width: "100%" }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
                   </Link>
                   <div className="text">
                     <div className="card posterInfo">
                       <h6 className="card-header"><strong>{movie.title}</strong></h6>
-                      <b className=" pb-3 text-center"><i className="iconIMDB fa-brands fa-imdb"/> 8 {imdbRating === null ? "Unknown" : imdbRating}</b>
+                      <div className="ratingCont">
+                        <i className="iconIMDB fa-brands fa-imdb"/>
+                        <b className="ratingNumber">8.4{imdbRating === null ? "Unknown" : imdbRating}</b>
+                      </div>
                       <p>{movie.overview}</p>
                     </div>
                   </div>
