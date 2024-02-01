@@ -52,8 +52,8 @@ export const ChatGpt = () => {
 
     return (
         <>
-        <div class="container border-top border-white my-5"></div>
-        <div className="mt-5">
+        <div class="container border-top border-white my-5 mb-5"></div>
+        <div className="mt-5 mb-5">
             {loading &&           
                 <div className="form-card text-center">
                     <h2 className="fs-title ">Estamos leyendo los datos de tus películas guardadas<br/> para buscar las mejores recomendaciones para ti. </h2>
@@ -82,7 +82,7 @@ export const ChatGpt = () => {
             {/* Botón para obtener recomendaciones */}
             <div className="container inboxContainer">
                 <div>
-                    <button onClick={handleObtenerRecomendaciones} className="cti">
+                    <button onClick={handleObtenerRecomendaciones} className="cti mb-5">
                         <div className="CTI">
                             Recomendaciones de la IA
                         </div>

@@ -4,6 +4,8 @@ import { Context } from "../store/appContext";
 import { Comment } from "../component/comment";
 import { Link } from "react-router-dom";
 import "../../styles/movieDetails.css";
+import IMDbLogo from "../../img/IMDblogo.png";
+import RottenLogo from "../../img/rottenlogo.png";
 
 
 
@@ -42,7 +44,7 @@ export const MovieDetails = () => {
     const handleDeleteMovieWatchlist = async (user_id, movie_id) => {
         try {
             await actions.deleteMovieFromWatchlist(user_id, movie_id);
-            await actions.getUserWatchlist(user_id);  // Espera a que se actualice la watchlist
+            await actions.getUserWatchlist(user_id); 
 
             const userWatchlist = store.User_watchlist;
             if (!userWatchlist.some(movie => movie.id === parseInt(movie_id))) {
@@ -145,8 +147,8 @@ return (
                             <div className="col-md-4">
                                 <div className="card infoMovieCard">
                                     <div className="card-body">
-                                        <p className="movie-specs">IMDB Score: {imdbRating === null ? "Unknown" : imdbRating}</p>
-                                        <p className="movie-specs">Rotten Tomatoes Score: {rottenRating === null ? "Unknown" : rottenRating}</p>
+                                        <p className="movie-specs"><img style={{width: "20%"}} src={IMDbLogo} />{imdbRating === null ? "Unknown" : imdbRating}</p>
+                                        <p className="movie-specs"><img style={{width: "25%"}} src={RottenLogo} /> {rottenRating === null ? "Unknown" : rottenRating}</p>
                                         <p className="movie-specs">Director: <b>{director}</b></p>
                                         <p className="movie-specs">Fecha de lanzamiento: {movie.release_date === null ? "Unknown" : <b>{movie.release_date}</b>}</p>
                                     </div> 
