@@ -1,4 +1,5 @@
 # WebApp boilerplate with React JS and Flask API
+ boilerplate with React JS and Flask API
 
 Build web applications using React.js for the front end and python/flask for your backend API.
 
@@ -30,6 +31,11 @@ pipenv run migrate5. Run the migrations: `$ pipenv run upgrade`
 6. Run the application: `$ pipenv run start`
 
 > Note: Codespaces users can connect to psql by typing: `psql -h localhost -U gitpod example`
+
+> If you use ChatGPT make sure to install
+1. `$ npm install axios`
+2. `$ pip install openai / pipenv install openai`
+3.  `$ npm install openai@^4.0.0`
 
 ### Undo a migration
 
@@ -79,3 +85,4 @@ This boilerplate it's 100% read to deploy with Render.com and Heroku in a matter
 This template was built as part of the 4Geeks Academy [Coding Bootcamp](https://4geeksacademy.com/us/coding-bootcamp) by [Alejandro Sanchez](https://twitter.com/alesanchezr) and many other contributors. Find out more about our [Full Stack Developer Course](https://4geeksacademy.com/us/coding-bootcamps/part-time-full-stack-developer), and [Data Science Bootcamp](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning).
 
 You can find other templates and resources like this at the [school github page](https://github.com/4geeksacademy/).
+
