@@ -102,7 +102,7 @@ export const Recomendacion = () => {
             <h2 className="fs-title text-center mb-3">¿Qué estás buscando hoy?</h2>
             <button className="onBoardingButton" type="button" onClick={() => { setCurrentStep(66); setTimeout(() => { setCurrentStep(5); }, 2000); }}>Necesito algo de fondo para trabajar o limpiar</button>            <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(3)}>Algo suave, una comedia o de esas light</button>
             <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(9)}>Quiero algo emocionante</button>
-            <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(14)}>Venga vamos a llorar un rato</button>
+            <button className="onBoardingButton" type="button" onClick={() => setCurrentStep(14)}>Quiero dramas, motivadoras o difíciles de ver</button>
           </div>
           <input type="button" name="Volver" className="previous action-button-previous" onClick={() => setCurrentStep(1)} value="Volver" />
         </>
@@ -149,7 +149,7 @@ export const Recomendacion = () => {
           {/* Solo 1.4 */}
 
           <div className="form-card">
-            <h2 className="fs-title text-center mb-3 infoMovie">A llorar se á dicho</h2>
+            <h2 className="fs-title text-center mb-3 infoMovie">Emociones fuertes para tí:</h2>
             <button className="onBoardingButton" type="button" onClick={() => { setCurrentStep(66); setTimeout(() => { setCurrentStep(15); }, 2000); }}>Drama, drama y más drama</button>
             <button className="onBoardingButton" type="button" onClick={() => { setCurrentStep(66); setTimeout(() => { setCurrentStep(16); }, 2000); }}>Películas difíciles de ver</button>
             <button className="onBoardingButton" type="button" onClick={() => { setCurrentStep(66); setTimeout(() => { setCurrentStep(17); }, 2000); }}>Una buena motivadora</button>
@@ -393,7 +393,7 @@ export const Recomendacion = () => {
         <>
           <div className="form-card">
             <h2 className="fs-title text-center infoMovie">Acción?, para eso esta:</h2>
-            {renderMovies((movie) => !movie.animation || movie.action || movie.violence)}
+            {renderMovies((movie) => movie.action || movie.violence)}
           </div>
           <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
           <input type="button" name="Volver a empezar" className="previous action-button-previous" onClick={() => setCurrentStep(0)} value="Volver a empezar" />
@@ -589,7 +589,7 @@ export const Recomendacion = () => {
         <>
           <div className="form-card">
             <h2 className="fs-title text-center infoMovie">Aventuras fantásticas para toda la familia:</h2>
-            {renderMovies((movie) => movie.family && movie.action)}
+            {renderMovies((movie) => movie.family && movie.light_film)}
           </div>
           <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
           <input type="button" name="Volver a empezar" className="previous action-button-previous" onClick={() => setCurrentStep(0)} value="Volver a empezar" />
@@ -619,7 +619,7 @@ export const Recomendacion = () => {
         <>
           <div className="form-card">
             <h2 className="fs-title text-center infoMovie">Películas alegres para toda la familia:</h2>
-            {renderMovies((movie) => movie.family && movie.live_action)}
+            {renderMovies((movie) => movie.family && movie.happy)}
           </div>
           <button className="onBoardingButton" type="button" onClick={regenerateRecommendations}>Dame otra Recomendación</button>
           <input type="button" name="Volver a empezar" className="previous action-button-previous" onClick={() => setCurrentStep(0)} value="Volver a empezar" />
