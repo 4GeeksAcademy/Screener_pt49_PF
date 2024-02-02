@@ -43,13 +43,8 @@ export const MovieDetails = () => {
 
     const handleDeleteMovieWatchlist = async (user_id, movie_id) => {
         try {
-            await actions.deleteMovieFromWatchlist(user_id, movie_id);
-            await actions.getUserWatchlist(user_id); 
-
-            const userWatchlist = store.User_watchlist;
-            if (!userWatchlist.some(movie => movie.id === parseInt(movie_id))) {
-                setisOnTheWatchlist(false);
-            }
+            await actions.addMovieToWatchlist(tuUserID, theid);
+            await actions.getUserWatchlist(tuUserID);
         } catch (error) {
             console.error(error);
         }
@@ -70,7 +65,10 @@ export const MovieDetails = () => {
                 actions.getComments();
                 actions.getUserWatchlist(theid);
                 actions.getRating(theid);
-                handleAddMovieToUserWatchlist()
+                const userWatchlist = store.User_watchlist;
+                if (userWatchlist.some(movie => movie.id === parseInt(theid))) {
+                    setisOnTheWatchlist(true);
+                }
 
             } catch (error) {
                 console.error(error);
@@ -158,7 +156,7 @@ return (
                                     {isOnTheWatchlist ? (
                                         <button  onClick={() => handleDeleteMovieWatchlist(tuUserID, theid)} type="button" className="removeFromWatchlistButton">Eliminar de la watchlist</button>
                             ) : (
-                                        <button onClick={handleAddMovieToUserWatchlist} type="button" className="addToWatchListButton text-center">Agregar a la watchlist</button>
+                                        <button onClick={()=> handleAddMovieToUserWatchlist()} type="button" className="addToWatchListButton text-center">Agregar a la watchlist</button>
                             )}
                                 </div>
                                  )}
